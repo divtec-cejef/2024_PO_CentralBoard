@@ -43,7 +43,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>pkob4hybrid</platformTool>
         <languageToolchain>CCSC</languageToolchain>
-        <languageToolchainVersion>5.112</languageToolchainVersion>
+        <languageToolchainVersion>5.118</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -77,8 +77,12 @@
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
       <item path="DFPlayer.c" ex="true" overriding="false">
+        <ccscompiler>
+        </ccscompiler>
       </item>
       <item path="MiniLCD_SPI_2x16v2.c" ex="true" overriding="false">
+        <ccscompiler>
+        </ccscompiler>
       </item>
       <ccscompiler>
         <property key="cc-compat" value="0"/>
