@@ -1,0 +1,14 @@
+[PROJECT]
+Target=build\default\production\Main.hex
+Processor_Text=PIC18F47Q10
+CCSVersion=5.112
+Compiler=PCH
+[Target Data]
+FileList=Main.c
+[build\default\production\Main.c]
+Type=4
+[mru-list]
+1=build\default\production\Main.c
+[Units]
+Count=1
+1=Main (main)
