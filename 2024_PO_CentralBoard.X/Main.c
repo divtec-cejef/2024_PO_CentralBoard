@@ -7,7 +7,7 @@
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /* Project     : lecteur MP3                                                  */
-/* Author      : Choffat Frédéric                                             */
+/* Author      : Pena                                         */
 /* Target      : PIC 18F47Q10                                                 */
 /*                                                                            */
 /* File name   : Main.c                                                       */
