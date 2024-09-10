@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root xmlns:nsd="https://structorizer.fisch.lu" version="3.32-11" preRepeat="until " postFor="to" preReturn="return" postForIn="in" preWhile="while " output="OUTPUT" input="INPUT" preFor="for" preExit="exit" preLeave="leave" ignoreCase="true" preThrow="throw" preForIn="foreach" stepFor="by" author="Kryxt" created="2024-09-09" changedby="Kryxt" changed="2024-09-09" origin="Structorizer 3.32-11" text="&#34;Structogramme_Circuit&#34;" comment="" color="ffffff" type="program" style="nice">
+<root xmlns:nsd="https://structorizer.fisch.lu" version="3.32-11" preRepeat="until " postFor="to" preReturn="return" postForIn="in" preWhile="while " output="OUTPUT" input="INPUT" preFor="for" preExit="exit" preLeave="leave" ignoreCase="true" preThrow="throw" preForIn="foreach" stepFor="by" author="Kryxt" created="2024-09-09" changedby="Kryxt" changed="2024-09-10" origin="Structorizer 3.32-11" text="&#34;Structogramme_Circuit&#34;" comment="" color="ffffff" type="program" style="nice">
 	<children>
 		<instruction text="&#34;State = STARTING&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
-		<forever comment="" color="cccccc" disabled="0">
+		<forever comment="" color="000000" disabled="0">
 			<qForever>
-				<case text="&#34;State&#34;,&#34;STARTING&#34;,&#34;WAIT&#34;,&#34;READY&#34;,&#34;COUNTDOWN&#34;,&#34;LAUNCHING&#34;,&#34;RACE&#34;,&#34;TIME&#34;,&#34;ENDING&#34;,&#34;%&#34;" comment="" color="cccccc" disabled="0">
+				<case text="&#34;State&#34;,&#34;STARTING&#34;,&#34;WAIT&#34;,&#34;READY&#34;,&#34;COUNTDOWN&#34;,&#34;LAUNCHING&#34;,&#34;RACE&#34;,&#34;TIME&#34;,&#34;ENDING&#34;,&#34;%&#34;" comment="" color="ffffcc" disabled="0">
 					<qCase>
 						<instruction text="&#34;Timer = 0;&#34;,&#34;&#34;,&#34;Start Led animation&#34;,&#34;&#34;,&#34;Start karting music&#34;,&#34;&#34;,&#34;State = WAIT&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
 					</qCase>
@@ -13,7 +13,7 @@
 							<qTrue>
 								<instruction text="&#34;Stop LED animation&#34;,&#34;&#34;,&#34;Stop karting music&#34;,&#34;&#34;,&#34;Car engine sound effect&#34;,&#34;&#34;,&#34;Start pre-start music&#34;,&#34;&#34;,&#34;State = READY&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
 							</qTrue>
-							<qFalse color="ffffff">
+							<qFalse color="000000">
 							</qFalse>
 						</alternative>
 					</qCase>
@@ -22,31 +22,31 @@
 							<qTrue>
 								<instruction text="&#34;Send &#34;&#34;Ready message&#34;&#34;&#34;,&#34;&#34;,&#34;Stop pre-start music&#34;,&#34;&#34;,&#34;Car engine sound effect&#34;,&#34;&#34;,&#34;Countdown sound effect&#34;,&#34;&#34;,&#34;Start countdown sequency&#34;,&#34;&#34;,&#34;First light on RED&#34;,&#34;&#34;,&#34;State = COUNTDOWN&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
 							</qTrue>
-							<qFalse color="ffffff">
+							<qFalse color="000000">
 							</qFalse>
 						</alternative>
 					</qCase>
 					<qCase>
-						<alternative text="&#34;=1s&#34;" comment="" color="ff9999" disabled="0">
+						<alternative text="&#34;= 1 second&#34;" comment="&#34;&#34;" color="ff9999" disabled="0">
 							<qTrue>
-								<instruction text="&#34;2 feux on red&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
+								<instruction text="&#34;2 LEDs on red&#34;" comment="&#34;&#34;" color="ccffcc" rotated="0" disabled="0"></instruction>
 							</qTrue>
 							<qFalse>
-								<alternative text="&#34;=2s&#34;" comment="" color="ff9999" disabled="0">
+								<alternative text="&#34;= 2 seconds&#34;" comment="&#34;&#34;" color="ff9999" disabled="0">
 									<qTrue>
-										<instruction text="&#34;3 feux on red&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
+										<instruction text="&#34;3 LEDs on red&#34;" comment="&#34;&#34;" color="ccffcc" rotated="0" disabled="0"></instruction>
 									</qTrue>
 									<qFalse>
-										<alternative text="&#34;=3s&#34;" comment="" color="ff9999" disabled="0">
+										<alternative text="&#34;= 3 seconds&#34;" comment="&#34;&#34;" color="ff9999" disabled="0">
 											<qTrue>
-												<instruction text="&#34;4 feux on red&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
+												<instruction text="&#34;4 LEDs on red&#34;" comment="&#34;&#34;" color="ccffcc" rotated="0" disabled="0"></instruction>
 											</qTrue>
 											<qFalse>
-												<alternative text="&#34;=4s&#34;" comment="" color="ff9999" disabled="0">
+												<alternative text="&#34;= 4 seconds&#34;" comment="&#34;&#34;" color="ff9999" disabled="0">
 													<qTrue>
-														<instruction text="&#34;4 feux ON green&#34;,&#34;&#34;,&#34;Start chronometer&#34;,&#34;&#34;,&#34;Start race music&#34;,&#34;&#34;,&#34;Show live time&#34;,&#34;&#34;,&#34;State = LAUNCHING&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
+														<instruction text="&#34;4 LEDs ON green&#34;,&#34;&#34;,&#34;Start chronometer&#34;,&#34;&#34;,&#34;Start race music&#34;,&#34;&#34;,&#34;Show running time&#34;,&#34;&#34;,&#34;State = LAUNCHING&#34;" comment="&#34;&#34;" color="ccffcc" rotated="0" disabled="0"></instruction>
 													</qTrue>
-													<qFalse color="ffffff">
+													<qFalse color="000000">
 													</qFalse>
 												</alternative>
 											</qFalse>
@@ -55,11 +55,11 @@
 								</alternative>
 							</qFalse>
 						</alternative>
-						<alternative text="&#34;buzzer = 1  before the start&#34;" comment="" color="ff9999" disabled="0">
+						<alternative text="&#34;buzzer = 1&#34;" comment="&#34;&#34;" color="ff9999" disabled="0">
 							<qTrue>
 								<instruction text="&#34;Send error message&#34;,&#34;&#34;,&#34;Fart sound effect&#34;,&#34;&#34;,&#34;Stop countdown sound effect &#34;,&#34;&#34;,&#34;Stop countdown&#34;,&#34;&#34;,&#34;Start chronometer +2 seconds&#34;,&#34;&#34;,&#34;Start race music&#34;,&#34;&#34;,&#34;Start race&#34;,&#34;&#34;,&#34;State = RACE&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
 							</qTrue>
-							<qFalse color="ffffff">
+							<qFalse color="000000">
 							</qFalse>
 						</alternative>
 					</qCase>
@@ -68,7 +68,7 @@
 							<qTrue>
 								<instruction text="&#34;Save reaction time&#34;,&#34;&#34;,&#34;Send reaction time&#34;,&#34;&#34;,&#34;State = RACE&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
 							</qTrue>
-							<qFalse color="ffffff">
+							<qFalse color="000000">
 							</qFalse>
 						</alternative>
 					</qCase>
@@ -77,28 +77,28 @@
 							<qTrue>
 								<instruction text="&#34;State = TIME&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
 							</qTrue>
-							<qFalse color="ffffff">
+							<qFalse color="000000">
 							</qFalse>
 						</alternative>
 						<alternative text="&#34;Elevator start pulse received&#34;" comment="" color="ff9999" disabled="0">
 							<qTrue>
 								<instruction text="&#34;activate elevator&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
 							</qTrue>
-							<qFalse color="ffffff">
+							<qFalse color="000000">
 							</qFalse>
 						</alternative>
 						<alternative text="&#34;Elevator stop pulse received&#34;" comment="" color="ff9999" disabled="0">
 							<qTrue>
 								<instruction text="&#34;stop elevator&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
 							</qTrue>
-							<qFalse color="ffffff">
+							<qFalse color="000000">
 							</qFalse>
 						</alternative>
 						<alternative text="&#34;Final pulse received&#34;" comment="" color="ff9999" disabled="0">
 							<qTrue>
-								<instruction text="&#34;Stop live time&#34;,&#34;&#34;,&#34;Show live time&#34;,&#34;&#34;,&#34;Stop race music&#34;,&#34;&#34;,&#34;Goal reached sound effect&#34;,&#34;&#34;,&#34;Start ending music&#34;,&#34;&#34;,&#34;State = ENDING&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
+								<instruction text="&#34;Stop live time&#34;,&#34;&#34;,&#34;Show time&#34;,&#34;&#34;,&#34;Stop race music&#34;,&#34;&#34;,&#34;Goal reached sound effect&#34;,&#34;&#34;,&#34;Start ending music&#34;,&#34;&#34;,&#34;State = ENDING&#34;" comment="&#34;&#34;" color="ccffcc" rotated="0" disabled="0"></instruction>
 							</qTrue>
-							<qFalse color="ffffff">
+							<qFalse color="000000">
 							</qFalse>
 						</alternative>
 					</qCase>
@@ -108,27 +108,27 @@
 							<qTrue>
 								<instruction text="&#34;Hide intermediate time&#34;,&#34;&#34;,&#34;Show running time&#34;,&#34;&#34;,&#34;State = RACE&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
 							</qTrue>
-							<qFalse color="ffffff">
+							<qFalse color="000000">
 							</qFalse>
 						</alternative>
 					</qCase>
 					<qCase>
 						<alternative text="&#34;buzzer = 1&#34;" comment="" color="ff9999" disabled="0">
 							<qTrue>
-								<instruction text="&#34;State = STARTING&#34;" comment="" color="ffffff" rotated="0" disabled="0"></instruction>
+								<instruction text="&#34;State = STARTING&#34;" comment="" color="ccffcc" rotated="0" disabled="0"></instruction>
 							</qTrue>
-							<qFalse color="ffffff">
+							<qFalse color="000000">
 							</qFalse>
 						</alternative>
 					</qCase>
 					<qCase color="ffffff">
 					</qCase>
 				</case>
-				<alternative text="&#34;State = RACE or TIME?&#34;" comment="&#34;&#34;" color="ffffff" disabled="0">
+				<alternative text="&#34;State = RACE or TIME?&#34;" comment="" color="ff9999" disabled="0">
 					<qTrue>
-						<instruction text="&#34;Chrono update&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+						<instruction text="&#34;Chronometer update&#34;" comment="&#34;&#34;" color="ccffcc" rotated="0" disabled="0"></instruction>
 					</qTrue>
-					<qFalse color="ffffff">
+					<qFalse color="000000">
 					</qFalse>
 				</alternative>
 			</qForever>
