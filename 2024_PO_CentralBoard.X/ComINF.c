@@ -1,10 +1,11 @@
-#use rs232(UART2, baud=115200, xmit=PIN_D1, rcv=PIN_B0, stream=INF)
+/*
+ * #use rs232(UART2, baud=9600, xmit=PIN_D1, rcv=PIN_B0, stream=INF)
 
 unsigned int send_buf_Inf[9];
 unsigned int rx_buf[8];
 
 void ComINF_SendData();
-
+*/
 void ComINF_Init()
 {
     //Enable the interrupt INT_RDA2 because it's UART2 to receive data
@@ -33,8 +34,11 @@ void ComINF_Message(int messageNb, int secondes, int centiemes)
     //ss: secondes 0-99
     //cc: centièmes 0-99
     printf("%d:%02d%02d",messageNb,secondes,centiemes);
+
     output_toggle(PIN_A6);
 }
+
+
 
 void ComINF_SendData()
 {

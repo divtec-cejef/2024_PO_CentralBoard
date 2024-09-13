@@ -1,15 +1,23 @@
-
-//#include "DFPlayer.h"
-
-//#use rs232(baud=9600, xmit=PIN_B2, rcv=PIN_B1, stream=PC)
+#include "DFPlayer.h"
+//#use rs232(baud=9600, xmit=PIN_B2, rcv=PIN_B1, stream=MUSIC)
 
 //Attention l'ordre des chansons est donné par l'ordre dans lequel vous les 
 //copiez
+/*
 unsigned int send_buf[9];
+
+void DFPlayer_SendData();
+void DFPlayer_SetVolume(int volume);
+*/
+void DFPlayer_Init()
+{
+    //Set volume max
+    DFPlayer_SetVolume(30);
+    //No song
+}
 
 void DFPlayer_NextSong()
 {
-   unsigned int i;
    send_buf[0] = 0x7E;              // Start byte
    send_buf[1] = 0xFF;              // Version
    send_buf[2] = 0x06;              // Len
@@ -21,12 +29,9 @@ void DFPlayer_NextSong()
 //!   send_buf[8] = 0xE6;           // checksum low byte
    send_buf[7] = 0xEF;              // end
    
-   for(i = 0; i < 8; i ++){
-      printf("%c",send_buf[i]);
-      //putc(send_buf[i]);
-   }; 
+   DFPlayer_SendData();
 }
-
+//Volume 0-30
 void DFPlayer_SetVolume(int volume)
 {
    unsigned int i;
@@ -41,11 +46,9 @@ void DFPlayer_SetVolume(int volume)
 //!   send_buf[8] = 0xE6;           // checksum low byte
    send_buf[7] = 0xEF;              // end
    
-   for(i = 0; i < 8; i ++){
-      printf("%c",send_buf[i]);
-      //putc(send_buf[i]);
-   }; 
+   DFPlayer_SendData();
 }
+
 void DFPlayer_Pause()
 {
    unsigned int i;
@@ -60,10 +63,7 @@ void DFPlayer_Pause()
 //!   send_buf[8] = 0xE6;           // checksum low byte
    send_buf[7] = 0xEF;              // end
    
-   for(i = 0; i < 8; i ++){
-      printf("%c",send_buf[i]);
-      //putc(send_buf[i]);
-   };
+   DFPlayer_SendData();
 }
 void DFPlayer_PlayBack()
 {
@@ -79,12 +79,12 @@ void DFPlayer_PlayBack()
 //!   send_buf[8] = 0xE6;           // checksum low byte
    send_buf[7] = 0xEF;              // end
    
-   for(i = 0; i < 8; i ++){
-      printf("%c",send_buf[i]);
-      //putc(send_buf[i]);
-   };
+   DFPlayer_SendData();
 }
 
+//Numéro de chanson
+//Attention l'ordre des chansons est donné par l'ordre dans lequel vous les 
+//copiez
 void DFPlayer_PlaySongNb(int numSong)
 {
    unsigned int i;
@@ -99,9 +99,15 @@ void DFPlayer_PlaySongNb(int numSong)
 //!   send_buf[8] = 0xE6;           // checksum low byte
    send_buf[7] = 0xEF;           // end
    
-   for(i = 0; i < 8; i ++){
-      printf("%c",send_buf[i]);
-      //putc(send_buf[i]);
-   };
+   DFPlayer_SendData();
     
+}
+
+
+void DFPlayer_SendData()
+{
+    unsigned int i;
+    for(i = 0; i < 8; i ++){
+      printf("%c",send_buf[i]);
+   };
 }

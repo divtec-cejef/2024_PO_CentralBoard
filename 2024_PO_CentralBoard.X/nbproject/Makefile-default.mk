@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=Main.c
+SOURCEFILES_QUOTED_IF_SPACED=MainTest.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Main.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/Main.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/MainTest.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/MainTest.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/Main.o
+OBJECTFILES=${OBJECTDIR}/MainTest.o
 
 # Source Files
-SOURCEFILES=Main.c
+SOURCEFILES=MainTest.c
 
 
 
@@ -98,28 +98,28 @@ sourceline.gcccompat=sourceline="\#device ANSI" sourceline="\#device PASS_STRING
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/Main.o: Main.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/MainTest.o: MainTest.c  nbproject/Makefile-${CND_CONF}.mk 
 	${MKDIR} ${OBJECTDIR} 
 ifeq (1,1) 
 	${MKDIR} ${DISTDIR} 
-	${MP_CC}  out="${OBJECTDIR}"  Main.c +FH +EX +DF +CC #__DEBUG=1 +ICD +Y=9 +EA +DF +LN +T +A +M +J +Z -P #__18F47Q10=1 
-	@mv ${OBJECTDIR}/Main.cof "${DISTDIR}/2024_PO_CentralBoard.X.${IMAGE_TYPE}.cof" 
-	@mv ${OBJECTDIR}/Main.hex "${DISTDIR}/2024_PO_CentralBoard.X.${IMAGE_TYPE}.hex"
+	${MP_CC}  out="${OBJECTDIR}"  MainTest.c +FH +EX +DF +CC #__DEBUG=1 +ICD +Y=9 +EA +DF +LN +T +A +M +J +Z -P #__18F47Q10=1 
+	@mv ${OBJECTDIR}/MainTest.cof "${DISTDIR}/2024_PO_CentralBoard.X.${IMAGE_TYPE}.cof" 
+	@mv ${OBJECTDIR}/MainTest.hex "${DISTDIR}/2024_PO_CentralBoard.X.${IMAGE_TYPE}.hex"
 else 
-	${MP_CC}  out=""${OBJECTDIR}"" Main.c +EXPORT +FH +EX +DF +CC #__DEBUG=1 +ICD +Y=9 +EA +DF +LN +T +A +M +J +Z -P #__18F47Q10=1 +EXPORTD="${OBJECTDIR}"  
+	${MP_CC}  out=""${OBJECTDIR}"" MainTest.c +EXPORT +FH +EX +DF +CC #__DEBUG=1 +ICD +Y=9 +EA +DF +LN +T +A +M +J +Z -P #__18F47Q10=1 +EXPORTD="${OBJECTDIR}"  
 	
 endif 
 	
 else
-${OBJECTDIR}/Main.o: Main.c  nbproject/Makefile-${CND_CONF}.mk 
+${OBJECTDIR}/MainTest.o: MainTest.c  nbproject/Makefile-${CND_CONF}.mk 
 	${MKDIR} ${OBJECTDIR} 
 ifeq (1,1) 
 	${MKDIR} ${DISTDIR} 
-	${MP_CC}  out="${OBJECTDIR}"  Main.c +FH +EX +DF +CC +Y=9 +EA +DF +LN +T +A +M +J +Z -P #__18F47Q10=1 
-	@mv ${OBJECTDIR}/Main.cof "${DISTDIR}/2024_PO_CentralBoard.X.${IMAGE_TYPE}.cof" 
-	@mv ${OBJECTDIR}/Main.hex "${DISTDIR}/2024_PO_CentralBoard.X.${IMAGE_TYPE}.hex"
+	${MP_CC}  out="${OBJECTDIR}"  MainTest.c +FH +EX +DF +CC +Y=9 +EA +DF +LN +T +A +M +J +Z -P #__18F47Q10=1 
+	@mv ${OBJECTDIR}/MainTest.cof "${DISTDIR}/2024_PO_CentralBoard.X.${IMAGE_TYPE}.cof" 
+	@mv ${OBJECTDIR}/MainTest.hex "${DISTDIR}/2024_PO_CentralBoard.X.${IMAGE_TYPE}.hex"
 else 
-	${MP_CC}  out=""${OBJECTDIR}"" Main.c +EXPORT +FH +EX +DF +CC +Y=9 +EA +DF +LN +T +A +M +J +Z -P #__18F47Q10=1 +EXPORTD="${OBJECTDIR}"  
+	${MP_CC}  out=""${OBJECTDIR}"" MainTest.c +EXPORT +FH +EX +DF +CC +Y=9 +EA +DF +LN +T +A +M +J +Z -P #__18F47Q10=1 +EXPORTD="${OBJECTDIR}"  
 	
 endif 
 	
@@ -133,7 +133,7 @@ ${DISTDIR}/2024_PO_CentralBoard.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}
 ifeq (1,1) 
 	
 else 
-	${MP_LD}   out="${DISTDIR}"  +FH +EX +DF +CC LINK=2024_PO_CentralBoard.X.${IMAGE_TYPE}.hex=${OBJECTDIR}/Main.o +Y=9 +EA +DF +LN +T +A +M +J +Z -P
+	${MP_LD}   out="${DISTDIR}"  +FH +EX +DF +CC LINK=2024_PO_CentralBoard.X.${IMAGE_TYPE}.hex=${OBJECTDIR}/MainTest.o +Y=9 +EA +DF +LN +T +A +M +J +Z -P
 	
 endif 
 	
@@ -143,7 +143,7 @@ ${DISTDIR}/2024_PO_CentralBoard.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}
 ifeq (1,1) 
 	
 else 
-	${MP_LD}   out="${DISTDIR}"  +FH +EX +DF +CC LINK=2024_PO_CentralBoard.X.${IMAGE_TYPE}.hex=${OBJECTDIR}/Main.o +Y=9 +EA +DF +LN +T +A +M +J +Z -P
+	${MP_LD}   out="${DISTDIR}"  +FH +EX +DF +CC LINK=2024_PO_CentralBoard.X.${IMAGE_TYPE}.hex=${OBJECTDIR}/MainTest.o +Y=9 +EA +DF +LN +T +A +M +J +Z -P
 	
 endif 
 	
