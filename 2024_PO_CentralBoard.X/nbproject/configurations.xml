@@ -48,7 +48,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>pkob4hybrid</platformTool>
         <languageToolchain>CCSC</languageToolchain>
-        <languageToolchainVersion>5.112</languageToolchainVersion>
+        <languageToolchainVersion>5.118</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
