@@ -64,10 +64,11 @@ int8 numTrack = 2;
 void Timer0_ISR()
 {
     set_timer0(25536);
-    output_toggle(PIN_A4);
+    
     if(counterOn == 1)
     {
-       time++; 
+        output_toggle(PIN_A4);
+        time++; 
     }
     
     
@@ -76,6 +77,7 @@ void Timer0_ISR()
 #INT_EXT1
 void Button_S1()
 {
+    
     if(counterOn == 0)
         counterOn = 1;
     else
@@ -136,7 +138,7 @@ void main(){
           */
         if((time != timeold) &&((time%10)== 0))
         {
-           
+           output_toggle(PIN_A5);
                 timeold= time;
                 ComDisplay_Time(time/100, time%100);
             
@@ -144,17 +146,18 @@ void main(){
         //delay_ms(200);
         
         
-        output_toggle(PIN_A5);
+        //output_toggle(PIN_A5);
     }
    
 }
-void init(){
+void init()
+{
    setup_timer_0(T0_INTERNAL|T0_DIV_4);
    enable_interrupts(INT_TIMER0);
    enable_interrupts(INT_EXT1_H2L);
-   enable_interrupts(INT_IOC_C5);
+   //enable_interrupts(INT_EXT1);
    enable_interrupts(GLOBAL);
-   DFPlayer_Init();
+   //DFPlayer_Init();
    ComDisplay_Mode(MODE_RUNNING_TIME);
    
 }

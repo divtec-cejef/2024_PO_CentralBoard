@@ -28,6 +28,9 @@
       <itemPath>ComINF.c</itemPath>
       <itemPath>ComDisplay.c</itemPath>
       <itemPath>MainTest.c</itemPath>
+      <itemPath>Main.c</itemPath>
+      <itemPath>chrono.c</itemPath>
+      <itemPath>countdown.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -48,7 +51,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>pkob4hybrid</platformTool>
         <languageToolchain>CCSC</languageToolchain>
-        <languageToolchainVersion>5.112</languageToolchainVersion>
+        <languageToolchainVersion>5.118</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -93,6 +96,10 @@
         <ccscompiler>
         </ccscompiler>
       </item>
+      <item path="Main.c" ex="true" overriding="false">
+      </item>
+      <item path="MainTest.c" ex="true" overriding="false">
+      </item>
       <item path="MiniLCD_SPI_2x16v2.c" ex="true" overriding="false">
         <ccscompiler>
         </ccscompiler>
@@ -122,6 +129,8 @@
         <property key="preprocessor-macros-linux" value=""/>
         <property key="preprocessor-macros-windows" value=""/>
       </ccscompiler>
+      <item path="countdown.c" ex="true" overriding="false">
+      </item>
     </conf>
   </confs>
 </configurationDescriptor>
