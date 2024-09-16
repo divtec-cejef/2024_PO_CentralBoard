@@ -48,7 +48,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>pkob4hybrid</platformTool>
         <languageToolchain>CCSC</languageToolchain>
-        <languageToolchainVersion>5.118</languageToolchainVersion>
+        <languageToolchainVersion>5.112</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -82,6 +82,8 @@
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
       <item path="ComDisplay.c" ex="true" overriding="false">
+        <ccscompiler>
+        </ccscompiler>
       </item>
       <item path="ComINF.c" ex="true" overriding="false">
         <ccscompiler>

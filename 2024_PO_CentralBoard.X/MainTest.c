@@ -36,6 +36,7 @@
 #fuses RSTOSC_HFINTRC_64MHZ, NOWDT, NOPUT, NOBROWNOUT, LVP, NOCLKOUT, NOEXTOSC
 //#fuses RSTOSC_HFINTRC_64MHZ, NOWDT, NOPUT, NOBROWNOUT, NOCLKOUT
 #use delay (clock=64000000)
+#pin_select INT1=PIN_B4
 //#use RS232(UART1, baud=9600, ERRORS, stream=STR1)
 //#use RS232(UART1, baud=9600)
 //#use rs232(baud=9600, xmit=PIN_B2, rcv=PIN_B1, stream=MUSIC)
@@ -45,16 +46,7 @@
 //#include "ComINF.c"
 //#include "ComDisplay.c"
 
-/*----------------------------------------------------------------------------*/
-/*                          LOCAL VARIABLES                                   */
-/*----------------------------------------------------------------------------*/
-int Tab[10] = {1,3,5,7,10,15,12,1,8,9};
-int i, numTrack=0;
-int IndexMin;
-int IndexMax;
-int TabMin = Tab[0];
-int TabMax = Tab[0];
-int temp =0, counter = 0;
+
 
 /*----------------------------------------------------------------------------*/
 /*                          FUNCTIONS                                         */
@@ -65,21 +57,45 @@ int8 state=0;
 void init();
 
 int16 time = 0, timeold = 0;
-
+int8 counterOn = 0;
+int8 numTrack = 2;
 
 #INT_TIMER0
 void Timer0_ISR()
 {
     set_timer0(25536);
     output_toggle(PIN_A4);
-    time++;
+    if(counterOn == 1)
+    {
+       time++; 
+    }
     
+    
+}
+
+#INT_EXT1
+void Button_S1()
+{
+    if(counterOn == 0)
+        counterOn = 1;
+    else
+        counterOn = 0;
+}
+
+#INT_IOC
+void Button_S2()
+{
+    if(counterOn == 0)
+        counterOn = 1;
+    else
+        counterOn = 0;
 }
 
 void main(){ 
     init();
     while(1)
     {
+        /*
         //output_toggle(PIN_D1);
         if(!input(PIN_B4))
         {
@@ -88,7 +104,8 @@ void main(){
             delay_ms(1000);
             numTrack++;
             //play_1(0x01,0);
-        }
+        }*/
+        /*
         if(!input(PIN_C5))
         {
             if(state == 0)
@@ -116,6 +133,7 @@ void main(){
                 state = 0;
             }
         }
+          */
         if((time != timeold) &&((time%10)== 0))
         {
            
@@ -133,6 +151,8 @@ void main(){
 void init(){
    setup_timer_0(T0_INTERNAL|T0_DIV_4);
    enable_interrupts(INT_TIMER0);
+   enable_interrupts(INT_EXT1_H2L);
+   enable_interrupts(INT_IOC_C5);
    enable_interrupts(GLOBAL);
    DFPlayer_Init();
    ComDisplay_Mode(MODE_RUNNING_TIME);
