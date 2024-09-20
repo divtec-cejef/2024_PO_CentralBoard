@@ -30,7 +30,8 @@ void main()
     //== Initialisation affichage & timer ==//      
     setup_timer_0(T0_INTERNAL|T0_DIV_4);  //fosc/4, divisé par 4
     set_timer0(25536);
-    enable_interrupts(INT_TIMER0);                                              
+    enable_interrupts(INT_TIMER0);         
+    
     enable_interrupts(GLOBAL);
     ComDisplay_Color(COLOR_GREEN);
     ComDisplay_Mode(MODE_RUNNING_TIME);
