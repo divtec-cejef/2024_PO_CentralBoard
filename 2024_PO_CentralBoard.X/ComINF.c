@@ -60,7 +60,7 @@ void ComINF_SendData()
 void Rx_Da_INT(void)
 { 
     //output_toggle(PIN_B4);
-    rxBuffer[byteNumber] = fgetc(INF);
+    rxBuffer[byteNumber] = fgetc(UART1);
     
     byteNumber++;
     if(byteNumber == 13)
@@ -73,7 +73,7 @@ void Rx_Da_INT(void)
 
             for(int i = 0; i<13;i++)
             {
-                fputc(rxBuffer[i],INF);
+                fputc(rxBuffer[i],UART1);
             }
 
             //output_toggle(PIN_B4);

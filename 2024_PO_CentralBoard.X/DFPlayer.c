@@ -109,7 +109,8 @@ void DFPlayer_PlaySongNb(int numSong)
 void DFPlayer_SendData()
 {
     unsigned int i;
-    for(i = 0; i < 8; i ++){
-      fprintf(MULTIPLEXER,"%c",send_buf[i]);
-   };
+    for(i = 0; i < 8; i ++)
+    {    
+      printf("%c",send_buf[i]);
+    }
 }

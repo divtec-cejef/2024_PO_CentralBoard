@@ -60,19 +60,19 @@ void ComDisplay_Color(int color)
     switch (color)
     {
         case COLOR_RED:
-            fprintf(MULTIPLEXER,"clrr");
+            printf("clrr");
             break;
         case COLOR_GREEN:
-            fprintf(MULTIPLEXER,"clrg");
+            printf("clrg");
             break;
         case COLOR_ORANGE:
-            fprintf(MULTIPLEXER,"clro");
+            printf("clro");
             break;
         case COLOR_BLUE:
-            fprintf(MULTIPLEXER,"clrb");
+            printf("clrb");
             break;
         default:
-            fprintf(MULTIPLEXER,"clrg");
+            printf("clrg");
             
           
     }

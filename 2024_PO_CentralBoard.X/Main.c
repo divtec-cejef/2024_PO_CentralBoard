@@ -160,8 +160,8 @@ void main()
     enable_interrupts(GLOBAL);
     
     select_multiplexer_channel(0);
-    ComDisplay_Color(COLOR_RED);
-    ComDisplay_Mode(MODE_RUNNING_TIME); 
+    //ComDisplay_Color(COLOR_RED);
+    //ComDisplay_Mode(MODE_RUNNING_TIME); 
     
     //== INITIALISATION MUSIQUE ==//
     select_multiplexer_channel(2);

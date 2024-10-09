@@ -8,7 +8,7 @@
 #ifndef DFPLAYER_H
 #define	DFPLAYER_H
 
-#use rs232(UART2, baud=9600, xmit=PIN_B4, rcv=PIN_C6, stream=MULTIPLEXER)
+#use rs232(UART2, baud=9600, xmit=PIN_B4, rcv=PIN_C6, stream=UART2)
 
 //Attention l'ordre des chansons est donné par l'ordre dans lequel vous les 
 //copiez

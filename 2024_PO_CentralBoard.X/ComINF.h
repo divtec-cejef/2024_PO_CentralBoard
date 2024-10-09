@@ -8,7 +8,7 @@
 #ifndef COMINF_H
 #define	COMINF_H
 
-#use rs232(UART1, baud=9600, xmit=PIN_C0, rcv=PIN_C1, stream=INF)
+#use rs232(UART1, baud=9600, xmit=PIN_C0, rcv=PIN_C1, stream=UART1)
 
 unsigned int send_buf_Inf[9];
 unsigned int rxBuffer[20];
