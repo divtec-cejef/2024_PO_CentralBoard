@@ -9,7 +9,7 @@
 #define	COMDISPLAY_H
 
 
-#use rs232(UART2, baud=9600, xmit=PIN_D0, rcv=PIN_B0, stream=DISPLAY)
+//#use rs232(UART2, baud=9600, xmit=PIN_B4, rcv=PIN_C6, stream=DISPLAY)
 
 
 

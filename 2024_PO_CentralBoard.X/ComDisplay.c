@@ -1,6 +1,7 @@
 #include "ComDisplay.h"
 
 
+
 /*
 #define MODE_RUNNING_TIME   1
 #define MODE_NET_TIME       0
@@ -59,19 +60,19 @@ void ComDisplay_Color(int color)
     switch (color)
     {
         case COLOR_RED:
-            printf("clrr");
+            fprintf(MULTIPLEXER,"clrr");
             break;
         case COLOR_GREEN:
-            printf("clrg");
+            fprintf(MULTIPLEXER,"clrg");
             break;
         case COLOR_ORANGE:
-            printf("clro");
+            fprintf(MULTIPLEXER,"clro");
             break;
         case COLOR_BLUE:
-            printf("clrb");
+            fprintf(MULTIPLEXER,"clrb");
             break;
         default:
-            printf("clrg");
+            fprintf(MULTIPLEXER,"clrg");
             
           
     }

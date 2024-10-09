@@ -5,32 +5,23 @@
 /*----------------------------------------------------------------------------*/
 
 #include "18F47Q10.h"
-#fuses RSTOSC_HFINTRC_64MHZ, NOWDT, NOPUT, NOBROWNOUT, LVP, NOCLKOUT
+#fuses RSTOSC_HFINTRC_64MHZ, NOWDT, NOPUT, NOBROWNOUT, LVP, NOCLKOUT ,NOEXTOSC
 #use delay (clock=64000000)
-
-//#include "DFPlayer.c"
-#include "ComDisplay.c"
 #include "ComINF.c"
-//#include "ComFeux.c"
+#include "DFPlayer.c"
+#include "ComDisplay.c"
+#include "ComFeux.c"
 
 //==============================================================================
 //DÉFINITION DES ENTRÉES
 //==============================================================================
 
-#define BUZZER_PIN  PIN_B4
-#define SIGNAL_PIN  PIN_C3
-#define FINAL_PIN   PIN_C5
+#define BUZZER_PIN  PIN_C5
+#define SIGNAL_PIN  PIN_C3 
+#define FINAL_PIN   PIN_C4
 
-#define MUSIK       PIN_D2
-
-//==============================================================================
-//DÉFINITION DES SORTIES
-//==============================================================================
-                                                                                // Seront remplacés par les feux //
-#define LED_1       PIN_A6                                                      
-#define LED_2       PIN_A5
-#define LED_3       PIN_A4
-#define LED_X       PIN_D1
+#define MULTIPLEXER_SELECT_PIN_1  PIN_B0 
+#define MULTIPLEXER_SELECT_PIN_2  PIN_B1
 
 //==============================================================================
 //DÉFINITION DES ÉTATS
@@ -46,8 +37,6 @@
 #define ENDING      8
 
 #define DELAY_FALSE_START 200
-
-#define DEBUG_COM 
 
 //==============================================================================
 //VARIABLES GLOBALES
@@ -97,6 +86,35 @@ void Timer0_ISR()
         }
 }
 
+//==============================================================================
+//PROGRAMME MULTIPLEXEUR 
+//==============================================================================
+
+void select_multiplexer_channel(int channel) 
+{
+    switch(channel) 
+    {
+        case 0:
+            output_low(MULTIPLEXER_SELECT_PIN_1);
+            output_low(MULTIPLEXER_SELECT_PIN_2);
+            break;
+            
+        case 1:
+            output_high(MULTIPLEXER_SELECT_PIN_1);
+            output_low(MULTIPLEXER_SELECT_PIN_2);
+            break;
+            
+        case 2:
+            output_low(MULTIPLEXER_SELECT_PIN_1);
+            output_high(MULTIPLEXER_SELECT_PIN_2);
+            break;
+            
+        case 3:
+            output_high(MULTIPLEXER_SELECT_PIN_1);
+            output_high(MULTIPLEXER_SELECT_PIN_2);
+            break;
+    }
+}
 
 //==============================================================================
 //PROGRAMME PRINCIPAL
@@ -104,6 +122,12 @@ void Timer0_ISR()
 
 void main()
 {
+    output_bit(PIN_E0, 1); 
+    
+    //== INITIALISATION BONUS ==//
+    enable_interrupts(INT_RDA);
+    enable_interrupts(GLOBAL);
+    
     //== DÉCLARATION DES VARIABLES ==//                                                 
     int16 stopTime = 0;                                                         // Sauvegarde temps tournant //
     int16 finalTime = 0;                                                        // Sauvegarde temps final //
@@ -117,12 +141,6 @@ void main()
     
     //== ENTRÉES ==//                            
     int8 buzzer = 0;                                                            // Bouton buzzer principal //
-
-    //== SORTIES ==//
-    int8 led1 = 0;                                                              // 4 Feux //
-    int8 led2 = 0;
-    int8 led3 = 0;
-    int8 ledX = 0;
 
     //== SIGNAUX CELLULES ==//
     int8 interSignal = 0;                                                       // Cellule temps intermédiaire (simulation bouton S2)//
@@ -140,16 +158,20 @@ void main()
     set_timer0(25536);
     enable_interrupts(INT_TIMER0);                                              
     enable_interrupts(GLOBAL);
+    
+    select_multiplexer_channel(0);
     ComDisplay_Color(COLOR_RED);
     ComDisplay_Mode(MODE_RUNNING_TIME); 
     
     //== INITIALISATION MUSIQUE ==//
-    //DFPlayer_Init();            
-    //DFPlayer_PlaySongNb(1);
+    select_multiplexer_channel(2);
+    DFPlayer_Init();            
+    DFPlayer_PlaySongNb(1);
     
     
-    enable_interrupts(INT_RDA);
-    enable_interrupts(GLOBAL);
+    //== INITIALISATION MULTIPLEXEUR ==//
+    output_bit(MULTIPLEXER_SELECT_PIN_1 , 0);
+    output_bit(MULTIPLEXER_SELECT_PIN_2 , 0);
     
     //== INITIALISATION PROGRAMME PRINCIPAL ==//
     state = STARTING;
@@ -161,9 +183,8 @@ void main()
         buzzer = input(BUZZER_PIN);
         finalSignal = input (FINAL_PIN);
         interSignal = input(SIGNAL_PIN);
-        
-        output_bit(PIN_C1,1);
 
+        
 //==============================================================================        
 //LECTURE DES ÉTATS
 //==============================================================================
@@ -172,7 +193,8 @@ void main()
         {                                                   
             case STARTING:                                                      // Reset de toutes les valeurs //
                 
-                //DFPlayer_PlaySongNb(1);
+                select_multiplexer_channel(2);
+                DFPlayer_PlaySongNb(1);
                 
                 counterActivator = 0;
                 secondaryCounterActivator = 0;
@@ -191,20 +213,16 @@ void main()
                 finalTime = 0;
                 reactionTime = 0;
                 
+                select_multiplexer_channel(0);
                 ComDisplay_Time(zero, zero);
                 ComDisplay_Color(COLOR_RED);
                 ComDisplay_Mode(MODE_RUNNING_TIME);
                 
-                #ifndef DEBUG_COM
+                
+                select_multiplexer_channel(1);
                 ComFeuAllume(0,0,0,0,5,3);
+                ComFeuAnim(0);                                                  // Active animation Feux //
                 
-                ComFeuAnim(1,3);                                                // Active animation Feux //
-                #endif
-                
-                led1 = 1;
-                led2 = 0;
-                led3 = 1;
-                ledX = 0;
                 
                 delay_ms(1000);                                                 // Délai pour éviter perturbations //
                 
@@ -220,48 +238,24 @@ void main()
                 
                 if(buzzer == 0 && prevBuzzer == 1 && bonus == 1)
                 {      
-                    bonusBlock = 1; 
+                    bonusBlock = 1;                     
                     
-                    led1 = 0;                                                   // Éteindre les feux //
-                    led2 = 0;
-                    led3 = 0;
-                    ledX = 0;
-                    
-                    #ifndef DEBUG_COM
+                    select_multiplexer_channel(1);
                     ComFeuAnim(0);
-                    #endif
                     
-                    #ifndef DEBUG_COM
                     ComINF_MessageInfo(1111, 1, 6969);                          // Envoi message prêt //
-                    #endif
                     
                     secondaryCounter = 0;                                       
                     secondaryCounterActivator = 0;                              // Reset compteur secondaire pour commencer à 0 //                    
                     
-                    //DFPlayer_NextSong(); //2
+                    select_multiplexer_channel(2);
+                    DFPlayer_NextSong(); //2
                     
                     delay_ms(1000);                                             // Délai pour éviter perturbations //
                     
                     state = READY;
                 }
                 
-                if(secondaryCounter == 200)                                     // Animation feux temporaire //
-                {
-                    led1 = 0;
-                    led2 = 1;
-                    led3 = 0;
-                    ledX = 1;
-                }
-
-                if(secondaryCounter == 400)                                     // Animation feux temporaire //
-                {
-                    led1 = 1;
-                    led2 = 0;
-                    led3 = 1;
-                    ledX = 0;
-                    
-                    secondaryCounter = 0;
-                }
                                         
             break;
             
@@ -271,13 +265,10 @@ void main()
                 
                 if(buzzer == 0 && prevBuzzer == 1)
                 {
-                    //DFPlayer_NextSong(); //3
+                    select_multiplexer_channel(2);
+                    DFPlayer_NextSong(); //3
                     
-                    led1 = 1;                                                   // RED //
-                    
-                    #ifndef DEBUG_COM
                     ComFeuAllume(1,0,0,0,5,3);
-                    #endif
                     
                     secondaryCounter = 0;
                                         
@@ -293,46 +284,28 @@ void main()
                     secondaryCounterActivator = 1;
                 
                     if(secondaryCounter == 100)
-                    {
-                        led1 = 1;                                               // RED //
-                        led2 = 1;                                               // RED //
-                        #ifndef DEBUG_COM
+                    { 
+                        select_multiplexer_channel(1);
                         ComFeuAllume(1,1,0,0,5,3);
-                        #endif
                     }
                     
                     if(secondaryCounter == 200)
                     {
-                        led1 = 1;                                               // RED //
-                        led2 = 1;                                               // RED //
-                        led3 = 1;                                               // RED //
-                        #ifndef DEBUG_COM
+                        select_multiplexer_channel(1);
                         ComFeuAllume(1,1,1,0,5,3);
-                        #endif
                     }
                     
                     if(secondaryCounter == 300)    
-                    {
-                        led1 = 1;                                               // RED //
-                        led2 = 1;                                               // RED //
-                        led3 = 1;                                               // RED //
-                        ledX = 1;                                               // EXTRA LED - RED //
-                        
-                        #ifndef DEBUG_COM
+                    {   
+                        select_multiplexer_channel(1);
                         ComFeuAllume(1,1,1,1,5,3);
-                        #endif
                     }
                     
                     //== BON DÉPART ==//
                     if(secondaryCounter == 400)
-                    {
-                        led1 = 1;                                               // GREEN // 
-                        led2 = 1;                                               // GREEN //
-                        led3 = 1;                                               // GREEN //
-                        ledX = 1;                                               // EXTRA LED - GREEN //
-                        #ifndef DEBUG_COM
+                    { 
+                        select_multiplexer_channel(1);
                         ComFeuAllume(1,1,1,1,6,3);
-                        #endif      
                                         
                         counter = 0;
                         counterActivator = 1;                                   // Démarre le chronomètre //   
@@ -346,12 +319,10 @@ void main()
                 //== FAUX DÉPART ==//
                 if(buzzer == 0 && prevBuzzer == 1)
                 {
-                    #ifndef DEBUG_COM
                     ComINF_MessageInfo(  1111, 3, 0000);                        // Envoie message faux départ //
-                    #endif
   
-
-                    //DFPlayer_PlaySongNb(5); //5
+                    select_multiplexer_channel(2);
+                    DFPlayer_PlaySongNb(5); //5
                     
                     secondaryCounterActivator = 0;                              // Stop séquence compte à rebours //
                     secondaryCounter = 0;
@@ -359,14 +330,8 @@ void main()
                     
                     counter = DELAY_FALSE_START;                                // Pénalité de 2s //
 
-                    led1 = 0;                                                   // GREEN // 
-                    led2 = 0;                                                   // GREEN //
-                    led3 = 0;                                                   // GREEN //
-                    ledX = 1;                                                   // EXTRA LED - GREEN //
-                    
-                    #ifndef DEBUG_COM
+                    select_multiplexer_channel(1);
                     ComFeuAllume(1,1,1,1,6,3);
-                    #endif
                     
                     secondaryCounter = 0;
                     
@@ -381,13 +346,9 @@ void main()
                 
                 if(buzzer == 0 && prevBuzzer == 1)
                 {
-                    reactionTime = counter;                                     // Enregistre temps de réaction //                
-                     
-                    ledX = 1;
-                        
-                    #ifndef DEBUG_COM
+                    reactionTime = counter;                                     // Enregistre temps de réaction //               
+                    
                     ComINF_MessageInfo(1111, 2, reactionTime);                  // Envoie temps de réaction //
-                    #endif           
                     
                     state = RACE;
                 }
@@ -395,6 +356,7 @@ void main()
                 //== MISE À JOUR CHRONOMÈTRE ==//
                 if(toDisplay == 1)                                              // Démarre chronomètre en rouge //
                 {
+                    select_multiplexer_channel(0);
                     toDisplay = 0;  
                     ComDisplay_Color(COLOR_RED);
                     ComDisplay_Mode(MODE_RUNNING_TIME);
@@ -406,12 +368,7 @@ void main()
 //============================================================================//    
          
             case RACE:                                                          // Course //
-                
-                led1 = 0;  
-                led2 = 0;  
-                led3 = 0;                                                           
-                ledX = 1; 
-                
+                 
                 //== TEMPS INTERMÉDIAIRE ==//
                 if(interSignal == 0 && prevSignal == 1)
                 {
@@ -419,13 +376,12 @@ void main()
                     
                     cell++;                                                     // Pour montrer correctement le message aux INFOS // 
                     
+                    select_multiplexer_channel(0);
                     ComDisplay_Color(COLOR_GREEN);
                     ComDisplay_Mode(MODE_NET_TIME);                             
                     ComDisplay_Time(stopTime/100,stopTime%100);                 // Montre temps intermédiaire au centième de seconde //
                     
-                    #ifndef DEBUG_COM
                     ComINF_MessageInfo(1111, cell, stopTime);                    // Envoi temps intermédiaire //
-                    #endif      
                     
                     secondaryCounter = 0;
                     
@@ -446,17 +402,17 @@ void main()
                 else if(finalSignal == 0 && prevFinal == 1)
                 {
                     finalTime = counter;                                        // Enregistre temps final //
+                   
+                    select_multiplexer_channel(2);
+                    DFPlayer_PlaySongNb(4);
                     
-                   //DFPlayer_PlaySongNb(4);
-                    
+                    select_multiplexer_channel(0);
                     ComDisplay_Mode(MODE_NET_TIME);                             // Montre temps final avec centièmes //
                     ComDisplay_Time(finalTime/100,finalTime%100);  
                     
                     secondaryCounter = 0;
                     
-                    #ifndef DEBUG_COM
                     ComINF_MessageInfo(1111, 00, finalTime);                    // Envoie message temps final //
-                    #endif      
 
                     state = ENDING;
                 }                    
@@ -464,6 +420,7 @@ void main()
                 //== MISE À JOUR CHRONOMÈTRE ==//
                 else if(toDisplay == 1)
                 {
+                    select_multiplexer_channel(0);
                     toDisplay = 0;  
                     ComDisplay_Color(COLOR_BLUE);                               // Montre chronomètre en bleu dès qu'on lance la voiture //
                     ComDisplay_Mode(MODE_RUNNING_TIME);
@@ -473,9 +430,12 @@ void main()
                 //== COURSE TROP LONGUE ==//
                 else if(counter == 9999)
                 {
-                    //DFPlayer_PlaySongNb(4);
+                    select_multiplexer_channel(2);
+                    DFPlayer_PlaySongNb(4);
                     
                     finalTime = counter;                                        // Affiche 9999 //
+                    
+                    select_multiplexer_channel(0);
                     ComDisplay_Color(COLOR_RED);
                     ComDisplay_Mode(MODE_NET_TIME);
                     ComDisplay_Time(finalTime/100,finalTime%100); 
@@ -506,6 +466,8 @@ void main()
                 
                 secondaryCounterActivator = 1;
                 
+                select_multiplexer_channel(0);
+
                 if(secondaryCounter == 50)                                      // Animation couleurs chronomètre //
                 {
                     ComDisplay_Time(finalTime/100,finalTime%100);
@@ -537,6 +499,7 @@ void main()
                     
                 if(buzzer == 0 && prevBuzzer == 1)                              // Envoie à l'état initial //
                 {    
+                    select_multiplexer_channel(0);
                     ComDisplay_Color(COLOR_RED);
                     ComDisplay_Mode(MODE_RUNNING_TIME);
                     ComDisplay_Time(zero/100,zero%100);
@@ -554,13 +517,7 @@ void main()
     prevBuzzer = buzzer;
     prevFinal = finalSignal;
     prevSignal = interSignal;
-    
-    //== ÉCRITURE DES SORTIES ==//               
-    output_bit(LED_1, led1);
-    output_bit(LED_2, led2);
-    output_bit(LED_3, led3);
-    output_bit(LED_X, ledX);
-    
+  
     }   //== FIN BOUCLE INFINIE ==//      
    
 }

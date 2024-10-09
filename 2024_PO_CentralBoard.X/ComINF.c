@@ -57,14 +57,10 @@ void ComINF_SendData()
 
 //Interruption de réception de caractère
 #INT_RDA
-void Rx_Da_INT(void){
-    
-    
-    
-    output_toggle(PIN_A6);
+void Rx_Da_INT(void)
+{ 
+    //output_toggle(PIN_B4);
     rxBuffer[byteNumber] = fgetc(INF);
-    
-
     
     byteNumber++;
     if(byteNumber == 13)
@@ -75,12 +71,12 @@ void Rx_Da_INT(void){
             bonus  = 1;
             //printf("finiFred");
 
-            for(int i =0; i<6;i++)
+            for(int i = 0; i<13;i++)
             {
                 fputc(rxBuffer[i],INF);
             }
 
-            output_toggle(PIN_A6);
+            //output_toggle(PIN_B4);
         }
         
     }
