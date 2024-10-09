@@ -14,7 +14,7 @@
 //Send message to INF
 void ComDisplay_Time(int secondes, int centiemes)
 {
-    output_toggle(PIN_A6);
+    //output_toggle(PIN_A6);
     //format message "m:sscc"    
     //m : numéro de message
     //ss: secondes 0-99
@@ -33,12 +33,12 @@ void ComDisplay_Time(int secondes, int centiemes)
     //printf("run2");
     //printf("1234");
     //printf("clrg");
-    output_toggle(PIN_A6);
+    //output_toggle(PIN_A6);
 }
 
 void ComDisplay_Mode(int mode)
 {
-    output_toggle(PIN_A6);
+    //output_toggle(PIN_A6);
 
     if(mode == MODE_RUNNING_TIME)
     {
@@ -49,12 +49,12 @@ void ComDisplay_Mode(int mode)
         printf("run2");
     }
     
-    output_toggle(PIN_A6);
+    //output_toggle(PIN_A6);
 }
 
 void ComDisplay_Color(int color)
 {
-    output_toggle(PIN_A6);
+    //output_toggle(PIN_A6);
 
     switch (color)
     {
@@ -75,6 +75,6 @@ void ComDisplay_Color(int color)
             
           
     }
-    output_toggle(PIN_A6);
+    //output_toggle(PIN_A6);
 }
 

@@ -6,11 +6,14 @@ unsigned int rx_buf[8];
 
 void ComINF_SendData();
 */
+
+
+#include "ComINF.h"
 void ComINF_Init()
 {
-    //Enable the interrupt INT_RDA2 because it's UART2 to receive data
-    enable_interrupts(INT_RDA2);
-    enable_interrupts(GLOBAL);
+    //Enable the interrupt INT_RDA1 because it's UART2 to receive data
+    //enable_interrupts(INT_RDA1);
+    //enable_interrupts(GLOBAL);
 }
 void ComINF_Test()
 {
@@ -26,20 +29,23 @@ void ComINF_Test()
 }
 
 //Send message to INF
-void ComINF_Message(int messageNb, int secondes, int centiemes)
-{
-    output_toggle(PIN_A6);
-    //format message "m:sscc"    
-    //m : numéro de message
-    //ss: secondes 0-99
-    //cc: centièmes 0-99
-    printf("%d:%02d%02d",messageNb,secondes,centiemes);
+//void ComINF_Message(int messageNb, int secondes, int centiemes)
+//{
+//    
+//    //format message "m:sscc"    
+//    //m : numéro de message
+//    //ss: secondes 0-99
+//    //cc: centièmes 0-99
+//    printf("%d,%02d,%02d",messageNb,secondes,centiemes);
+//
+//}
 
-    output_toggle(PIN_A6);
-}
-
-
-
+    void ComINF_MessageInfo(int16 idCar, int8 numMessage, int16 time)
+    {
+        printf("%04Lu,%02d,%04Lu",idCar,numMessage,time);
+    }
+  
+  
 void ComINF_SendData()
 {
     unsigned int i;
@@ -48,26 +54,34 @@ void ComINF_SendData()
    };
 }
 
+
 //Interruption de réception de caractère
-#INT_RDA2
+#INT_RDA
 void Rx_Da_INT(void){
-    static int8 nb=0;
     
-    //output_toggle(PIN_A6);
-    rx_buf[nb] = fgetc(INF);
     
-    nb++;
-    if(nb == 6)
-    {
-        //printf("finiFred");
-        
-        for(int i =0; i<6;i++)
-        {
-            fputc(rx_buf[i],INF);
-        }
-        nb=0;
-        output_toggle(PIN_A6);
-    }
+    
+    output_toggle(PIN_A6);
+    rxBuffer[byteNumber] = fgetc(INF);
     
 
+    
+    byteNumber++;
+    if(byteNumber == 13)
+    {
+        byteNumber=0;
+        if(bonusBlock == 0)
+        {
+            bonus  = 1;
+            //printf("finiFred");
+
+            for(int i =0; i<6;i++)
+            {
+                fputc(rxBuffer[i],INF);
+            }
+
+            output_toggle(PIN_A6);
+        }
+        
+    }
 }

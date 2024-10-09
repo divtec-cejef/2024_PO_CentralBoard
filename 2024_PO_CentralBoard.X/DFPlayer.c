@@ -12,7 +12,8 @@ void DFPlayer_SetVolume(int volume);
 void DFPlayer_Init()
 {
     //Set volume max
-    DFPlayer_SetVolume(30);
+    DFPlayer_SetVolume(20);
+    DFPlayer_PlaySongNb(1);
     //No song
 }
 
@@ -31,6 +32,7 @@ void DFPlayer_NextSong()
    
    DFPlayer_SendData();
 }
+
 //Volume 0-30
 void DFPlayer_SetVolume(int volume)
 {
@@ -41,7 +43,7 @@ void DFPlayer_SetVolume(int volume)
    send_buf[3] = 0x06;              // Command 0X01 Next
    send_buf[4] = 0x00;              // Feedback, always 0 => 0
    send_buf[5] = 0x00;              // High byte (DH), para 1
-   send_buf[6] = volume;              // Low byte (DL), para 2
+   send_buf[6] = volume;            // Low byte (DL), para 2
 //!   send_buf[7] = 0xFF;           // checksum highbyte
 //!   send_buf[8] = 0xE6;           // checksum low byte
    send_buf[7] = 0xEF;              // end
