@@ -160,8 +160,8 @@ void main()
     enable_interrupts(GLOBAL);
     
     select_multiplexer_channel(0);
-    //ComDisplay_Color(COLOR_RED);
-    //ComDisplay_Mode(MODE_RUNNING_TIME); 
+    ComDisplay_Color(COLOR_RED);
+    ComDisplay_Mode(MODE_RUNNING_TIME); 
     
     //== INITIALISATION MUSIQUE ==//
     select_multiplexer_channel(2);
@@ -221,7 +221,7 @@ void main()
                 
                 select_multiplexer_channel(1);
                 ComFeuAllume(0,0,0,0,5,3);
-                ComFeuAnim(0);                                                  // Active animation Feux //
+                ComFeuAnim(1,3);                                                // Active animation Feux //
                 
                 
                 delay_ms(1000);                                                 // Délai pour éviter perturbations //
@@ -268,6 +268,7 @@ void main()
                     select_multiplexer_channel(2);
                     DFPlayer_NextSong(); //3
                     
+                    select_multiplexer_channel(1);
                     ComFeuAllume(1,0,0,0,5,3);
                     
                     secondaryCounter = 0;
