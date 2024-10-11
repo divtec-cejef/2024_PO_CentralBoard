@@ -63,7 +63,7 @@ void Rx_Da_INT(void)
     rxBuffer[byteNumber] = fgetc(UART1);
     
     byteNumber++;
-    if(byteNumber == 13)
+    if(byteNumber == 14)
     {
         byteNumber=0;
         if(bonusBlock == 0)
@@ -71,7 +71,7 @@ void Rx_Da_INT(void)
             bonus  = 1;
             //printf("finiFred");
 
-            for(int i = 0; i<13;i++)
+            for(int i = 0; i<14;i++)
             {
                 fputc(rxBuffer[i],UART1);
             }

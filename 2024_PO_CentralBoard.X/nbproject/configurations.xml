@@ -88,6 +88,8 @@
         </ccscompiler>
       </item>
       <item path="ComFeux.c" ex="true" overriding="false">
+        <ccscompiler>
+        </ccscompiler>
       </item>
       <item path="ComINF.c" ex="true" overriding="false">
         <ccscompiler>

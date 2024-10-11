@@ -18,7 +18,7 @@
 
 
 void ComFeuAllume(int f1, int f2, int f3, int f4, int clr, int lum);
-void ComFeuAnim(int state);
+void ComFeuAnim(int lumi);
 
 
 

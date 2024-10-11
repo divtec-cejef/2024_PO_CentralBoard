@@ -121,9 +121,7 @@ void select_multiplexer_channel(int channel)
 //==============================================================================
 
 void main()
-{
-    output_bit(PIN_E0, 1); 
-    
+{    
     //== INITIALISATION BONUS ==//
     enable_interrupts(INT_RDA);
     enable_interrupts(GLOBAL);
@@ -138,6 +136,9 @@ void main()
     int8 zero = 0;                                                              // Reset de l'affichage du chrono //
     
     int8 cell = 3;                                                              // Sert à bien numéroter les messages //
+    
+    char r = 'r';
+    char g = 'g';
     
     //== ENTRÉES ==//                            
     int8 buzzer = 0;                                                            // Bouton buzzer principal //
@@ -162,11 +163,13 @@ void main()
     select_multiplexer_channel(0);
     ComDisplay_Color(COLOR_RED);
     ComDisplay_Mode(MODE_RUNNING_TIME); 
+    delay_ms(5);
     
     //== INITIALISATION MUSIQUE ==//
     select_multiplexer_channel(2);
-    DFPlayer_Init();            
+    DFPlayer_Init();
     DFPlayer_PlaySongNb(1);
+    delay_ms(5);
     
     
     //== INITIALISATION MULTIPLEXEUR ==//
@@ -195,6 +198,7 @@ void main()
                 
                 select_multiplexer_channel(2);
                 DFPlayer_PlaySongNb(1);
+                delay_ms(5);
                 
                 counterActivator = 0;
                 secondaryCounterActivator = 0;
@@ -215,14 +219,13 @@ void main()
                 
                 select_multiplexer_channel(0);
                 ComDisplay_Time(zero, zero);
-                ComDisplay_Color(COLOR_RED);
-                ComDisplay_Mode(MODE_RUNNING_TIME);
+                delay_ms(5);
+//                ComDisplay_Color(COLOR_RED);
+//                ComDisplay_Mode(MODE_RUNNING_TIME);
                 
-                
+                 
                 select_multiplexer_channel(1);
-                ComFeuAllume(0,0,0,0,5,3);
-                ComFeuAnim(1,3);                                                // Active animation Feux //
-                
+                ComFeuAnim(1);                                                  // Active animation Feux //
                 
                 delay_ms(1000);                                                 // Délai pour éviter perturbations //
                 
@@ -242,6 +245,8 @@ void main()
                     
                     select_multiplexer_channel(1);
                     ComFeuAnim(0);
+                    delay_ms(5);
+                    
                     
                     ComINF_MessageInfo(1111, 1, 6969);                          // Envoi message prêt //
                     
@@ -267,9 +272,10 @@ void main()
                 {
                     select_multiplexer_channel(2);
                     DFPlayer_NextSong(); //3
+                    delay_ms(5);
                     
                     select_multiplexer_channel(1);
-                    ComFeuAllume(1,0,0,0,5,3);
+                    ComFeuAllume(1,0,0,0,r,3);
                     
                     secondaryCounter = 0;
                                         
@@ -282,48 +288,50 @@ void main()
             
             case COUNTDOWN:                                                     // Séquence compte à rebours // 
             
-                    secondaryCounterActivator = 1;
-                
-                    if(secondaryCounter == 100)
-                    { 
-                        select_multiplexer_channel(1);
-                        ComFeuAllume(1,1,0,0,5,3);
-                    }
-                    
-                    if(secondaryCounter == 200)
-                    {
-                        select_multiplexer_channel(1);
-                        ComFeuAllume(1,1,1,0,5,3);
-                    }
-                    
-                    if(secondaryCounter == 300)    
-                    {   
-                        select_multiplexer_channel(1);
-                        ComFeuAllume(1,1,1,1,5,3);
-                    }
-                    
-                    //== BON DÉPART ==//
-                    if(secondaryCounter == 400)
-                    { 
-                        select_multiplexer_channel(1);
-                        ComFeuAllume(1,1,1,1,6,3);
-                                        
-                        counter = 0;
-                        counterActivator = 1;                                   // Démarre le chronomètre //   
-                      
-                        secondaryCounter = 0;
-                        secondaryCounterActivator = 0;                          // Reset le timer secondaire //
-                        
-                        state = LAUNCHING;                       
-                    } 
+                secondaryCounterActivator = 1;
+
+                if(secondaryCounter == 100)
+                { 
+                    //select_multiplexer_channel(1);
+                    ComFeuAllume(1,1,0,0,r,3);
+                }
+
+                if(secondaryCounter == 200)
+                {
+                    //select_multiplexer_channel(1);
+                    ComFeuAllume(1,1,1,0,r,3);
+                }
+
+                if(secondaryCounter == 300)    
+                {   
+                    //select_multiplexer_channel(1);
+                    ComFeuAllume(1,1,1,1,r,3);
+                }
+
+                //== BON DÉPART ==//
+                if(secondaryCounter == 400)
+                { 
+                    //select_multiplexer_channel(1);
+                    ComFeuAllume(1,1,1,1,g,3);
+
+                    counter = 0;
+                    counterActivator = 1;                                   // Démarre le chronomètre //   
+
+                    secondaryCounter = 0;
+                    secondaryCounterActivator = 0;                          // Reset le timer secondaire //
+
+                    state = LAUNCHING;                       
+                } 
                 
                 //== FAUX DÉPART ==//
                 if(buzzer == 0 && prevBuzzer == 1)
                 {
-                    ComINF_MessageInfo(  1111, 3, 0000);                        // Envoie message faux départ //
-  
+                    ComINF_MessageInfo(1111, 3, 0000);                        // Envoie message faux départ //
+                    delay_ms(5);
+                    
                     select_multiplexer_channel(2);
                     DFPlayer_PlaySongNb(5); //5
+                    delay_ms(5);
                     
                     secondaryCounterActivator = 0;                              // Stop séquence compte à rebours //
                     secondaryCounter = 0;
@@ -332,7 +340,7 @@ void main()
                     counter = DELAY_FALSE_START;                                // Pénalité de 2s //
 
                     select_multiplexer_channel(1);
-                    ComFeuAllume(1,1,1,1,6,3);
+                    ComFeuAllume(1,1,1,1,g,3);
                     
                     secondaryCounter = 0;
                     
@@ -429,10 +437,15 @@ void main()
                 }
                 
                 //== COURSE TROP LONGUE ==//
-                else if(counter == 9999)
+                else if(counter == 1000)
                 {
+                    select_multiplexer_channel(1);
+                    ComFeuAllume(1,1,1,1,r,3);
+                    delay_ms(5);
+                    
                     select_multiplexer_channel(2);
                     DFPlayer_PlaySongNb(4);
+                    delay_ms(5);
                     
                     finalTime = counter;                                        // Affiche 9999 //
                     
@@ -519,6 +532,8 @@ void main()
     prevFinal = finalSignal;
     prevSignal = interSignal;
   
+    delay_ms(2);
+    
     }   //== FIN BOUCLE INFINIE ==//      
    
 }

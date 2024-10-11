@@ -9,6 +9,7 @@ unsigned int send_buf[9];
 void DFPlayer_SendData();
 void DFPlayer_SetVolume(int volume);
 */
+
 void DFPlayer_Init()
 {
     //Set volume max
@@ -19,6 +20,7 @@ void DFPlayer_Init()
 
 void DFPlayer_NextSong()
 {
+
    send_buf[0] = 0x7E;              // Start byte
    send_buf[1] = 0xFF;              // Version
    send_buf[2] = 0x06;              // Len
@@ -36,6 +38,7 @@ void DFPlayer_NextSong()
 //Volume 0-30
 void DFPlayer_SetVolume(int volume)
 {
+
    unsigned int i;
    send_buf[0] = 0x7E;              // Start byte
    send_buf[1] = 0xFF;              // Version
@@ -89,6 +92,7 @@ void DFPlayer_PlayBack()
 //copiez
 void DFPlayer_PlaySongNb(int numSong)
 {
+
    unsigned int i;
    send_buf[0] = 0x7E;           // Start byte
    send_buf[1] = 0xFF;           // Version
@@ -108,6 +112,8 @@ void DFPlayer_PlaySongNb(int numSong)
 
 void DFPlayer_SendData()
 {
+ 
+
     unsigned int i;
     for(i = 0; i < 8; i ++)
     {    
