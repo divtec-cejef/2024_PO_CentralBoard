@@ -28,17 +28,6 @@ void ComINF_Test()
     ComINF_SendData();
 }
 
-//Send message to INF
-//void ComINF_Message(int messageNb, int secondes, int centiemes)
-//{
-//    
-//    //format message "m:sscc"    
-//    //m : numéro de message
-//    //ss: secondes 0-99
-//    //cc: centièmes 0-99
-//    printf("%d,%02d,%02d",messageNb,secondes,centiemes);
-//
-//}
 
     void ComINF_MessageInfo(int16 idCar, int8 numMessage, int16 time)
     {
