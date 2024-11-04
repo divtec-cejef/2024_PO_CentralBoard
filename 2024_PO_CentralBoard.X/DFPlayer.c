@@ -1,6 +1,5 @@
 #include "DFPlayer.h"
 //#use rs232(baud=9600, xmit=PIN_B2, rcv=PIN_B1, stream=MUSIC)
-
 //Attention l'ordre des chansons est donné par l'ordre dans lequel vous les 
 //copiez
 /*
@@ -108,7 +107,6 @@ void DFPlayer_PlaySongNb(int numSong)
    DFPlayer_SendData();
     
 }
-
 
 void DFPlayer_SendData()
 {

@@ -15,6 +15,7 @@ void ComINF_Init()
     //enable_interrupts(INT_RDA1);
     //enable_interrupts(GLOBAL);
 }
+
 void ComINF_Test()
 {
     send_buf_Inf[0]='1';
@@ -28,12 +29,10 @@ void ComINF_Test()
     ComINF_SendData();
 }
 
-
     void ComINF_MessageInfo(int16 idCar, int8 numMessage, int16 time)
     {
         printf("%04Lu,%02d,%04Lu",idCar,numMessage,time);
     }
-  
   
 void ComINF_SendData()
 {
@@ -43,7 +42,6 @@ void ComINF_SendData()
    };
 }
 
-
 //Interruption de réception de caractère
 #INT_RDA
 void Rx_Da_INT(void)
@@ -52,15 +50,15 @@ void Rx_Da_INT(void)
     rxBuffer[byteNumber] = fgetc(UART1);
     
     byteNumber++;
-    if(byteNumber == 14)
+    if(byteNumber == 8)
     {
         byteNumber=0;
+        
         if(bonusBlock == 0)
         {
-            bonus  = 1;
-            //printf("finiFred");
-
-            for(int i = 0; i<14;i++)
+            bonusFull = 1;
+            
+            for(int i = 0; i<8;i++)
             {
                 fputc(rxBuffer[i],UART1);
             }

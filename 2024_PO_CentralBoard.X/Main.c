@@ -1,11 +1,11 @@
-/*----------------------------------------------------------------------------*/
+/*============================================================================*/
 /* Project     : programmeCircuit                                             */
 /* Author      : Cristhian Valencia                                           */
 /* Target      : PIC 18F47Q10                                                 */
-/*----------------------------------------------------------------------------*/
+/*============================================================================*/
 
 #include "18F47Q10.h"
-#fuses RSTOSC_HFINTRC_64MHZ, NOWDT, NOPUT, NOBROWNOUT, LVP, NOCLKOUT ,NOEXTOSC, NOLVP, NOMCLR
+#fuses RSTOSC_HFINTRC_64MHZ, NOWDT, NOPUT, NOBROWNOUT, LVP, NOCLKOUT ,NOEXTOSC, NOLVP, MCLR
 #use delay (clock=64000000)
 
 #include "ComINF.c"
@@ -13,15 +13,21 @@
 #include "ComDisplay.c"
 #include "ComFeux.c"
 #include "I2C.c"
+#include "I2C2.c"
 
 //==============================================================================
 //DÉFINITION DES ENTRÉES
 //==============================================================================
 
 #define BUZZER_PIN      PIN_C5
-#define SIGNAL_PIN      PIN_D2
+#define PIN_1_Q         PIN_D1
+#define PIN_1_QI        PIN_A4
+#define PIN_2_Q         PIN_D2
+#define PIN_2_QI        PIN_A3
 #define FINAL_PIN_Q     PIN_D0
 #define FINAL_PIN_QI    PIN_A5
+
+#define ELEVATOR_PIN    PIN_
 
 #define MULTIPLEXER_SELECT_PIN_1  PIN_B0 
 #define MULTIPLEXER_SELECT_PIN_2  PIN_B1
@@ -140,28 +146,29 @@ void main()
     
     int8 cell = 3;                                                              // Sert à bien numéroter les messages //
     
-    char r = 'r';
+    char r = 'r';                                                               // Sert à mettre la bonne couleur aux feux //
     char g = 'g';
     
     //== ENTRÉES ==//                            
     int8 buzzer = 0;                                                            // Bouton buzzer principal //
 
-    //== SIGNAUX CELLULES ==//
-    int8 interSignal = 0;                                                       // Cellule temps intermédiaire (simulation bouton S2)//
+    //== SIGNAUX CELLULES ==//                                                      
+    int8 inter1Q = 0;                                                           // Premier temps intermédiaire
+    int8 inter1QI = 0;
+    
+    int8 inter2Q = 0;                                                           // Deuxième temps intermédiaire //    
+    int8 inter2QI = 0; 
+    
     int8 finalSignalQ = 0;                                                      // Cellule finale normale //
-    int8 finalSignalQI = 0;                                                     // Cellule finale inverse //
-// Cellule finale (simulation bouton extra)//
-//    int8 fastElevator = 0; 
-//    int8 slowElevator = 0;
-
+    int8 finalSignalQI = 0;                                                     
+    
     //== FLANCS DESCENDANTS ==//                         
-    int8 prevBuzzer = 0;                                                        // Antirebond Buzzer //
-    int8 prevSignal = 0;                                                        // Antirebond Bouton S2 //
+    int8 prevBuzzer = 0;       
     
     //== INITIALISATION TIMER ==//      
     setup_timer_0(T0_INTERNAL|T0_DIV_4);                                        // Fosc/4, divisé par 4 //
     set_timer0(25536);
-    enable_interrupts(INT_TIMER0);                                              
+    enable_interrupts(INT_TIMER0);
     enable_interrupts(GLOBAL);
     
     //== INITIALISATION CHRONOMÈTRE ==//
@@ -173,11 +180,14 @@ void main()
     //== INITIALISATION MUSIQUE ==//
     select_multiplexer_channel(2);
     DFPlayer_Init();
+    delay_ms(5);
     DFPlayer_PlaySongNb(1);
     delay_ms(5);
     
+    //== MISE HORS TENSION DES CELLULES ==//
     setup_mcp23017();
     set_gpb7_low();
+    delay_ms(5);
     
     //== INITIALISATION MULTIPLEXEUR ==//
     output_bit(MULTIPLEXER_SELECT_PIN_1 , 0);
@@ -185,15 +195,21 @@ void main()
     
     //== INITIALISATION PROGRAMME PRINCIPAL ==//
     state = STARTING;
-
+    
     //== DÉBUT BOUCLE INFINIE ==//
     while(TRUE)
     { 
         //== LECTURE DES ENTRÉES ==//        
         buzzer = input(BUZZER_PIN);
+        
+        inter1Q = input(PIN_1_Q);
+        inter1QI = input(PIN_1_QI);
+        
+        inter2Q = input(PIN_2_Q);
+        inter2QI = input(PIN_2_QI);
+        
         finalSignalQ = input(FINAL_PIN_Q);
         finalSignalQI = input(FINAL_PIN_QI);
-        interSignal = input(SIGNAL_PIN);
 
         
 //==============================================================================        
@@ -207,36 +223,38 @@ void main()
                 setup_mcp23017();
                 set_gpb7_low();
                 
+                setup_mcp23017_2();
+                set_gpb7_low_2();
+                
                 select_multiplexer_channel(2);
                 DFPlayer_PlaySongNb(1);
                 delay_ms(5);
                 
                 counterActivator = 0;
+                counter = 0;
                 secondaryCounterActivator = 0;
                 secondaryCounter = 0;
-                counter = 0;
                 
                 cell = 3;
                 
                 byteNumber = 0;
                 
+                elevatorBonus = 0;
+                bonusFull = 0;
                 bonus = 0;
-                
                 bonusBlock = 0;
                 
                 stopTime = 0;
                 finalTime = 0;
                 reactionTime = 0;
                 
-                
                 delay_ms(5);
                 select_multiplexer_channel(0);
-                ComDisplay_Time(zero, zero);
+                ComDisplay_Time(zero, zero);                                    // Affiche 0:0 sur l'afficheur //
                 ComDisplay_Color(COLOR_RED);
                 ComDisplay_Mode(MODE_RUNNING_TIME);
                
-                delay_ms(5);
-                 
+                delay_ms(10);
                 select_multiplexer_channel(1);
                 ComFeuAnim(1);                                                  // Active animation Feux //
                 
@@ -252,14 +270,13 @@ void main()
                 
                 secondaryCounterActivator = 1;
                 
-                if(buzzer == 0 && prevBuzzer == 1 && bonus == 1)
+                if(buzzer == 0 && prevBuzzer == 1 && bonusFull == 1)
                 {      
                     bonusBlock = 1;                     
                     
                     select_multiplexer_channel(1);
-                    ComFeuAnim(0);
+                    ComFeuAnim(0);                                              // Arrête l'animation des feux //
                     delay_ms(5);
-                    
                     
                     ComINF_MessageInfo(1111, 1, 6969);                          // Envoi message prêt //
                     
@@ -267,7 +284,7 @@ void main()
                     secondaryCounterActivator = 0;                              // Reset compteur secondaire pour commencer à 0 //                    
                     
                     select_multiplexer_channel(2);
-                    DFPlayer_NextSong(); //2
+                    DFPlayer_NextSong(); //2                                    // Change la musique //
                     
                     delay_ms(1000);                                             // Délai pour éviter perturbations //
                     
@@ -288,7 +305,7 @@ void main()
                     delay_ms(5);
                     
                     select_multiplexer_channel(1);
-                    ComFeuAllume(1,0,0,0,r,3);
+                    ComFeuAllume(1,0,0,0,r,3);                                  // Feu 1 à 1 - Feu 2 à 0 - Feu 3 à 0 - Feu 4 à 0 - Rouge - luminosité max //
                     
                     secondaryCounter = 0;
                                         
@@ -326,12 +343,13 @@ void main()
                 { 
                     //select_multiplexer_channel(1);
                     ComFeuAllume(1,1,1,1,g,3);
-
+                    delay_ms(5);
+                    
                     counter = 0;
-                    counterActivator = 1;                                   // Démarre le chronomètre //   
+                    counterActivator = 1;                                       // Démarre le chronomètre //   
 
                     secondaryCounter = 0;
-                    secondaryCounterActivator = 0;                          // Reset le timer secondaire //
+                    secondaryCounterActivator = 0;                              // Reset le timer secondaire //
 
                     state = LAUNCHING;                       
                 } 
@@ -342,8 +360,10 @@ void main()
                     setup_mcp23017();
                     set_gpb7_high();
                     
+                    setup_mcp23017_2();
+                    set_gpb7_high_2();
                     
-                    ComINF_MessageInfo(1111, 3, 0000);                        // Envoie message faux départ //
+                    ComINF_MessageInfo(1111, 3, 0000);                          // Envoie message faux départ //
                     delay_ms(5);
                     
                     select_multiplexer_channel(2);
@@ -352,12 +372,13 @@ void main()
                     
                     secondaryCounterActivator = 0;                              // Stop séquence compte à rebours //
                     secondaryCounter = 0;
+                    
                     counterActivator = 1;                                       // Démarre le chronomètre //     
                     
                     counter = DELAY_FALSE_START;                                // Pénalité de 2s //
 
                     select_multiplexer_channel(1);
-                    ComFeuAllume(1,1,1,1,g,3);
+                    ComFeuAllume(1,1,1,1,g,3);                      
                     delay_ms(5);
                     
                     secondaryCounter = 0;
@@ -380,6 +401,9 @@ void main()
                     setup_mcp23017();
                     set_gpb7_high();
                     
+                    setup_mcp23017_2();
+                    set_gpb7_high_2();
+                    
                     state = RACE;
                 }
                 
@@ -399,8 +423,28 @@ void main()
          
             case RACE:                                                          // Course //
                  
-                //== TEMPS INTERMÉDIAIRE ==//
-                if(interSignal == 0 && prevSignal == 1)
+                //== TEMPS INTERMÉDIAIRE 1 ==//
+                if(inter1Q == 1 && inter1QI == 0)
+                {
+                    stopTime = counter;                                         // Enregistre temps de réaction //
+                    
+                    cell++;                                                     // Pour montrer correctement le message aux INFOS // 
+                    
+                    select_multiplexer_channel(0);
+                    ComDisplay_Color(COLOR_GREEN);
+                    ComDisplay_Mode(MODE_NET_TIME);                             
+                    ComDisplay_Time(stopTime/100,stopTime%100);                 // Montre temps intermédiaire au centième de seconde //
+                    delay_ms(5);                    
+                    
+                    ComINF_MessageInfo(1111, cell, stopTime);                   // Envoi temps intermédiaire //
+                    
+                    secondaryCounter = 0;
+                    
+                    state = TIME;
+                } 
+                
+                //== TEMPS INTERMÉDIAIRE 2 ==//
+                if(inter2Q == 1 && inter2QI == 0)
                 {
                     stopTime = counter;                                         // Enregistre temps de réaction //
                     
@@ -430,7 +474,7 @@ void main()
 //                }
                
                 //== FIN COURSE ==//
-                else if(finalSignalQ == 1 && finalSignalQI == 0)
+                else if(finalSignalQ == 1  && finalSignalQI == 0)
                 {
                     finalTime = counter;                                        // Enregistre temps final //
                    
@@ -486,7 +530,7 @@ void main()
             
 //============================================================================//                
             
-            case TIME:                                                          // Montre temps intermédiaire pendant 2s //               
+            case TIME:                                                          // Montre temps intermédiaire pendant 2s // 
                 
                 secondaryCounterActivator = 1;
                 
@@ -505,6 +549,7 @@ void main()
                 
                 secondaryCounterActivator = 1;
                 
+                delay_ms(5);
                 select_multiplexer_channel(0);
 
                 if(secondaryCounter == 50)                                      // Animation couleurs chronomètre //
@@ -556,7 +601,6 @@ void main()
         
     //== FLANCS DESCENDANTS ==//           
     prevBuzzer = buzzer;
-    prevSignal = interSignal;
   
     delay_ms(2);
     

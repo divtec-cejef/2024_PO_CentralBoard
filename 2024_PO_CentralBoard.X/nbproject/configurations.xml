@@ -9,6 +9,7 @@
       <itemPath>DFPlayer.h</itemPath>
       <itemPath>ComFeux.h</itemPath>
       <itemPath>I2C.h</itemPath>
+      <itemPath>I2C2.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LibraryFiles"
                    displayName="Library Files"
@@ -26,12 +27,12 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>DFPlayer.c</itemPath>
-      <itemPath>MiniLCD_SPI_2x16v2.c</itemPath>
       <itemPath>ComINF.c</itemPath>
       <itemPath>ComDisplay.c</itemPath>
       <itemPath>Main.c</itemPath>
       <itemPath>ComFeux.c</itemPath>
       <itemPath>I2C.c</itemPath>
+      <itemPath>I2C2.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -102,12 +103,12 @@
         </ccscompiler>
       </item>
       <item path="I2C.c" ex="true" overriding="false">
-      </item>
-      <item path="Main.c" ex="false" overriding="false">
         <ccscompiler>
         </ccscompiler>
       </item>
-      <item path="MiniLCD_SPI_2x16v2.c" ex="true" overriding="false">
+      <item path="I2C2.c" ex="true" overriding="false">
+      </item>
+      <item path="Main.c" ex="false" overriding="false">
         <ccscompiler>
         </ccscompiler>
       </item>
@@ -151,7 +152,8 @@
         <property key="ToolFirmwareToolPack"
                   value="Press to select which tool pack to use"/>
         <property key="communication.activationmode" value="nohv"/>
-        <property key="communication.interface" value=""/>
+        <property key="communication.interface"
+                  value="${communication.interface.default}"/>
         <property key="communication.interface.jtag" value="2wire"/>
         <property key="communication.speed" value="${communication.speed.default}"/>
         <property key="debugoptions.debug-startup" value="Use system settings"/>
@@ -243,7 +245,8 @@
         <property key="ToolFirmwareToolPack"
                   value="Press to select which tool pack to use"/>
         <property key="communication.activationmode" value="nohv"/>
-        <property key="communication.interface" value=""/>
+        <property key="communication.interface"
+                  value="${communication.interface.default}"/>
         <property key="communication.interface.jtag" value="2wire"/>
         <property key="communication.speed" value="${communication.speed.default}"/>
         <property key="debugoptions.debug-startup" value="Use system settings"/>

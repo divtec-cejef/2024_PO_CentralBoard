@@ -13,6 +13,8 @@
 unsigned int send_buf_Inf[9];
 unsigned int rxBuffer[20];
 int8 bonus = 0;
+int8 bonusFull = 0;
+int8 elevatorBonus = 0;
 int8 bonusBlock = 0;
 int8 byteNumber = 0;
 
