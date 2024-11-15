@@ -10,6 +10,7 @@
       <itemPath>ComFeux.h</itemPath>
       <itemPath>I2C.h</itemPath>
       <itemPath>I2C2.h</itemPath>
+      <itemPath>ComXLR8.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LibraryFiles"
                    displayName="Library Files"
@@ -33,6 +34,7 @@
       <itemPath>ComFeux.c</itemPath>
       <itemPath>I2C.c</itemPath>
       <itemPath>I2C2.c</itemPath>
+      <itemPath>ComXLR8.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -98,6 +100,8 @@
         <ccscompiler>
         </ccscompiler>
       </item>
+      <item path="ComXLR8.c" ex="true" overriding="false">
+      </item>
       <item path="DFPlayer.c" ex="true" overriding="false">
         <ccscompiler>
         </ccscompiler>
@@ -107,6 +111,8 @@
         </ccscompiler>
       </item>
       <item path="I2C2.c" ex="true" overriding="false">
+        <ccscompiler>
+        </ccscompiler>
       </item>
       <item path="Main.c" ex="false" overriding="false">
         <ccscompiler>

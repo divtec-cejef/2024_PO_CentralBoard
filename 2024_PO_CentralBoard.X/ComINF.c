@@ -1,19 +1,7 @@
-/*
- * #use rs232(UART2, baud=9600, xmit=PIN_D1, rcv=PIN_B0, stream=INF)
-
-unsigned int send_buf_Inf[9];
-unsigned int rx_buf[8];
-
-void ComINF_SendData();
-*/
-
-
 #include "ComINF.h"
 void ComINF_Init()
 {
-    //Enable the interrupt INT_RDA1 because it's UART2 to receive data
-    //enable_interrupts(INT_RDA1);
-    //enable_interrupts(GLOBAL);
+
 }
 
 void ComINF_Test()
@@ -29,28 +17,28 @@ void ComINF_Test()
     ComINF_SendData();
 }
 
-    void ComINF_MessageInfo(int16 idCar, int8 numMessage, int16 time)
-    {
-        printf("%04Lu,%02d,%04Lu",idCar,numMessage,time);
-    }
-  
+void ComINF_MessageInfo(int16 idCar, int8 numMessage, int16 time)
+{
+    printf("%04Lu,%02d,%04Lu",idCar,numMessage,time);
+}
+
 void ComINF_SendData()
 {
     unsigned int i;
-    for(i = 0; i < 8; i ++){
+    for(i = 0; i < TAILLE_BUFFER; i ++)
+    {
       printf("%c",send_buf_Inf[i]);
-   };
+    }
 }
 
-//Interruption de réception de caractère
+//== INTERRUPTION DE RÉCEPTION DE CARACTÈRE ==//
 #INT_RDA
 void Rx_Da_INT(void)
-{ 
-    //output_toggle(PIN_B4);
+{  
     rxBuffer[byteNumber] = fgetc(UART1);
     
     byteNumber++;
-    if(byteNumber == 8)
+    if(byteNumber == TAILLE_BUFFER)
     {
         byteNumber=0;
         
@@ -58,13 +46,11 @@ void Rx_Da_INT(void)
         {
             bonusFull = 1;
             
-            for(int i = 0; i<8;i++)
+            for(int i = 0; i<TAILLE_BUFFER ;i++)
             {
                 fputc(rxBuffer[i],UART1);
-            }
-
-            //output_toggle(PIN_B4);
+            } 
         }
-        
     }
 }
+

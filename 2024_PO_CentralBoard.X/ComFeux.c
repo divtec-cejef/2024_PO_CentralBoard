@@ -1,11 +1,12 @@
 #include "ComFeux.h"
 
+//== CHOIX FEUX ==//
 void ComFeuAllume(int f1, int f2, int f3, int f4, char clr, int lum)
 {
     printf("%d%d%d%d%c%d",f1,f2,f3,f4,clr,lum);
 }
     
-//animation leds
+//== ACTIVE ANIMATION LEDS ==//
 void ComFeuAnim(int lumi)
 {
     if(lumi == 1)

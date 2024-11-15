@@ -1,7 +1,5 @@
 #ifndef COMDISPLAY_H
-#define	COMDISPLAY_H
-
-//#use rs232(UART2, baud=9600, xmit=PIN_B4, rcv=PIN_B2, stream=DISPLAY)
+#define	COMDISPLAY_H                                                            //#use rs232(UART2, baud=9600, xmit=PIN_B4, rcv=PIN_B2, stream=DISPLAY)
 
 #define MODE_RUNNING_TIME   1
 #define MODE_NET_TIME       0

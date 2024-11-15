@@ -10,6 +10,7 @@
 
 #include "ComINF.c"
 #include "DFPlayer.c"
+#include "ComXLR8.c"
 #include "ComDisplay.c"
 #include "ComFeux.c"
 #include "I2C.c"
@@ -20,14 +21,15 @@
 //==============================================================================
 
 #define BUZZER_PIN      PIN_C5
+
 #define PIN_1_Q         PIN_D1
 #define PIN_1_QI        PIN_A4
+
 #define PIN_2_Q         PIN_D2
 #define PIN_2_QI        PIN_A3
+
 #define FINAL_PIN_Q     PIN_D0
 #define FINAL_PIN_QI    PIN_A5
-
-#define ELEVATOR_PIN    PIN_
 
 #define MULTIPLEXER_SELECT_PIN_1  PIN_B0 
 #define MULTIPLEXER_SELECT_PIN_2  PIN_B1
@@ -131,6 +133,8 @@ void select_multiplexer_channel(int channel)
 
 void main()
 {    
+    delay_ms(2000);
+    
     //== INITIALISATION BONUS ==//
     enable_interrupts(INT_RDA);
     enable_interrupts(GLOBAL);
@@ -143,8 +147,6 @@ void main()
     int8 state = 0;                                                             // État // 
     
     int8 zero = 0;                                                              // Reset de l'affichage du chrono //
-    
-    int8 cell = 3;                                                              // Sert à bien numéroter les messages //
     
     char r = 'r';                                                               // Sert à mettre la bonne couleur aux feux //
     char g = 'g';
@@ -162,6 +164,18 @@ void main()
     int8 finalSignalQ = 0;                                                      // Cellule finale normale //
     int8 finalSignalQI = 0;                                                     
     
+    //== BONUS ==//                                                      
+    int16 carNumber = 0;
+    
+    int8 bonusLever1 = 0;
+    int8 bonusLever2 = 0;
+    int8 bonusElevator1 = 0;
+    int8 bonusElevator2 = 0;
+    int8 bonusXLR8 = 0;
+    int8 bonus6 = 0;
+    int8 bonus7 = 0;
+    int8 bonus8 = 0; 
+    
     //== FLANCS DESCENDANTS ==//                         
     int8 prevBuzzer = 0;       
     
@@ -175,6 +189,12 @@ void main()
     select_multiplexer_channel(0);
     ComDisplay_Color(COLOR_RED);
     ComDisplay_Mode(MODE_RUNNING_TIME); 
+       
+    //== INITIALISATION FEUX ==//
+    delay_ms(5);
+    select_multiplexer_channel(1);
+    delay_ms(5);
+    ComFeuAnim(0);
     delay_ms(5);
     
     //== INITIALISATION MUSIQUE ==//
@@ -223,9 +243,15 @@ void main()
                 setup_mcp23017();
                 set_gpb7_low();
                 
-                setup_mcp23017_2();
-                set_gpb7_low_2();
-                
+                bonus_activator();
+                deactivate_bonus_1_lever();
+                deactivate_bonus_2_lever();  
+                deactivate_bonus_3_lever();
+                deactivate_bonus_4_elevator();
+                deactivate_bonus_5_elevator();
+                deactivate_bonus_6_blower();
+                deactivate_bonus_7_blower();
+
                 select_multiplexer_channel(2);
                 DFPlayer_PlaySongNb(1);
                 delay_ms(5);
@@ -235,14 +261,22 @@ void main()
                 secondaryCounterActivator = 0;
                 secondaryCounter = 0;
                 
-                cell = 3;
-                
                 byteNumber = 0;
                 
                 elevatorBonus = 0;
                 bonusFull = 0;
-                bonus = 0;
                 bonusBlock = 0;
+                
+                bonusLever1 = 0;
+                bonusLever2 = 0;
+                bonusElevator1 = 0;
+                bonusElevator2 = 0;
+                bonusXLR8 = 0;
+                bonus6 = 0;
+                bonus7 = 0;
+                bonus8 = 0; 
+                
+                carNumber = 0;
                 
                 stopTime = 0;
                 finalTime = 0;
@@ -254,8 +288,9 @@ void main()
                 ComDisplay_Color(COLOR_RED);
                 ComDisplay_Mode(MODE_RUNNING_TIME);
                
-                delay_ms(10);
+                delay_ms(2000);
                 select_multiplexer_channel(1);
+                delay_ms(5);
                 ComFeuAnim(1);                                                  // Active animation Feux //
                 
                 delay_ms(1000);                                                 // Délai pour éviter perturbations //
@@ -272,13 +307,24 @@ void main()
                 
                 if(buzzer == 0 && prevBuzzer == 1 && bonusFull == 1)
                 {      
+                    carNumber = (rxBuffer[0]-48)*1000 + (rxBuffer[1]-48)*100 + (rxBuffer[2]-48)*10 + rxBuffer[3]-48;                    
+                    
+                    bonusLever1 =   (rxBuffer[5]-48);
+                    bonusLever2 =   (rxBuffer[7]-48);
+                    bonusElevator1 =(rxBuffer[9]-48);
+                    bonusElevator2 =(rxBuffer[11]-48);
+                    bonusXLR8 =     (rxBuffer[13]-48);
+                    bonus6 =        (rxBuffer[15]-48);
+                    bonus7 =        (rxBuffer[17]-48);
+                    bonus8 =        (rxBuffer[19]-48);
+                    
                     bonusBlock = 1;                     
                     
                     select_multiplexer_channel(1);
                     ComFeuAnim(0);                                              // Arrête l'animation des feux //
                     delay_ms(5);
-                    
-                    ComINF_MessageInfo(1111, 1, 6969);                          // Envoi message prêt //
+                              
+                    ComINF_MessageInfo(1111, 1, 0000);                          // Envoi message prêt //
                     
                     secondaryCounter = 0;                                       
                     secondaryCounterActivator = 0;                              // Reset compteur secondaire pour commencer à 0 //                    
@@ -291,7 +337,6 @@ void main()
                     state = READY;
                 }
                 
-                                        
             break;
             
 //============================================================================//                
@@ -322,32 +367,28 @@ void main()
 
                 if(secondaryCounter == 100)
                 { 
-                    //select_multiplexer_channel(1);
                     ComFeuAllume(1,1,0,0,r,3);
                 }
 
                 if(secondaryCounter == 200)
                 {
-                    //select_multiplexer_channel(1);
                     ComFeuAllume(1,1,1,0,r,3);
                 }
 
                 if(secondaryCounter == 300)    
                 {   
-                    //select_multiplexer_channel(1);
                     ComFeuAllume(1,1,1,1,r,3);
                 }
 
                 //== BON DÉPART ==//
                 if(secondaryCounter == 400)
                 { 
-                    //select_multiplexer_channel(1);
                     ComFeuAllume(1,1,1,1,g,3);
                     delay_ms(5);
                     
                     counter = 0;
                     counterActivator = 1;                                       // Démarre le chronomètre //   
-
+                
                     secondaryCounter = 0;
                     secondaryCounterActivator = 0;                              // Reset le timer secondaire //
 
@@ -360,10 +401,12 @@ void main()
                     setup_mcp23017();
                     set_gpb7_high();
                     
-                    setup_mcp23017_2();
-                    set_gpb7_high_2();
+                    delay_ms(5);                    
+                    select_multiplexer_channel(4);
+                    startXLR8(bonusXLR8);
+                    delay_ms(5);
                     
-                    ComINF_MessageInfo(1111, 3, 0000);                          // Envoie message faux départ //
+                    ComINF_MessageInfo(carNumber, 3, 0000);                     // Envoie message faux départ //
                     delay_ms(5);
                     
                     select_multiplexer_channel(2);
@@ -396,13 +439,10 @@ void main()
                 {
                     reactionTime = counter;                                     // Enregistre temps de réaction //               
                     
-                    ComINF_MessageInfo(1111, 2, reactionTime);                  // Envoie temps de réaction //
+                    ComINF_MessageInfo(carNumber, 2, reactionTime);             // Envoie temps de réaction //
                     
                     setup_mcp23017();
                     set_gpb7_high();
-                    
-                    setup_mcp23017_2();
-                    set_gpb7_high_2();
                     
                     state = RACE;
                 }
@@ -426,9 +466,32 @@ void main()
                 //== TEMPS INTERMÉDIAIRE 1 ==//
                 if(inter1Q == 1 && inter1QI == 0)
                 {
-                    stopTime = counter;                                         // Enregistre temps de réaction //
                     
-                    cell++;                                                     // Pour montrer correctement le message aux INFOS // 
+                    bonus_activator();
+                    
+                    if(bonusLever1 == 1 && bonusLever2 == 1)
+                    {
+                        activate_bonus_1_lever();
+                        deactivate_bonus_2_lever();
+                        deactivate_bonus_3_lever();
+                    }
+                    
+                    if(bonusLever1 == 0 && bonusLever2 == 0)
+                    {
+                        activate_bonus_1_lever();
+                        activate_bonus_2_lever();
+                        activate_bonus_3_lever();
+                    }
+                    
+                    if((bonusLever1 == 0 && bonusLever2 == 1)||(bonusLever1 == 1 && bonusLever2 == 0))
+                    {
+                        deactivate_bonus_1_lever();
+                        deactivate_bonus_2_lever();
+                        deactivate_bonus_3_lever();
+                    }    
+                    activate_bonus_6_blower();
+                    
+                    stopTime = counter;                                         // Enregistre temps de réaction //
                     
                     select_multiplexer_channel(0);
                     ComDisplay_Color(COLOR_GREEN);
@@ -436,48 +499,46 @@ void main()
                     ComDisplay_Time(stopTime/100,stopTime%100);                 // Montre temps intermédiaire au centième de seconde //
                     delay_ms(5);                    
                     
-                    ComINF_MessageInfo(1111, cell, stopTime);                   // Envoi temps intermédiaire //
-                    
-                    secondaryCounter = 0;
-                    
-                    state = TIME;
-                } 
-                
-                //== TEMPS INTERMÉDIAIRE 2 ==//
-                if(inter2Q == 1 && inter2QI == 0)
-                {
-                    stopTime = counter;                                         // Enregistre temps de réaction //
-                    
-                    cell++;                                                     // Pour montrer correctement le message aux INFOS // 
-                    
-                    select_multiplexer_channel(0);
-                    ComDisplay_Color(COLOR_GREEN);
-                    ComDisplay_Mode(MODE_NET_TIME);                             
-                    ComDisplay_Time(stopTime/100,stopTime%100);                 // Montre temps intermédiaire au centième de seconde //
-                    delay_ms(5);                    
-                    
-                    ComINF_MessageInfo(1111, cell, stopTime);                    // Envoi temps intermédiaire //
+                    ComINF_MessageInfo(carNumber, 4, stopTime);                 // Envoi temps intermédiaire //
                     
                     secondaryCounter = 0;
                     
                     state = TIME;
                 }
                 
-//                if(fastElevator == 1)
-//                {
-//                    //Activer ascenseur rapide
-//                }
-//                
-//                if(slowElevator == 1)
-//                {
-//                    //Activer ascenseur lent
-//                }
+                //== TEMPS INTERMÉDIAIRE 2 ==//
+                if(inter2Q == 1 && inter2QI == 0)
+                {           
+                    deactivate_bonus_1_lever();
+                    deactivate_bonus_2_lever();
+                    deactivate_bonus_3_lever();  
+                    
+                    deactivate_bonus_6_blower();
+                    
+                    activate_bonus_7_blower();
+                    
+                    stopTime = counter;                                         // Enregistre temps de réaction //
+                    
+                    select_multiplexer_channel(0);
+                    ComDisplay_Color(COLOR_GREEN);
+                    ComDisplay_Mode(MODE_NET_TIME);                             
+                    ComDisplay_Time(stopTime/100,stopTime%100);                 // Montre temps intermédiaire au centième de seconde //
+                    delay_ms(5);                    
+                    
+                    ComINF_MessageInfo(carNumber, 5, stopTime);                 // Envoi temps intermédiaire //
+                    
+                    secondaryCounter = 0;
+                    
+                    state = TIME;
+                } 
                
                 //== FIN COURSE ==//
                 else if(finalSignalQ == 1  && finalSignalQI == 0)
                 {
                     finalTime = counter;                                        // Enregistre temps final //
                    
+                    deactivate_bonus_7_blower();
+                    
                     select_multiplexer_channel(2);
                     DFPlayer_PlaySongNb(4);
                     delay_ms(5);
@@ -489,7 +550,7 @@ void main()
                     
                     secondaryCounter = 0;
                     
-                    ComINF_MessageInfo(1111, 00, finalTime);                    // Envoie message temps final //
+                    ComINF_MessageInfo(carNumber, 6, finalTime);                // Envoie message temps final //
 
                     state = ENDING;
                 }                    
@@ -507,6 +568,8 @@ void main()
                 //== COURSE TROP LONGUE ==//
                 else if(counter == 9999)
                 {
+                    deactivate_bonus_7_blower();
+                    
                     select_multiplexer_channel(1);
                     ComFeuAllume(1,1,1,1,r,3);
                     delay_ms(5);
