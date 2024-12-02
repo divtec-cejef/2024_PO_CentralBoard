@@ -1,6 +1,6 @@
 #include "ComXLR8.h"
 
-void startXLR8(int startBonus)
+void startXLR8(int8 startBonus)
 {
     if(startBonus == 1)
     {

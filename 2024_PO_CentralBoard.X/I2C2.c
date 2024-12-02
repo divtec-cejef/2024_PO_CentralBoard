@@ -90,7 +90,7 @@ void deactivate_bonus_4_elevator()
 ////////////////////////////////////////////////////////////////////////////////
 
 //== ACTIVER BONUS 5 ==//
-void activate_bonus_5_elevator() 
+void activate_bonus_5_elevator()
 {     
     bonus_activator();
     stateGpiob_2 |= 0x08; 
@@ -108,7 +108,7 @@ void deactivate_bonus_5_elevator()
 ////////////////////////////////////////////////////////////////////////////////
 
 //== ACTIVER BONUS 6 ==//
-void activate_bonus_6_blower() 
+void activate_bonus_6_blower()
 {     
     bonus_activator();
     stateGpiob_2 |= 0x04; 
@@ -144,17 +144,17 @@ void deactivate_bonus_7_blower()
 ////////////////////////////////////////////////////////////////////////////////
 
 //== ACTIVER BONUS 8 ==//
-void activate_bonus_8() 
+void activate_bonus_8_startBlower()
 {     
     bonus_activator();
-    stateGpiob_2 |= 0x01; 
-    mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB0 à HIGH (bit 0 à 1)
+    stateGpioa_2 |= 0x80; 
+    mcp23017_write_2(GPIOA_2, stateGpioa_2);                                    // Mettre GPB0 à HIGH (bit 0 à 1)
 }
 
 //== DÉSACTIVER BONUS 8 ==//
-void deactivate_bonus_8()
+void deactivate_bonus_8_startBlower()
 {
     bonus_activator();
-    stateGpiob_2 &= 0xFE;
-    mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB0 à LOW (bit 0 à 0) 
+    stateGpioa_2 &= 0x7F;
+    mcp23017_write_2(GPIOA_2, stateGpioa_2);                                    // Mettre GPB0 à LOW (bit 0 à 0) 
 }

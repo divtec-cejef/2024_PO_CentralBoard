@@ -101,6 +101,8 @@
         </ccscompiler>
       </item>
       <item path="ComXLR8.c" ex="true" overriding="false">
+        <ccscompiler>
+        </ccscompiler>
       </item>
       <item path="DFPlayer.c" ex="true" overriding="false">
         <ccscompiler>

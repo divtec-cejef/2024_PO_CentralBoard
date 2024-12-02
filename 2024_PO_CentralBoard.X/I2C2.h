@@ -12,6 +12,7 @@
 #use i2c(Master, sda=PIN_C4, scl=PIN_C3, FAST=400000)                           // Configuration I2C rapide (400kHz)
 
 int8 stateGpiob_2 = 0;
+int8 stateGpioa_2 = 0;
 
 void mcp23017_write_2(unsigned char reg, unsigned char value); 
 void bonus_activator(); 
@@ -37,7 +38,7 @@ void deactivate_bonus_6_blower();
 void activate_bonus_7_blower(); 
 void deactivate_bonus_7_blower();
 
-void activate_bonus_8(); 
-void deactivate_bonus_8();
+void activate_bonus_8_startBlower(); 
+void deactivate_bonus_8_startBlower();
 
 #endif	/* I2C2_H */

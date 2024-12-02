@@ -17,10 +17,11 @@
 #include "I2C2.c"
 
 //==============================================================================
-//DÉFINITION DES ENTRÉES
+//DÉFINITION DES ENTRÉES ET SORTIES
 //==============================================================================
 
 #define BUZZER_PIN      PIN_C5
+#define BUZZER_LED      PIN_C2
 
 #define PIN_1_Q         PIN_D1
 #define PIN_1_QI        PIN_A4
@@ -86,17 +87,12 @@ void Timer0_ISR()
     }
     
     tertiaryCounter++;
-    if(tertiaryCounter == 18)
+    if(tertiaryCounter == 100)
         {
-            output_bit(PIN_C2,1);
+             tertiaryCounter = 0;
         }
-        if(tertiaryCounter == 36)
-        {
-            output_bit(PIN_C2,0);
-            tertiaryCounter = 0;
-        }
-}
-
+} 
+       
 //==============================================================================
 //PROGRAMME MULTIPLEXEUR 
 //==============================================================================
@@ -172,7 +168,7 @@ void main()
     int8 bonusElevator1 = 0;
     int8 bonusElevator2 = 0;
     int8 bonusXLR8 = 0;
-    int8 bonus6 = 0;
+    int8 bonusBlower = 0;
     int8 bonus7 = 0;
     int8 bonus8 = 0; 
     
@@ -251,6 +247,7 @@ void main()
                 deactivate_bonus_5_elevator();
                 deactivate_bonus_6_blower();
                 deactivate_bonus_7_blower();
+                deactivate_bonus_8_startBlower();
 
                 select_multiplexer_channel(2);
                 DFPlayer_PlaySongNb(1);
@@ -272,7 +269,7 @@ void main()
                 bonusElevator1 = 0;
                 bonusElevator2 = 0;
                 bonusXLR8 = 0;
-                bonus6 = 0;
+                bonusBlower = 0;
                 bonus7 = 0;
                 bonus8 = 0; 
                 
@@ -304,19 +301,19 @@ void main()
             case WAIT:                                                          // État de stand-by //
                 
                 secondaryCounterActivator = 1;
-                
+                               
                 if(buzzer == 0 && prevBuzzer == 1 && bonusFull == 1)
                 {      
                     carNumber = (rxBuffer[0]-48)*1000 + (rxBuffer[1]-48)*100 + (rxBuffer[2]-48)*10 + rxBuffer[3]-48;                    
                     
-                    bonusLever1 =   (rxBuffer[5]-48);
-                    bonusLever2 =   (rxBuffer[7]-48);
-                    bonusElevator1 =(rxBuffer[9]-48);
-                    bonusElevator2 =(rxBuffer[11]-48);
-                    bonusXLR8 =     (rxBuffer[13]-48);
-                    bonus6 =        (rxBuffer[15]-48);
-                    bonus7 =        (rxBuffer[17]-48);
-                    bonus8 =        (rxBuffer[19]-48);
+                    bonusLever1     =(rxBuffer[5]-48);
+                    bonusLever2     =(rxBuffer[7]-48);
+                    bonusElevator1  =(rxBuffer[9]-48);
+                    bonusElevator2  =(rxBuffer[11]-48);
+                    bonusXLR8       =(rxBuffer[13]-48);
+                    bonusBlower     =(rxBuffer[15]-48);
+                    bonus7          =(rxBuffer[17]-48);
+                    bonus8          =(rxBuffer[19]-48);
                     
                     bonusBlock = 1;                     
                     
@@ -324,7 +321,7 @@ void main()
                     ComFeuAnim(0);                                              // Arrête l'animation des feux //
                     delay_ms(5);
                               
-                    ComINF_MessageInfo(1111, 1, 0000);                          // Envoi message prêt //
+                    ComINF_MessageInfo(1111,1,0000);                            // Envoi message prêt //
                     
                     secondaryCounter = 0;                                       
                     secondaryCounterActivator = 0;                              // Reset compteur secondaire pour commencer à 0 //                    
@@ -335,7 +332,7 @@ void main()
                     delay_ms(1000);                                             // Délai pour éviter perturbations //
                     
                     state = READY;
-                }
+                }          
                 
             break;
             
@@ -398,15 +395,24 @@ void main()
                 //== FAUX DÉPART ==//
                 if(buzzer == 0 && prevBuzzer == 1)
                 {
-                    setup_mcp23017();
-                    set_gpb7_high();
+                    bonus_activator();
                     
                     delay_ms(5);                    
-                    select_multiplexer_channel(4);
+                    select_multiplexer_channel(3);
                     startXLR8(bonusXLR8);
                     delay_ms(5);
                     
-                    ComINF_MessageInfo(carNumber, 3, 0000);                     // Envoie message faux départ //
+                    if(bonusBlower == 1)
+                    {
+                        bonus_activator();
+                        activate_bonus_8_startBlower();
+                    }
+                    
+                    setup_mcp23017();
+                    set_gpb7_high();
+                    
+                    
+                    ComINF_MessageInfo(carNumber,2,0000);                       // Envoie message faux départ //
                     delay_ms(5);
                     
                     select_multiplexer_channel(2);
@@ -437,12 +443,25 @@ void main()
                 
                 if(buzzer == 0 && prevBuzzer == 1)
                 {
+                    delay_ms(5);                    
+                    select_multiplexer_channel(3);
+                    startXLR8(bonusXLR8);
+                    delay_ms(5);
+                    
                     reactionTime = counter;                                     // Enregistre temps de réaction //               
                     
-                    ComINF_MessageInfo(carNumber, 2, reactionTime);             // Envoie temps de réaction //
+                    ComINF_MessageInfo(carNumber,2,reactionTime);               // Envoie temps de réaction //
                     
                     setup_mcp23017();
                     set_gpb7_high();
+                    
+                    bonus_activator();
+                    
+                    if(bonusBlower == 1)
+                    {
+                        bonus_activator();
+                        activate_bonus_8_startBlower();
+                    }
                     
                     state = RACE;
                 }
@@ -462,12 +481,19 @@ void main()
 //============================================================================//    
          
             case RACE:                                                          // Course //
-                 
+                
+                bonus_activator();
+                
                 //== TEMPS INTERMÉDIAIRE 1 ==//
                 if(inter1Q == 1 && inter1QI == 0)
-                {
-                    
+                {        
                     bonus_activator();
+                    deactivate_bonus_8_startBlower();
+                    
+                    if(bonusElevator1 == 1)
+                    {
+                        activate_bonus_4_elevator();
+                    }
                     
                     if(bonusLever1 == 1 && bonusLever2 == 1)
                     {
@@ -508,7 +534,15 @@ void main()
                 
                 //== TEMPS INTERMÉDIAIRE 2 ==//
                 if(inter2Q == 1 && inter2QI == 0)
-                {           
+                {      
+                    deactivate_bonus_4_elevator();
+                    
+                    if(bonusElevator2 == 1)
+                    {
+                        activate_bonus_5_elevator();
+                    }
+                    
+                    bonus_activator();
                     deactivate_bonus_1_lever();
                     deactivate_bonus_2_lever();
                     deactivate_bonus_3_lever();  
@@ -525,7 +559,7 @@ void main()
                     ComDisplay_Time(stopTime/100,stopTime%100);                 // Montre temps intermédiaire au centième de seconde //
                     delay_ms(5);                    
                     
-                    ComINF_MessageInfo(carNumber, 5, stopTime);                 // Envoi temps intermédiaire //
+                    ComINF_MessageInfo(carNumber,5,stopTime);                   // Envoi temps intermédiaire //
                     
                     secondaryCounter = 0;
                     
@@ -535,9 +569,14 @@ void main()
                 //== FIN COURSE ==//
                 else if(finalSignalQ == 1  && finalSignalQI == 0)
                 {
+                    deactivate_bonus_5_elevator();
+                    
                     finalTime = counter;                                        // Enregistre temps final //
                    
+                    bonus_activator();
+                    
                     deactivate_bonus_7_blower();
+                    
                     
                     select_multiplexer_channel(2);
                     DFPlayer_PlaySongNb(4);
@@ -550,7 +589,7 @@ void main()
                     
                     secondaryCounter = 0;
                     
-                    ComINF_MessageInfo(carNumber, 6, finalTime);                // Envoie message temps final //
+                    ComINF_MessageInfo(carNumber,6,finalTime);                  // Envoie message temps final //
 
                     state = ENDING;
                 }                    
@@ -566,7 +605,46 @@ void main()
                 }
                 
                 //== COURSE TROP LONGUE ==//
-                else if(counter == 9999)
+                else if(counter >= 9998)
+                {
+                    deactivate_bonus_7_blower();
+                    
+                    select_multiplexer_channel(1);
+                    ComFeuAllume(1,1,1,1,r,3);
+                    delay_ms(5);
+                    
+                    select_multiplexer_channel(2);
+                    DFPlayer_PlaySongNb(4);
+                    delay_ms(5);
+                    
+                    finalTime = 9999;                                             // Affiche 9999 //
+                    
+                    select_multiplexer_channel(0);
+                    ComDisplay_Color(COLOR_RED);
+                    ComDisplay_Mode(MODE_NET_TIME);
+                    ComDisplay_Time(99,99); 
+                    delay_ms(5);
+                    
+                    state = ENDING;
+                }
+                                
+            break;
+            
+//============================================================================//                
+            
+            case TIME:                                                          // Montre temps intermédiaire pendant 2s // 
+                
+                secondaryCounterActivator = 1;
+                
+                if(secondaryCounter == 200)
+                {
+                    secondaryCounterActivator = 0;                              
+                                                                                                 
+                    state = RACE;
+                }
+                
+                //== COURSE TROP LONGUE ==//
+                if(counter >= 9999)
                 {
                     deactivate_bonus_7_blower();
                     
@@ -588,21 +666,6 @@ void main()
                     
                     state = ENDING;
                 }
-                                
-            break;
-            
-//============================================================================//                
-            
-            case TIME:                                                          // Montre temps intermédiaire pendant 2s // 
-                
-                secondaryCounterActivator = 1;
-                
-                if(secondaryCounter == 200)
-                {
-                    secondaryCounterActivator = 0;                              
-                                                                                                 
-                    state = RACE;
-                }                
                 
             break;
             
