@@ -4,18 +4,18 @@ void ComINF_Init()
 
 }
 
-void ComINF_Test()
-{
-    send_buf_Inf[0]='1';
-    send_buf_Inf[1]='2';
-    send_buf_Inf[2]='3';
-    send_buf_Inf[3]='4';
-    send_buf_Inf[4]='5';
-    send_buf_Inf[5]='6';
-    send_buf_Inf[6]='7';
-        
-    ComINF_SendData();
-}
+//void ComINF_Test()
+//{
+//    send_buf_Inf[0]='1';
+//    send_buf_Inf[1]='2';
+//    send_buf_Inf[2]='3';
+//    send_buf_Inf[3]='4';
+//    send_buf_Inf[4]='5';
+//    send_buf_Inf[5]='6';
+//    send_buf_Inf[6]='7';
+//        
+//    ComINF_SendData();
+//}
 
 void ComINF_MessageInfo(int16 idCar, int8 numMessage, int16 time)
 {

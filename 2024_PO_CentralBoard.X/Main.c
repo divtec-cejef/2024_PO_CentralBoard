@@ -20,11 +20,11 @@
 //DÉFINITION DES ENTRÉES ET SORTIES
 //==============================================================================
 
-#define BUZZER_PIN      PIN_C5
+#define BUZZER_PIN      PIN_C5                                                  // Buzzer //
 #define BUZZER_LED      PIN_C2
 
-#define PIN_1_Q         PIN_D1
-#define PIN_1_QI        PIN_A4
+#define PIN_1_Q         PIN_D1                                                  // Inter 1,2 and final // 
+#define PIN_1_QI        PIN_A4 
 
 #define PIN_2_Q         PIN_D2
 #define PIN_2_QI        PIN_A3
@@ -32,23 +32,38 @@
 #define FINAL_PIN_Q     PIN_D0
 #define FINAL_PIN_QI    PIN_A5
 
-#define MULTIPLEXER_SELECT_PIN_1  PIN_B0 
+#define MULTIPLEXER_SELECT_PIN_1  PIN_B0
 #define MULTIPLEXER_SELECT_PIN_2  PIN_B1
 
 //==============================================================================
 //DÉFINITION DES ÉTATS
 //==============================================================================
 
-#define STARTING    1
-#define WAIT        2
-#define READY       3
-#define COUNTDOWN   4
-#define LAUNCHING   5
-#define RACE        6
-#define TIME        7
-#define ENDING      8
+#define STARTING    1                                                           // État initial //
+#define WAIT        2                                                           // Stand-by //
+#define READY       3                                                           // Prêt à lancer // 
+#define COUNTDOWN   4                                                           // Compte à rebours //
+#define LAUNCHING   5                                                           // Lancement voiture //
+#define RACE        6                                                           // Course //
+#define TIME        7                                                           // Temps intermédiaire //
+#define ENDING      8                                                           // État final //
 
-#define DELAY_FALSE_START 200
+#define DELAY_FALSE_START 200                                                   // Pénalité faux départ //
+
+//==============================================================================
+//DÉFINITION DES BONUS POUR TESTS
+//==============================================================================
+
+#define AUTOMATIQUE                                                             // à mettre en commentaire pour mode normal //
+
+#define BONUS_LEVER_1       1
+#define BONUS_LEVER_2       1
+#define BONUS_ELEVATOR_1    1
+#define BONUS_ELEVATOR_2    1
+#define BONUS_XLR8          1
+#define BONUS_BLOWER        1
+#define BONUS_7             1
+#define BONUS_8             1
 
 //==============================================================================
 //VARIABLES GLOBALES
@@ -70,11 +85,11 @@ int16 counter = 0;                                                              
 void Timer0_ISR()
 {
     set_timer0(25536);                                                          // 10 millisecondes //
-    
+
     if(counterActivator == 1)
     {
         counter++;
-        
+
         if(counter % 10 == 0)
         {
             toDisplay = 1;  
@@ -101,22 +116,22 @@ void select_multiplexer_channel(int channel)
 {
     switch(channel) 
     {
-        case 0:
+        case 0:                                                                 // Display // 
             output_low(MULTIPLEXER_SELECT_PIN_1);
             output_low(MULTIPLEXER_SELECT_PIN_2);
             break;
             
-        case 1:
+        case 1:                                                                 // Feux //
             output_high(MULTIPLEXER_SELECT_PIN_1);
             output_low(MULTIPLEXER_SELECT_PIN_2);
             break;
             
-        case 2:
+        case 2:                                                                 // Musique //
             output_low(MULTIPLEXER_SELECT_PIN_1);
             output_high(MULTIPLEXER_SELECT_PIN_2);
             break;
             
-        case 3:
+        case 3:                                                                 // Accélérateur //
             output_high(MULTIPLEXER_SELECT_PIN_1);
             output_high(MULTIPLEXER_SELECT_PIN_2);
             break;
@@ -297,18 +312,23 @@ void main()
             break;
 
 //============================================================================//
-                
+
+            
+       
+//== MANUEL ==//
+#ifndef AUTOMATIQUE
+            
             case WAIT:                                                          // État de stand-by //
                 
-                secondaryCounterActivator = 1;
+                secondaryCounterActivator = 1;                                  // ??? //
                                
                 if(buzzer == 0 && prevBuzzer == 1 && bonusFull == 1)
                 {      
                     carNumber = (rxBuffer[0]-48)*1000 + (rxBuffer[1]-48)*100 + (rxBuffer[2]-48)*10 + rxBuffer[3]-48;                    
                     
-                    bonusLever1     =(rxBuffer[5]-48);
-                    bonusLever2     =(rxBuffer[7]-48);
-                    bonusElevator1  =(rxBuffer[9]-48);
+                    bonusLever1     =(rxBuffer[5 ]-48);
+                    bonusLever2     =(rxBuffer[7 ]-48);
+                    bonusElevator1  =(rxBuffer[9 ]-48);
                     bonusElevator2  =(rxBuffer[11]-48);
                     bonusXLR8       =(rxBuffer[13]-48);
                     bonusBlower     =(rxBuffer[15]-48);
@@ -336,12 +356,60 @@ void main()
                 
             break;
             
+#endif 
+                  
+//== AUTOMATIQUE== //             
+#ifdef AUTOMATIQUE                                                                 
+                    
+            case WAIT:                                                          // État de stand-by //
+                    
+                secondaryCounterActivator = 1;
+                               
+                if(buzzer == 0 && prevBuzzer == 1)
+                {      
+                    
+                    carNumber = (rxBuffer[0]-48)*1000 + (rxBuffer[1]-48)*100 + (rxBuffer[2]-48)*10 + rxBuffer[3]-48;                    
+                    
+                    bonusLever1     = BONUS_LEVER_1;
+                    bonusLever2     = BONUS_LEVER_2;
+                    bonusElevator1  = BONUS_ELEVATOR_1;
+                    bonusElevator2  = BONUS_ELEVATOR_2;
+                    bonusXLR8       = BONUS_XLR8;
+                    bonusBlower     = BONUS_BLOWER;
+                    bonus7          = BONUS_7;
+                    bonus8          = BONUS_8;
+                    
+                    bonusBlock = 1;                     
+                    
+                    select_multiplexer_channel(1);
+                    ComFeuAnim(0);                                              // Arrête l'animation des feux //
+                    delay_ms(5);
+                              
+                    ComINF_MessageInfo(1111,1,0000);                            // Envoi message prêt //
+                    
+                    secondaryCounter = 0;                                       
+                    secondaryCounterActivator = 0;                              // Reset compteur secondaire pour commencer à 0 //                    
+                    
+                    delay_ms(1000);
+                    
+                    select_multiplexer_channel(2);
+                    DFPlayer_NextSong(); //2                                    // Change la musique //
+                    
+                    delay_ms(1000);                                             // Délai pour éviter perturbations //
+                    
+                    
+                    state = READY;
+                }          
+                
+            break;
+#endif
+            
 //============================================================================//                
           
             case READY:                                                         // Prêt à démarrer la séquence de compte à  rebours //
                 
-                if(buzzer == 0 && prevBuzzer == 1)
-                {
+//                if(buzzer == 0 && prevBuzzer == 1)
+//                {
                     select_multiplexer_channel(2);
                     DFPlayer_NextSong(); //3
                     delay_ms(5);
@@ -352,7 +420,7 @@ void main()
                     secondaryCounter = 0;
                                         
                     state = COUNTDOWN;                    
-                }
+//                }
                 
             break;
             
@@ -517,7 +585,7 @@ void main()
                     }    
                     activate_bonus_6_blower();
                     
-                    stopTime = counter;                                         // Enregistre temps de réaction //
+                    stopTime = counter;                                         // Enregistre temps intermédiaire //
                     
                     select_multiplexer_channel(0);
                     ComDisplay_Color(COLOR_GREEN);
