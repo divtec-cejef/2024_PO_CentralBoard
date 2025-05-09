@@ -55,7 +55,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>pk4hybrid</platformTool>
         <languageToolchain>CCSC</languageToolchain>
-        <languageToolchainVersion>5.118</languageToolchainVersion>
+        <languageToolchainVersion>5.116</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>

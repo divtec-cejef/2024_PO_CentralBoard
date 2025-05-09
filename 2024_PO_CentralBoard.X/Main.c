@@ -306,7 +306,7 @@ void main()
                 ComFeuAnim(1);                                                  // Active animation Feux //
                 
                 delay_ms(1000);                                                 // Délai pour éviter perturbations //
-                
+                 
                 state = WAIT;
  
             break;
@@ -393,7 +393,7 @@ void main()
                     delay_ms(1000);
                     
                     select_multiplexer_channel(2);
-                    DFPlayer_NextSong(); //2                                    // Change la musique //
+                    //DFPlayer_NextSong(); //2                                    // Change la musique //
                     
                     delay_ms(1000);                                             // Délai pour éviter perturbations //
                     
@@ -411,7 +411,7 @@ void main()
 //                if(buzzer == 0 && prevBuzzer == 1)
 //                {
                     select_multiplexer_channel(2);
-                    DFPlayer_NextSong(); //3
+                    DFPlayer_NextSong(); //2
                     delay_ms(5);
                     
                     select_multiplexer_channel(1);
@@ -484,7 +484,7 @@ void main()
                     delay_ms(5);
                     
                     select_multiplexer_channel(2);
-                    DFPlayer_PlaySongNb(5); //5
+                    DFPlayer_PlaySongNb(4); //CHANGE (5)
                     delay_ms(5);
                     
                     secondaryCounterActivator = 0;                              // Stop séquence compte à rebours //
@@ -647,7 +647,7 @@ void main()
                     
                     
                     select_multiplexer_channel(2);
-                    DFPlayer_PlaySongNb(4);
+                    DFPlayer_PlaySongNb(3);
                     delay_ms(5);
                     
                     select_multiplexer_channel(0);
@@ -682,7 +682,7 @@ void main()
                     delay_ms(5);
                     
                     select_multiplexer_channel(2);
-                    DFPlayer_PlaySongNb(4);
+                    DFPlayer_PlaySongNb(3);
                     delay_ms(5);
                     
                     finalTime = 9999;                                             // Affiche 9999 //
