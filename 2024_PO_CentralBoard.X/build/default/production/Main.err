@@ -1,0 +1,10 @@
+Compiling C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\Main on 19-mai-25 at 14:26
+C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\Main.c:870:1:  Warning#216  Interrupts disabled during call to prevent re-entrancy:  (@DIV1616)
+C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\DFPlayer.c:32:17:  Warning#202  Variable never used:   i
+C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\DFPlayer.c:49:17:  Warning#202  Variable never used:   i
+C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\DFPlayer.c:66:17:  Warning#202  Variable never used:   i
+C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\DFPlayer.c:86:17:  Warning#202  Variable never used:   i
+C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\ComXLR8.h:4:5:  Warning#202  Variable never used:   fastStart
+      Memory usage:   ROM=5%      RAM=6% - 6%
+      0 Errors,  6 Warnings.
+Build Successful.

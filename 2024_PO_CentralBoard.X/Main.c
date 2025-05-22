@@ -8,20 +8,21 @@
 #fuses RSTOSC_HFINTRC_64MHZ, NOWDT, NOPUT, NOBROWNOUT, LVP, NOCLKOUT ,NOEXTOSC, NOLVP, MCLR
 #use delay (clock=64000000)
 
-#include "ComINF.c"
-#include "DFPlayer.c"
-#include "ComXLR8.c"
-#include "ComDisplay.c"
-#include "ComFeux.c"
-#include "I2C.c"
-#include "I2C2.c"
+#include "ComINF.c"                                                             // Pour la communication avec les informaticiens //
+#include "DFPlayer.c"                                                           // Pour le DFPlayer, la musique //
+#include "ComXLR8.c"                                                            // Pour l'accélération du départ //
+#include "ComDisplay.c"                                                         // Pour la communication avec l'afficheur du chronomètre //
+#include "ComFeux.c"                                                            // Pour la communication avec l'afficheur des feux //
+#include "I2C.c"                                                                // Pour la communication avec le circuit numéro 1 //
+#include "I2C2.c"                                                               // Pour la communication avec le circuit numéro 2 //
+#include "ws2812.c"                                                             // Pour les changements de couleurs du buzzer //
 
 //==============================================================================
 //DÉFINITION DES ENTRÉES ET SORTIES
 //==============================================================================
 
 #define BUZZER_PIN      PIN_C5                                                  // Buzzer //
-#define BUZZER_LED      PIN_C2
+//#define BUZZER_LED      PIN_C2
 
 #define PIN_1_Q         PIN_D1                                                  // Inter 1,2 and final // 
 #define PIN_1_QI        PIN_A4 
@@ -77,6 +78,9 @@ int16 tertiaryCounter = 0;
 int16 secondaryCounter = 0;                                                     // Compteur secondaire //
 int16 counter = 0;                                                              // Compteur principal pour le chronomètre //
 
+uint8_t red_array[WS2812_LED_COUNT];                                            // pour les différentes couleurs pour le buzzer //
+uint8_t green_array[WS2812_LED_COUNT];
+uint8_t blue_array[WS2812_LED_COUNT];
 //==============================================================================
 //INTÉRRUPTION COMPTEURS 
 //==============================================================================
@@ -248,8 +252,28 @@ void main()
 //==============================================================================
         
         switch (state)
-        {                                                   
+        {         
+            
             case STARTING:                                                      // Reset de toutes les valeurs //
+                
+                for (int i = 0; i < WS2812_LED_COUNT; i++)                      // Extinction du buzzer //
+            {
+                red_array[i] = 0;
+                green_array[i] = 0;
+                blue_array[i] = 0;
+            }
+             
+            ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
+            
+//            for (int i = 0; i < WS2812_LED_COUNT; i++)                        // Éclairage en violet du buzzer //
+//            {
+//                red_array[i] = 25;
+//                green_array[i] = 0;
+//                blue_array[i] = 50;
+//            }
+//             
+//            ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
+            
                 
                 setup_mcp23017();
                 set_gpb7_low();
@@ -369,7 +393,7 @@ void main()
                 {      
                     
                     carNumber = (rxBuffer[0]-48)*1000 + (rxBuffer[1]-48)*100 + (rxBuffer[2]-48)*10 + rxBuffer[3]-48;                    
-                    
+            
                     bonusLever1     = BONUS_LEVER_1;
                     bonusLever2     = BONUS_LEVER_2;
                     bonusElevator1  = BONUS_ELEVATOR_1;
@@ -408,6 +432,13 @@ void main()
           
             case READY:                                                         // Prêt à démarrer la séquence de compte à  rebours //
                 
+            for (int i = 0; i < WS2812_LED_COUNT; i++)                          // Éclairage en rouge du buzzer //
+            {
+                red_array[i] = 50;
+                green_array[i] = 0;
+                blue_array[i] = 0;
+            }
+            ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
 //                if(buzzer == 0 && prevBuzzer == 1)
 //                {
                     select_multiplexer_channel(2);
@@ -415,7 +446,7 @@ void main()
                     delay_ms(5);
                     
                     select_multiplexer_channel(1);
-                    ComFeuAllume(1,0,0,0,r,3);                                  // Feu 1 à 1 - Feu 2 à 0 - Feu 3 à 0 - Feu 4 à 0 - Rouge - luminosité max //
+                    ComFeuAllume(1,0,0,0,r,3);                                  // Feu 1 à "1" - Feu 2 à "0" - Feu 3 à "0" - Feu 4 à "0" - Rouge - luminosité max //
                     
                     secondaryCounter = 0;
                                         
@@ -449,6 +480,15 @@ void main()
                 if(secondaryCounter == 400)
                 { 
                     ComFeuAllume(1,1,1,1,g,3);
+                    
+                    for (int i = 0; i < WS2812_LED_COUNT; i++)                  // Éclairage en vert du buzzer //
+                    {
+                        red_array[i] = 0;
+                        green_array[i] = 50;
+                        blue_array[i] = 0;
+                    }
+                    ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
+            
                     delay_ms(5);
                     
                     counter = 0;
@@ -484,7 +524,7 @@ void main()
                     delay_ms(5);
                     
                     select_multiplexer_channel(2);
-                    DFPlayer_PlaySongNb(4); //CHANGE (5)
+                    DFPlayer_PlaySongNb(3);                                     //Son du faux départ (3)//
                     delay_ms(5);
                     
                     secondaryCounterActivator = 0;                              // Stop séquence compte à rebours //
@@ -495,7 +535,16 @@ void main()
                     counter = DELAY_FALSE_START;                                // Pénalité de 2s //
 
                     select_multiplexer_channel(1);
-                    ComFeuAllume(1,1,1,1,g,3);                      
+                    ComFeuAllume(1,1,1,1,g,3); 
+                    
+                    for (int i = 0; i < WS2812_LED_COUNT; i++)                  // Éclairage en vert du buzzer //
+                    {
+                        red_array[i] = 0;
+                        green_array[i] = 50;
+                        blue_array[i] = 0;
+                    }
+                    ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
+
                     delay_ms(5);
                     
                     secondaryCounter = 0;
@@ -511,6 +560,14 @@ void main()
                 
                 if(buzzer == 0 && prevBuzzer == 1)
                 {
+                    for (int i = 0; i < WS2812_LED_COUNT; i++)                  // Éclairage en bleu du buzzer //
+                    {
+                        red_array[i] = 0;
+                        green_array[i] = 0;
+                        blue_array[i] = 50;
+                    }
+                    ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
+            
                     delay_ms(5);                    
                     select_multiplexer_channel(3);
                     startXLR8(bonusXLR8);
@@ -549,6 +606,14 @@ void main()
 //============================================================================//    
          
             case RACE:                                                          // Course //
+                
+                for (int i = 0; i < WS2812_LED_COUNT; i++)                      // Extinction du buzzer //
+                {
+                    red_array[i] = 0;
+                    green_array[i] = 0;
+                    blue_array[i] = 0;
+                }
+                ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
                 
                 bonus_activator();
                 
@@ -647,7 +712,7 @@ void main()
                     
                     
                     select_multiplexer_channel(2);
-                    DFPlayer_PlaySongNb(3);
+                    DFPlayer_PlaySongNb(4);
                     delay_ms(5);
                     
                     select_multiplexer_channel(0);
@@ -682,7 +747,7 @@ void main()
                     delay_ms(5);
                     
                     select_multiplexer_channel(2);
-                    DFPlayer_PlaySongNb(3);
+                    DFPlayer_PlaySongNb(4);
                     delay_ms(5);
                     
                     finalTime = 9999;                                             // Affiche 9999 //
@@ -721,7 +786,7 @@ void main()
                     delay_ms(5);
                     
                     select_multiplexer_channel(2);
-                    DFPlayer_PlaySongNb(4);
+                    DFPlayer_PlaySongNb(3);
                     delay_ms(5);
                     
                     finalTime = counter;                                        // Affiche 9999 //
