@@ -1,7 +1,7 @@
 #include "DFPlayer.h"
 
 /*
-!!! Attention l'ordre des chansons est donné par l'ordre dans lequel vous les copiez !!!
+!!! Attention l'ordre des chansons est donné par l'ordre dans lequel vous les copiez (ordre random) !!!
 */
 
 void DFPlayer_Init()

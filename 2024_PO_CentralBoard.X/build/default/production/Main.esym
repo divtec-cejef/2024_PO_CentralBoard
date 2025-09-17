@@ -1,7 +1,7 @@
 D G "__PCH__" 0 0 ""5.118""
 D G "__DEVICE__" 0 0 ""
-D G "__DATE__" 0 0 ""19-May-25""
-D G "__TIME__" 0 0 ""14:26:39""
+D G "__DATE__" 0 0 ""12-Sep-25""
+D G "__TIME__" 0 0 ""13:41:44""
 D G "_UNICODE" 0 0 ""?""
 D G "__EVAL" 0 0 ""?""
 D G "__18F47Q10" 0 0 "1" "============================================================================*"
@@ -3038,94 +3038,146 @@ V L "gr" 16 53 "??0 *" `1154
 V L "bl" 16 53 "??0 *" `1162 
 F G "ws2812_wheel" 16 54 "void(uint8_t pos,??0 * re,??0 * gr,??0 * bl)" `1151 
 D G "BUZZER_PIN" 0 24 "PIN_C5" "Buzzer //"
-D G "PIN_1_Q" 0 27 "PIN_D1" "Inter 1,2 and final //"
-D G "PIN_1_QI" 0 28 "PIN_A4"
-D G "PIN_2_Q" 0 30 "PIN_D2"
-D G "PIN_2_QI" 0 31 "PIN_A3"
-D G "FINAL_PIN_Q" 0 33 "PIN_D0"
-D G "FINAL_PIN_QI" 0 34 "PIN_A5"
-D G "MULTIPLEXER_SELECT_PIN_1" 0 36 "PIN_B0"
-D G "MULTIPLEXER_SELECT_PIN_2" 0 37 "PIN_B1"
-D G "STARTING" 0 43 "1" "État initial //"
-D G "wait" 0 44 "2" "Stand-by //"
-D G "READY" 0 45 "3" "Prêt à lancer //"
-D G "COUNTDOWN" 0 46 "4" "Compte à rebours //"
-D G "LAUNCHING" 0 47 "5" "Lancement voiture //"
-D G "RACE" 0 48 "6" "Course //"
-D G "time" 0 49 "7" "Temps intermédiaire //"
-D G "ENDING" 0 50 "8" "État final //"
-D G "DELAY_FALSE_START" 0 52 "200" "Pénalité faux départ //"
-D G "AUTOMATIQUE" 0 58 "" "à mettre en commentaire pour mode normal //"
-D G "BONUS_LEVER_1" 0 60 "1"
-D G "BONUS_LEVER_2" 0 61 "1"
-D G "BONUS_ELEVATOR_1" 0 62 "1"
-D G "BONUS_ELEVATOR_2" 0 63 "1"
-D G "BONUS_XLR8" 0 64 "1"
-D G "BONUS_BLOWER" 0 65 "1"
-D G "BONUS_7" 0 66 "1"
-D G "BONUS_8" 0 67 "1"
-V G "secondaryCounterActivator" 0 73 "int8" `1158 
-V G "counterActivator" 0 74 "int8" `1159 
-V G "toDisplay" 0 75 "int8" `1160 
-V G "tertiaryCounter" 0 77 "int16" `1161 
-V G "secondaryCounter" 0 78 "int16" `1162 
-V G "counter" 0 79 "int16" `1163 
-V G "red_array" 0 81 "uint8_t[24]" `1164  "pour les différentes couleurs pour le buzzer //"
-V G "green_array" 0 82 "uint8_t[24]" `1165 
-V G "blue_array" 0 83 "uint8_t[24]" `1166  "INTÉRRUPTION COMPTEURS"
-F N "Timer0_ISR" 0 89 ""
-F G "Timer0_ISR" 0 90 "void()" `1167 
+D G "PROTECT_BT" 0 26 "PIN_A2" "Switch de protection pour mode normal / test //"
+D G "MISE_ZERO" 0 27 "PIN_D3" "uniquement pour la mise à 0 de la pin//"
+D G "PIN_1_Q" 0 29 "PIN_D1" "Inter 1,2 and final //"
+D G "PIN_1_QI" 0 30 "PIN_A4"
+D G "PIN_2_Q" 0 32 "PIN_D2"
+D G "PIN_2_QI" 0 33 "PIN_A3"
+D G "FINAL_PIN_Q" 0 35 "PIN_D0"
+D G "FINAL_PIN_QI" 0 36 "PIN_A5"
+D G "MULTIPLEXER_SELECT_PIN_1" 0 38 "PIN_B0"
+D G "MULTIPLEXER_SELECT_PIN_2" 0 39 "PIN_B1"
+D G "STARTING" 0 45 "1" "État initial //"
+D G "wait" 0 46 "2" "Stand-by //"
+D G "READY" 0 47 "3" "Prêt à lancer //"
+D G "COUNTDOWN" 0 48 "4" "Compte à rebours //"
+D G "LAUNCHING" 0 49 "5" "Lancement voiture //"
+D G "RACE" 0 50 "6" "Course //"
+D G "time" 0 51 "7" "Temps intermédiaire //"
+D G "ENDING" 0 52 "8" "État final //"
+D G "DELAY_FALSE_START" 0 54 "200" "Pénalité faux départ //"
+D G "AUTOMATIQUE" 0 60 "" "à mettre en commentaire pour mode normal //"
+D G "BONUS_LEVER_1" 0 62 "1"
+D G "BONUS_LEVER_2" 0 63 "1"
+D G "BONUS_ELEVATOR_1" 0 64 "1"
+D G "BONUS_ELEVATOR_2" 0 65 "1"
+D G "BONUS_XLR8" 0 66 "1"
+D G "BONUS_BLOWER" 0 67 "1"
+D G "BONUS_7" 0 68 "1"
+D G "BONUS_8" 0 69 "1"
+V G "secondaryCounterActivator" 0 75 "int8" `1158 
+V G "counterActivator" 0 76 "int8" `1159 
+V G "toDisplay" 0 77 "int8" `1160 
+V G "tertiaryCounter" 0 79 "int16" `1161 
+V G "secondaryCounter" 0 80 "int16" `1162 
+V G "counter" 0 81 "int16" `1163 
+V G "red_array" 0 83 "uint8_t[24]" `1164  "pour les différentes couleurs pour le buzzer //"
+V G "green_array" 0 84 "uint8_t[24]" `1165 
+V G "blue_array" 0 85 "uint8_t[24]" `1166  "INTÉRRUPTION COMPTEURS"
+F N "Timer0_ISR" 0 91 ""
+F G "Timer0_ISR" 0 92 "void()" `1167 
 C L "Timer0_ISR" 0 21 1 "FUNCTION"
 C L "select_multiplexer_channel" 0 21 1 "FUNCTION"
-F N "select_multiplexer_channel" 0 119 ""
-V L "channel" 0 119 "int8" `1172 
-F G "select_multiplexer_channel" 0 120 "void(int8 channel)" `1171 
+F N "select_multiplexer_channel" 0 121 ""
+V L "channel" 0 121 "int8" `1172 
+F G "select_multiplexer_channel" 0 122 "void(int8 channel)" `1171 
 C L "select_multiplexer_channel" 0 21 1 "FUNCTION"
 C L "select_multiplexer_channel" 0 21 1 "FUNCTION"
 C L "select_multiplexer_channel" 0 21 1 "FUNCTION"
 C L "select_multiplexer_channel" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 4 "FUNCTION"
-F N "MAIN" 0 153 ""
-F G "MAIN" 0 154 "void()" `1174 
+C L "MAIN" 0 21 1 "FUNCTION"
+F N "MAIN" 0 151 ""
+F G "MAIN" 0 152 "void()" `1174 
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "stopTime" 0 162 "int16" `1177 
+V L "stopTime" 0 160 "int16" `1177 
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "finalTime" 0 163 "int16" `1178 
+V L "finalTime" 0 161 "int16" `1178 
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "reactionTime" 0 164 "int16" `1179 
+V L "reactionTime" 0 162 "int16" `1179 
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "state" 0 166 "int8" `1180 
+V L "state" 0 164 "int8" `1180 
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "zero" 0 168 "int8" `1181 
+V L "zero" 0 166 "int8" `1181 
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "r" 0 170 "int8" `1182 
+V L "r" 0 168 "int8" `1182 
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "g" 0 171 "int8" `1183 
+V L "g" 0 169 "int8" `1183 
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "buzzer" 0 174 "int8" `1184 
+V L "buzzer" 0 172 "int8" `1184 
+C L "MAIN" 0 21 1 "FUNCTION"
+V L "protection_bt" 0 173 "int8" `1185 
+C L "MAIN" 0 21 1 "FUNCTION"
+V L "forcer_zero" 0 174 "int8" `1186 
+C L "MAIN" 0 21 1 "FUNCTION"
+V L "inter1Q" 0 177 "int8" `1187 
+C L "MAIN" 0 21 1 "FUNCTION"
+V L "inter1QI" 0 178 "int8" `1188 
+V L "temps_inter_1" 0 179 "int8" `1189 
+V L "inter2Q" 0 181 "int8" `1190 
+C L "MAIN" 0 21 1 "FUNCTION"
+V L "inter2QI" 0 182 "int8" `1191 
+V L "temps_inter_2" 0 183 "int8" `1192 
+V L "finalSignalQ" 0 185 "int8" `1193 
+C L "MAIN" 0 21 1 "FUNCTION"
+V L "finalSignalQI" 0 186 "int8" `1194 
+C L "MAIN" 0 21 1 "FUNCTION"
+V L "carNumber" 0 189 "int16" `1195 
+V L "bonusLever1" 0 191 "int8" `1196 
+V L "bonusLever2" 0 192 "int8" `1197 
+V L "bonusElevator1" 0 193 "int8" `1198 
+V L "bonusElevator2" 0 194 "int8" `1199 
+V L "bonusXLR8" 0 195 "int8" `1200 
+V L "bonusBlower" 0 196 "int8" `1201 
+V L "bonus7" 0 197 "int8" `1202 
+V L "bonus8" 0 198 "int8" `1203 
+C L "MAIN" 0 21 1 "FUNCTION"
+V L "prevBuzzer" 0 201 "int8" `1204 
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+V L "i" 0 269 "int8" `1205 
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+V L "i" 0 351 "int8" `1206 
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+V L "i" 0 398 "int8" `1210 
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 2 "FUNCTION"
-V L "inter1Q" 0 177 "int8" `1185 
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "inter1QI" 0 178 "int8" `1186 
-V L "inter2Q" 0 180 "int8" `1187 
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "inter2QI" 0 181 "int8" `1188 
-V L "finalSignalQ" 0 183 "int8" `1189 
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "finalSignalQI" 0 184 "int8" `1190 
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "carNumber" 0 187 "int16" `1191 
-V L "bonusLever1" 0 189 "int8" `1192 
-V L "bonusLever2" 0 190 "int8" `1193 
-V L "bonusElevator1" 0 191 "int8" `1194 
-V L "bonusElevator2" 0 192 "int8" `1195 
-V L "bonusXLR8" 0 193 "int8" `1196 
-V L "bonusBlower" 0 194 "int8" `1197 
-V L "bonus7" 0 195 "int8" `1198 
-V L "bonus8" 0 196 "int8" `1199 
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "prevBuzzer" 0 199 "int8" `1200 
+V L "i" 0 485 "int8" `1211 
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
@@ -3135,15 +3187,11 @@ C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
+V L "i" 0 541 "int8" `1212 
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "i" 0 263 "int8" `1201 
-C L "MAIN" 0 21 5 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 3 "FUNCTION"
+V L "i" 0 564 "int8" `1213 
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
@@ -3151,43 +3199,19 @@ C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-V L "i" 0 438 "int8" `1205 
-C L "MAIN" 0 21 1 "FUNCTION"
+V L "i" 0 611 "int8" `1214 
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
-V L "i" 0 487 "int8" `1206 
+C L "MAIN" 0 21 2 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-V L "i" 0 542 "int8" `1207 
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-V L "i" 0 565 "int8" `1208 
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-V L "i" 0 612 "int8" `1209 
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
-C L "MAIN" 0 21 1 "FUNCTION"
+C L "MAIN" 0 21 2 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"
 C L "MAIN" 0 21 1 "FUNCTION"

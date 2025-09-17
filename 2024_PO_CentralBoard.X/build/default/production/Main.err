@@ -1,5 +1,5 @@
-Compiling C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\Main on 19-mai-25 at 14:26
-C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\Main.c:870:1:  Warning#216  Interrupts disabled during call to prevent re-entrancy:  (@DIV1616)
+Compiling C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\Main on 12-sept.-25 at 13:41
+C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\Main.c:875:1:  Warning#216  Interrupts disabled during call to prevent re-entrancy:  (@DIV1616)
 C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\DFPlayer.c:32:17:  Warning#202  Variable never used:   i
 C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\DFPlayer.c:49:17:  Warning#202  Variable never used:   i
 C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\DFPlayer.c:66:17:  Warning#202  Variable never used:   i

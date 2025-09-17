@@ -1,6 +1,6 @@
 /*============================================================================*/
 /* Project     : programmeCircuit                                             */
-/* Author      : Cristhian Valencia                                           */
+/* Author      : Cristhian Valencia & Kylian dos Santos Marques               */
 /* Target      : PIC 18F47Q10                                                 */
 /*============================================================================*/
 
@@ -22,7 +22,9 @@
 //==============================================================================
 
 #define BUZZER_PIN      PIN_C5                                                  // Buzzer //
-//#define BUZZER_LED      PIN_C2
+
+#define PROTECT_BT      PIN_A2                                                 // Switch de protection pour mode normal / test //
+#define MISE_ZERO       PIN_D3                                                  //uniquement pour la mise à 0 de la pin//
 
 #define PIN_1_Q         PIN_D1                                                  // Inter 1,2 and final // 
 #define PIN_1_QI        PIN_A4 
@@ -168,16 +170,20 @@ void main()
     
     //== ENTRÉES ==//                            
     int8 buzzer = 0;                                                            // Bouton buzzer principal //
+    int8 protection_bt = 0;                                                     // Bouton pour choisir le mode normal ou le mode test //
+    int8 forcer_zero = 0;
 
     //== SIGNAUX CELLULES ==//                                                      
     int8 inter1Q = 0;                                                           // Premier temps intermédiaire
     int8 inter1QI = 0;
+    int8 temps_inter_1 = 0;
     
     int8 inter2Q = 0;                                                           // Deuxième temps intermédiaire //    
-    int8 inter2QI = 0; 
+    int8 inter2QI = 0;
+    int8 temps_inter_2 = 0;
     
     int8 finalSignalQ = 0;                                                      // Cellule finale normale //
-    int8 finalSignalQI = 0;                                                     
+    int8 finalSignalQI = 0;  
     
     //== BONUS ==//                                                      
     int16 carNumber = 0;
@@ -236,6 +242,8 @@ void main()
     { 
         //== LECTURE DES ENTRÉES ==//        
         buzzer = input(BUZZER_PIN);
+        protection_bt = input(PROTECT_BT);
+        forcer_zero = input(MISE_ZERO);
         
         inter1Q = input(PIN_1_Q);
         inter1QI = input(PIN_1_QI);
@@ -256,6 +264,8 @@ void main()
             
             case STARTING:                                                      // Reset de toutes les valeurs //
                 
+                forcer_zero = 0;                                                //mise à 0 de la pin A1 pour que le switch de mode aie un GND proche//
+                
                 for (int i = 0; i < WS2812_LED_COUNT; i++)                      // Extinction du buzzer //
             {
                 red_array[i] = 0;
@@ -264,16 +274,7 @@ void main()
             }
              
             ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
-            
-//            for (int i = 0; i < WS2812_LED_COUNT; i++)                        // Éclairage en violet du buzzer //
-//            {
-//                red_array[i] = 25;
-//                green_array[i] = 0;
-//                blue_array[i] = 50;
-//            }
-//             
-//            ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
-            
+                      
                 
                 setup_mcp23017();
                 set_gpb7_low();
@@ -338,107 +339,107 @@ void main()
 //============================================================================//
 
             
-       
-//== MANUEL ==//
-#ifndef AUTOMATIQUE
-            
-            case WAIT:                                                          // État de stand-by //
-                
-                secondaryCounterActivator = 1;                                  // ??? //
-                               
-                if(buzzer == 0 && prevBuzzer == 1 && bonusFull == 1)
-                {      
-                    carNumber = (rxBuffer[0]-48)*1000 + (rxBuffer[1]-48)*100 + (rxBuffer[2]-48)*10 + rxBuffer[3]-48;                    
-                    
-                    bonusLever1     =(rxBuffer[5 ]-48);
-                    bonusLever2     =(rxBuffer[7 ]-48);
-                    bonusElevator1  =(rxBuffer[9 ]-48);
-                    bonusElevator2  =(rxBuffer[11]-48);
-                    bonusXLR8       =(rxBuffer[13]-48);
-                    bonusBlower     =(rxBuffer[15]-48);
-                    bonus7          =(rxBuffer[17]-48);
-                    bonus8          =(rxBuffer[19]-48);
-                    
-                    bonusBlock = 1;                     
-                    
-                    select_multiplexer_channel(1);
-                    ComFeuAnim(0);                                              // Arrête l'animation des feux //
-                    delay_ms(5);
-                              
-                    ComINF_MessageInfo(1111,1,0000);                            // Envoi message prêt //
-                    
-                    secondaryCounter = 0;                                       
-                    secondaryCounterActivator = 0;                              // Reset compteur secondaire pour commencer à 0 //                    
-                    
-                    select_multiplexer_channel(2);
-                    DFPlayer_NextSong(); //2                                    // Change la musique //
-                    
-                    delay_ms(1000);                                             // Délai pour éviter perturbations //
-                    
-                    state = READY;
-                }          
-                
-            break;
-            
-#endif 
-                  
-//== AUTOMATIQUE== //             
-#ifdef AUTOMATIQUE                                                                 
-                    
-            case WAIT:                                                          // État de stand-by //
+        case WAIT:                                                              // État de stand-by //
                     
                 secondaryCounterActivator = 1;
-                               
-                if(buzzer == 0 && prevBuzzer == 1)
-                {      
+                if(protection_bt == 0)
+                {
+                    //== MODE TEST == //                                        // Pour les différents test avant les portes ouvertes //
                     
-                    carNumber = (rxBuffer[0]-48)*1000 + (rxBuffer[1]-48)*100 + (rxBuffer[2]-48)*10 + rxBuffer[3]-48;                    
+                    if(buzzer == 0 && prevBuzzer == 1)
+                    {      
+                        for (int i = 0; i < WS2812_LED_COUNT; i++)                          // Éclairage en rouge du buzzer //
+            {
+                red_array[i] = 255;
+                green_array[i] = 0;
+                blue_array[i] = 0;
+            }
+            ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
+
+                        carNumber = (rxBuffer[0]-48)*1000 + (rxBuffer[1]-48)*100 + (rxBuffer[2]-48)*10 + rxBuffer[3]-48;                    
+
+                        bonusLever1     = BONUS_LEVER_1;
+                        bonusLever2     = BONUS_LEVER_2;
+                        bonusElevator1  = BONUS_ELEVATOR_1;
+                        bonusElevator2  = BONUS_ELEVATOR_2;
+                        bonusXLR8       = BONUS_XLR8;
+                        bonusBlower     = BONUS_BLOWER;
+                        bonus7          = BONUS_7;
+                        bonus8          = BONUS_8;
+
+                        bonusBlock = 1;                     
+
+                        select_multiplexer_channel(1);
+                        ComFeuAnim(0);                                              // Arrête l'animation des feux //
+                        delay_ms(5);
+
+                        ComINF_MessageInfo(1111,1,0000);                            // Envoi message prêt //
+
+                        secondaryCounter = 0;                                       
+                        secondaryCounterActivator = 0;                              // Reset compteur secondaire pour commencer à 0 //                    
+
+                        delay_ms(1000);
+
+                        select_multiplexer_channel(2);
+                        //DFPlayer_NextSong(); //2                                    // Change la musique //
+
+                        delay_ms(1000);                                             // Délai pour éviter perturbations //
+
+
+                        state = READY;
+                    }
+                 }
+                else
+                {
+                    //== MODE NORMAL ==//                                       // à activer pour les portes ouvertes //
+                    
+                    if(buzzer == 0 && prevBuzzer == 1 && bonusFull == 1)
+                    {      
+                        for (int i = 0; i < WS2812_LED_COUNT; i++)                          // Éclairage en rouge du buzzer //
+            {
+                red_array[i] = 255;
+                green_array[i] = 0;
+                blue_array[i] = 0;
+            }
+            ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
             
-                    bonusLever1     = BONUS_LEVER_1;
-                    bonusLever2     = BONUS_LEVER_2;
-                    bonusElevator1  = BONUS_ELEVATOR_1;
-                    bonusElevator2  = BONUS_ELEVATOR_2;
-                    bonusXLR8       = BONUS_XLR8;
-                    bonusBlower     = BONUS_BLOWER;
-                    bonus7          = BONUS_7;
-                    bonus8          = BONUS_8;
-                    
-                    bonusBlock = 1;                     
-                    
-                    select_multiplexer_channel(1);
-                    ComFeuAnim(0);                                              // Arrête l'animation des feux //
-                    delay_ms(5);
-                              
-                    ComINF_MessageInfo(1111,1,0000);                            // Envoi message prêt //
-                    
-                    secondaryCounter = 0;                                       
-                    secondaryCounterActivator = 0;                              // Reset compteur secondaire pour commencer à 0 //                    
-                    
-                    delay_ms(1000);
-                    
-                    select_multiplexer_channel(2);
-                    //DFPlayer_NextSong(); //2                                    // Change la musique //
-                    
-                    delay_ms(1000);                                             // Délai pour éviter perturbations //
-                    
-                    
-                    state = READY;
-                }          
+                        carNumber = (rxBuffer[0]-48)*1000 + (rxBuffer[1]-48)*100 + (rxBuffer[2]-48)*10 + rxBuffer[3]-48;                    
+
+                        bonusLever1     =(rxBuffer[5 ]-48);
+                        bonusLever2     =(rxBuffer[7 ]-48);
+                        bonusElevator1  =(rxBuffer[9 ]-48);
+                        bonusElevator2  =(rxBuffer[11]-48);
+                        bonusXLR8       =(rxBuffer[13]-48);
+                        bonusBlower     =(rxBuffer[15]-48);
+                        bonus7          =(rxBuffer[17]-48);
+                        bonus8          =(rxBuffer[19]-48);
+
+                        bonusBlock = 1;                     
+
+                        select_multiplexer_channel(1);
+                        ComFeuAnim(0);                                              // Arrête l'animation des feux //
+                        delay_ms(5);
+
+                        ComINF_MessageInfo(1111,1,0000);                            // Envoi message prêt //
+
+                        secondaryCounter = 0;                                       
+                        secondaryCounterActivator = 0;                              // Reset compteur secondaire pour commencer à 0 //                    
+
+                        select_multiplexer_channel(2);
+                        DFPlayer_NextSong(); //2                                    // Change la musique //
+
+                        delay_ms(1000);                                             // Délai pour éviter perturbations //
+
+                        state = READY;
+                    }
+                }
                 
             break;
-#endif
             
 //============================================================================//                
           
             case READY:                                                         // Prêt à démarrer la séquence de compte à  rebours //
                 
-            for (int i = 0; i < WS2812_LED_COUNT; i++)                          // Éclairage en rouge du buzzer //
-            {
-                red_array[i] = 50;
-                green_array[i] = 0;
-                blue_array[i] = 0;
-            }
-            ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
 //                if(buzzer == 0 && prevBuzzer == 1)
 //                {
                     select_multiplexer_channel(2);
@@ -484,7 +485,7 @@ void main()
                     for (int i = 0; i < WS2812_LED_COUNT; i++)                  // Éclairage en vert du buzzer //
                     {
                         red_array[i] = 0;
-                        green_array[i] = 50;
+                        green_array[i] = 255;
                         blue_array[i] = 0;
                     }
                     ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
@@ -540,7 +541,7 @@ void main()
                     for (int i = 0; i < WS2812_LED_COUNT; i++)                  // Éclairage en vert du buzzer //
                     {
                         red_array[i] = 0;
-                        green_array[i] = 50;
+                        green_array[i] = 255;
                         blue_array[i] = 0;
                     }
                     ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
@@ -564,7 +565,7 @@ void main()
                     {
                         red_array[i] = 0;
                         green_array[i] = 0;
-                        blue_array[i] = 50;
+                        blue_array[i] = 255;
                     }
                     ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
             
@@ -598,7 +599,7 @@ void main()
                     toDisplay = 0;  
                     ComDisplay_Color(COLOR_RED);
                     ComDisplay_Mode(MODE_RUNNING_TIME);
-                    ComDisplay_Time(counter/100,counter%100);                    
+                    ComDisplay_Time(counter/100,counter%100);
                 }
                 
             break;
@@ -620,6 +621,7 @@ void main()
                 //== TEMPS INTERMÉDIAIRE 1 ==//
                 if(inter1Q == 1 && inter1QI == 0)
                 {        
+                    temps_inter_1 = 1;
                     bonus_activator();
                     deactivate_bonus_8_startBlower();
                     
@@ -666,8 +668,10 @@ void main()
                 }
                 
                 //== TEMPS INTERMÉDIAIRE 2 ==//
-                if(inter2Q == 1 && inter2QI == 0)
+//                  if(inter2Q == 1 && inter2QI == 0 && temps_inter_1 == 1)       // --> doit activer tout les check-points //
+                if(inter2Q == 1 && inter2QI == 0)                             // --> doit activer seulement la sortie //
                 {      
+                    temps_inter_2 = 1;
                     deactivate_bonus_4_elevator();
                     
                     if(bonusElevator2 == 1)
@@ -700,7 +704,8 @@ void main()
                 } 
                
                 //== FIN COURSE ==//
-                else if(finalSignalQ == 1  && finalSignalQI == 0)
+              else if(finalSignalQ == 1  && finalSignalQI == 0)               // --> doit activer que le finish //
+//                else if(finalSignalQ == 1  && finalSignalQI == 0 && temps_inter_1 == 1 && temps_inter_2 == 1) // --> doit activer tout les check-points //
                 {
                     deactivate_bonus_5_elevator();
                     
@@ -731,7 +736,7 @@ void main()
                 else if(toDisplay == 1)
                 {
                     select_multiplexer_channel(0);
-                    toDisplay = 0;  
+                    toDisplay = 0;
                     ComDisplay_Color(COLOR_BLUE);                               // Montre chronomètre en bleu dès qu'on lance la voiture //
                     ComDisplay_Mode(MODE_RUNNING_TIME);
                     ComDisplay_Time(counter/100,counter%100);  
@@ -848,6 +853,8 @@ void main()
                     ComDisplay_Time(zero/100,zero%100);
                     state = STARTING;
                 }
+                temps_inter_1 = 0;
+                temps_inter_2 = 0;
                 
             break;
             

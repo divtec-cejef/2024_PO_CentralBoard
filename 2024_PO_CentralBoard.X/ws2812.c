@@ -12,16 +12,16 @@ void ws2812_sendBit(uint8_t bit)
 {
     if (bit) 
     {
-        output_high(WS2812_PIN);     // T1H
+        output_high(WS2812_PIN);     // T1 = 1
         delay_cycles(13);            // ? 812 ns
-        output_low(WS2812_PIN);      // T1L
+        output_low(WS2812_PIN);      // T1 = 0
         delay_cycles(7);             // ? 437 ns
     } 
     else 
     {
-        output_high(WS2812_PIN);     // T0H
+        output_high(WS2812_PIN);     // T0 = 1
         delay_cycles(6);             // ? 375 ns
-        output_low(WS2812_PIN);      // T0L
+        output_low(WS2812_PIN);      // T0 = 0
         delay_cycles(14);            // ? 875 ns
     }
 }
