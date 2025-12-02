@@ -129,16 +129,20 @@ void deactivate_bonus_6_blower()
 void activate_bonus_7_blower() 
 {     
     bonus_activator();
-    stateGpiob_2 |= 0x02; 
-    mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB1 à HIGH (bit 1 à 1)
+    //stateGpiob_2 |= 0x02; 
+    stateGpiob_2 |= 0x40; 
+    //mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB1 à HIGH (bit 1 à 1)
+    mcp23017_write_2(GPIOA_2, stateGpiob_2);            
 }
 
 //== DÉSACTIVER BONUS 7 ==//
 void deactivate_bonus_7_blower()
 {
     bonus_activator();
-    stateGpiob_2 &= 0xFD;
-    mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB1 à LOW (bit 1 à 0) 
+    //stateGpiob_2 &= 0xFD;
+    //mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB1 à LOW (bit 1 à 0) 
+    stateGpiob_2 &= 0xBF;
+    mcp23017_write_2(GPIOA_2, stateGpiob_2);       
 }
 
 ////////////////////////////////////////////////////////////////////////////////

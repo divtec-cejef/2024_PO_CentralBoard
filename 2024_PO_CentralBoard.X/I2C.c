@@ -20,7 +20,8 @@ void setup_mcp23017()
 void set_gpb7_high() 
 {     
     setup_mcp23017();
-    mcp23017_write(GPIOB, 0b11100000);                                          // Mettre GPB7 à HIGH (bit 7 à 1)
+    //mcp23017_write(GPIOB, 0b11100000);                                          // Mettre GPB7 à HIGH (bit 7 à 1)
+    mcp23017_write(GPIOB, 0b11101111);   
 }
 
 //== DÉSACTIVER GPB7 ==//

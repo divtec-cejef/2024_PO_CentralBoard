@@ -1,19 +1,19 @@
 
-ROM used:   7080/131072 (5%)
-            7080/131072 (5%) including unused fragments
+ROM used:   7172/131072 (5%)
+            7172/131072 (5%) including unused fragments
 
             1.8 Average locations per line
-            11.0 Average locations per statement
+            10.9 Average locations per statement
 
-RAM used:   210/3615 (6%) at main() level
-            229/3615 (6%) worst case
+RAM used:   219/3615 (6%) at main() level
+            238/3615 (7%) worst case
 
 Stack used: 6 worst case (4 in main + 2 for interrupts)
 Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  876   436  68  Main.c
+  911   451  69  Main.c
  2074     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\devices\18F47Q10.h
    57    15   2  ComINF.c
    23     0   0  ComINF.h
@@ -25,15 +25,15 @@ Lines Stmts  %   Files
    19     0   0  ComDisplay.h
    22     6   1  ComFeux.c
    13     0   0  ComFeux.h
-   32    11   2  I2C.c
+   33    11   2  I2C.c
    20     0   0  I2C.h
-  161    55   9  I2C2.c
+  165    55   8  I2C2.c
    45     0   0  I2C2.h
    76    39   6  ws2812.c
    21     0   0  ws2812.h
   195     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\drivers\stdint.h
 ----- -----
- 3847   641 Total
+ 3887   656 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
@@ -46,7 +46,7 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    196   1    6             @PRINTF_D0_9600_31856_31857
 0     90   1    3    294  4.9  Rx_Da_INT
 0     16   0    0     32  1.0  DFPlayer_Init
-0     28   0    0    265  2.3  DFPlayer_NextSong
+0     30   0    0    265  2.3  DFPlayer_NextSong
 0     30   0    2    305  2.4  DFPlayer_SetVolume
 0     30   0    2    305  2.4  DFPlayer_PlaySongNb
 0     44   0    2    125  3.4  DFPlayer_SendData
@@ -99,30 +99,30 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    100   1    2    236  3.6  Timer0_ISR
 0     66   0    5             @DIV1616
 0     52   0    1    300  3.2  select_multiplexer_channel
-0     40   0    0             @goto64279
-0   4022  28   43  21460 13.4  MAIN
+0     40   0    0             @goto43781
+0   4112  29   52  22882 14.0  MAIN
 0     30   0    5             @MUL1616
-0     48   0    0             @goto64712
+0     48   0    0             @goto44223
  Inline         0             @cinit1
 
 Program metrics:
     Functions               42
-    Statements              641
-    Comments                733
-    Volume (V)              34858
-    Difficulty (D)          117.7
-    Effort to implement (E) 4101300
-    Time to implement (T)   63 hours, 17 minutes
+    Statements              656
+    Comments                750
+    Volume (V)              36356
+    Difficulty (D)          119.1
+    Effort to implement (E) 4329460
+    Time to implement (T)   66 hours, 49 minutes
     Est Delivered Bugs (B)  9
-    Cyclomatic Complexity   72
-    Maintainability (MI)    101
+    Cyclomatic Complexity   76
+    Maintainability (MI)    104
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00004     6  0  
 00006-00006     0  2  
 00008-000CA   196  0  
-000CC-0FFFE  6878  58454  
+000CC-0FFFE  6970  58362  
 10000-1FFFE     0  65536  
 
 

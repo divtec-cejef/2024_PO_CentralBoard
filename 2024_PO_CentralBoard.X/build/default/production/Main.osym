@@ -1,0 +1,93 @@
+_RETURN_
+WDTSTATE
+CCP_1
+CCP_1_LOW
+CCP_1_HIGH
+CCP_2
+CCP_2_LOW
+CCP_2_HIGH
+PWM3OUT
+PWM4OUT
+C1OUT
+C2OUT
+LVDRDY
+LVDOUT
+LC1OUT
+LC2OUT
+LC3OUT
+LC4OUT
+LC5OUT
+LC6OUT
+LC7OUT
+LC8OUT
+MDBIT
+MDOUT
+ADACLR
+send_buf_Inf
+rxBuffer
+bonusFull
+elevatorBonus
+bonusBlock
+byteNumber
+send_buf
+fastStart
+@sprintf_string
+stateGpiob_2
+stateGpioa_2
+secondaryCounterActivator
+counterActivator
+toDisplay
+tertiaryCounter
+secondaryCounter
+counter
+red_array
+green_array
+blue_array
+
+Project Directory:
+    C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\
+
+Project Files:
+    Main.c                                                  [30-oct.-25 10:19  CRC=11DBFAFF]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\devices\18F47Q10.h [17-juil.-24 20:57  CRC=135C7EA1]
+    ComINF.c                                                [09-mai-25 13:22  CRC=32C27D48]
+    ComINF.h                                                [09-mai-25 13:22  CRC=41DF7DD9]
+    DFPlayer.c                                              [05-juin-25 10:17  CRC=F4F12F40]
+    DFPlayer.h                                              [09-mai-25 13:22  CRC=8047EF0D]
+    ComXLR8.c                                               [09-mai-25 13:22  CRC=D872A938]
+    ComXLR8.h                                               [09-mai-25 13:22  CRC=00000000]
+    ComDisplay.c                                            [09-mai-25 13:22  CRC=0E722BE3]
+    ComDisplay.h                                            [09-mai-25 13:22  CRC=1CF72327]
+    ComFeux.c                                               [09-mai-25 13:22  CRC=6C3464E6]
+    ComFeux.h                                               [09-mai-25 13:22  CRC=D872A938]
+    I2C.c                                                   [09-mai-25 13:22  CRC=BC137545]
+    I2C.h                                                   [09-mai-25 13:22  CRC=86F637DD]
+    I2C2.c                                                  [09-mai-25 13:22  CRC=6A069A56]
+    I2C2.h                                                  [09-mai-25 13:22  CRC=978F2E8A]
+    ws2812.c                                                [12-sept.-25 08:30  CRC=D1A309E6]
+    ws2812.h                                                [16-mai-25 09:38  CRC=9B1E5A8E]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\drivers\stdint.h [13-mai-20 09:33  CRC=4FD89CC0]
+
+Source signature=A8A8AD64
+
+Units:
+    C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\Main
+
+Compiler Settings:
+    Processor:      PIC18F47Q10
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Output file:    Relocatable
+    Compile Mode:   CCS5
+    Predefined symbols:
+       #define __18F47Q10 1
+
+Output Files:
+    XREF file:   build\default\production\Main.xsym
+    Errors:      build\default\production\Main.err
+    Ext Symbols: build\default\production\Main.esym
+    Object:      build\default\production\Main.o
+    Symbols:     build\default\production\Main.osym

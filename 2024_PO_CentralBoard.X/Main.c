@@ -32,8 +32,10 @@
 #define PIN_2_Q         PIN_D2
 #define PIN_2_QI        PIN_A3
 
-#define FINAL_PIN_Q     PIN_D0
-#define FINAL_PIN_QI    PIN_A5
+//#define FINAL_PIN_Q     PIN_D0
+//#define FINAL_PIN_QI    PIN_A5
+#define FINAL_PIN_Q     PIN_D4
+#define FINAL_PIN_QI    PIN_A1
 
 #define MULTIPLEXER_SELECT_PIN_1  PIN_B0
 #define MULTIPLEXER_SELECT_PIN_2  PIN_B1
@@ -59,8 +61,8 @@
 
 #define AUTOMATIQUE                                                             // à mettre en commentaire pour mode normal //
 
-#define BONUS_LEVER_1       1
-#define BONUS_LEVER_2       1
+#define BONUS_LEVER_1       0                                                   // Tout doit être à 1 pour que ce soit le plus rapide
+#define BONUS_LEVER_2       0
 #define BONUS_ELEVATOR_1    1
 #define BONUS_ELEVATOR_2    1
 #define BONUS_XLR8          1
@@ -188,6 +190,7 @@ void main()
     //== BONUS ==//                                                      
     int16 carNumber = 0;
     
+    int8 nbrBonus = 0;
     int8 bonusLever1 = 0;
     int8 bonusLever2 = 0;
     int8 bonusElevator1 = 0;
@@ -196,6 +199,14 @@ void main()
     int8 bonusBlower = 0;
     int8 bonus7 = 0;
     int8 bonus8 = 0; 
+    int8 firstNumber = 0;
+    int8 secondNumber = 0;
+    int8 thirdNumber = 0;
+    int8 fourthNumber = 0;
+    int8 fifthNumber = 0;
+    int8 sixthNumber = 0;
+    int8 seventhNumber = 0;
+    int8 eighthNumber = 0;
     
     //== FLANCS DESCENDANTS ==//                         
     int8 prevBuzzer = 0;       
@@ -358,14 +369,14 @@ void main()
 
                         carNumber = (rxBuffer[0]-48)*1000 + (rxBuffer[1]-48)*100 + (rxBuffer[2]-48)*10 + rxBuffer[3]-48;                    
 
-                        bonusLever1     = BONUS_LEVER_1;
-                        bonusLever2     = BONUS_LEVER_2;
-                        bonusElevator1  = BONUS_ELEVATOR_1;
-                        bonusElevator2  = BONUS_ELEVATOR_2;
-                        bonusXLR8       = BONUS_XLR8;
-                        bonusBlower     = BONUS_BLOWER;
-                        bonus7          = BONUS_7;
-                        bonus8          = BONUS_8;
+                        bonusLever1     = BONUS_LEVER_1;                        // Bonus de levier 1
+                        bonusLever2     = BONUS_LEVER_2;                        // Bonus de levier 2
+                        bonusElevator1  = BONUS_ELEVATOR_1;                     // Bonus de l'ascenseur 1 (temps de montée)
+                        bonusElevator2  = BONUS_ELEVATOR_2;                     // Bonus de l'ascenseur 2 (temps de montée)
+                        bonusXLR8       = BONUS_XLR8;                           // Bonus d'accélération (dans l'accélérateur)
+                        bonusBlower     = BONUS_BLOWER;                         // Bonus 1ère soufflette
+                        bonus7          = BONUS_7;                              // Bonus vierge
+                        bonus8          = BONUS_8;                              // Bonus vierge
 
                         bonusBlock = 1;                     
 
@@ -395,7 +406,7 @@ void main()
                     
                     if(buzzer == 0 && prevBuzzer == 1 && bonusFull == 1)
                     {      
-                        for (int i = 0; i < WS2812_LED_COUNT; i++)                          // Éclairage en rouge du buzzer //
+                        for (int i = 0; i < WS2812_LED_COUNT; i++)              // Éclairage en rouge du buzzer //
             {
                 red_array[i] = 255;
                 green_array[i] = 0;
@@ -405,14 +416,36 @@ void main()
             
                         carNumber = (rxBuffer[0]-48)*1000 + (rxBuffer[1]-48)*100 + (rxBuffer[2]-48)*10 + rxBuffer[3]-48;                    
 
-                        bonusLever1     =(rxBuffer[5 ]-48);
-                        bonusLever2     =(rxBuffer[7 ]-48);
-                        bonusElevator1  =(rxBuffer[9 ]-48);
-                        bonusElevator2  =(rxBuffer[11]-48);
-                        bonusXLR8       =(rxBuffer[13]-48);
-                        bonusBlower     =(rxBuffer[15]-48);
-                        bonus7          =(rxBuffer[17]-48);
-                        bonus8          =(rxBuffer[19]-48);
+                        firstNumber         =(rxBuffer[5 ]-48);
+                        secondNumber        =(rxBuffer[7 ]-48);
+                        thirdNumber         =(rxBuffer[9 ]-48);
+                        fourthNumber        =(rxBuffer[11]-48); // 1,1,1,1,1,1,0,0
+                        fifthNumber         =(rxBuffer[13]-48);
+                        sixthNumber         =(rxBuffer[15]-48);
+                        seventhNumber       =(rxBuffer[17]-48);
+                        eighthNumber        =(rxBuffer[19]-48);
+                        
+                        nbrBonus = (firstNumber + secondNumber + thirdNumber + fourthNumber + fifthNumber + sixthNumber + seventhNumber + eighthNumber);
+                                
+                        if(nbrBonus > 0)
+                        {
+                            bonusLever1 = 1;                                    // Barrière 1
+                        }
+                        if(nbrBonus > 1)
+                        {
+                            bonusElevator1 = 1;
+                            bonusElevator2 = 1;
+                            bonusXLR8 = 1;                                      // 3 accélérations (les 2 ascenseurs et l'accélérateur)
+                        }
+                        if(nbrBonus > 2)
+                        {
+                            bonusLever2 = 1;                                    // Barrière 2
+                        }
+                        if (nbrBonus > 3)
+                        {
+                            bonusBlower = 1;                                    // Soufflette dans la 1ère descente
+                        }
+                            
 
                         bonusBlock = 1;                     
 
@@ -426,7 +459,7 @@ void main()
                         secondaryCounterActivator = 0;                              // Reset compteur secondaire pour commencer à 0 //                    
 
                         select_multiplexer_channel(2);
-                        DFPlayer_NextSong(); //2                                    // Change la musique //
+                        //DFPlayer_NextSong(); //2                                    // Change la musique //
 
                         delay_ms(1000);                                             // Délai pour éviter perturbations //
 
@@ -668,8 +701,8 @@ void main()
                 }
                 
                 //== TEMPS INTERMÉDIAIRE 2 ==//
-//                  if(inter2Q == 1 && inter2QI == 0 && temps_inter_1 == 1)       // --> doit activer tout les check-points //
-                if(inter2Q == 1 && inter2QI == 0)                             // --> doit activer seulement la sortie //
+                  if(inter2Q == 1 && inter2QI == 0 && temps_inter_1 == 1)       // --> doit activer tout les check-points //
+//                if(inter2Q == 1 && inter2QI == 0)                             // --> doit activer seulement le finish //
                 {      
                     temps_inter_2 = 1;
                     deactivate_bonus_4_elevator();
@@ -704,8 +737,8 @@ void main()
                 } 
                
                 //== FIN COURSE ==//
-              else if(finalSignalQ == 1  && finalSignalQI == 0)               // --> doit activer que le finish //
-//                else if(finalSignalQ == 1  && finalSignalQI == 0 && temps_inter_1 == 1 && temps_inter_2 == 1) // --> doit activer tout les check-points //
+//              else if(finalSignalQ == 1  && finalSignalQI == 0)               // --> doit activer que le finish //
+                else if(finalSignalQ == 1  && finalSignalQI == 0 && temps_inter_1 == 1 && temps_inter_2 == 1) // --> doit activer tout les check-points //
                 {
                     deactivate_bonus_5_elevator();
                     
@@ -855,6 +888,8 @@ void main()
                 }
                 temps_inter_1 = 0;
                 temps_inter_2 = 0;
+                
+                nbrBonus = 0;
                 
             break;
             
