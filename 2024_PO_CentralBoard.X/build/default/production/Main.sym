@@ -52,137 +52,138 @@
 0AB-0AC MAIN.reactionTime
 0AD     MAIN.state
 0AE     MAIN.zero
-0AF     MAIN.r
-0B0     MAIN.g
-0B1     MAIN.buzzer
-0B2     MAIN.protection_bt
-0B3     MAIN.forcer_zero
-0B4     MAIN.inter1Q
-0B5     MAIN.inter1QI
-0B6     MAIN.temps_inter_1
-0B7     MAIN.inter2Q
-0B8     MAIN.inter2QI
-0B9     MAIN.temps_inter_2
-0BA     MAIN.finalSignalQ
-0BB     MAIN.finalSignalQI
-0BC-0BD MAIN.carNumber
-0BE     MAIN.nbrBonus
-0BF     MAIN.bonusLever1
-0C0     MAIN.bonusLever2
-0C1     MAIN.bonusElevator1
-0C2     MAIN.bonusElevator2
-0C3     MAIN.bonusXLR8
-0C4     MAIN.bonusBlower
-0C5     MAIN.bonus7
-0C6     MAIN.bonus8
-0C7     MAIN.firstNumber
-0C8     MAIN.secondNumber
-0C9     MAIN.thirdNumber
-0CA     MAIN.fourthNumber
-0CB     MAIN.fifthNumber
-0CC     MAIN.sixthNumber
-0CD     MAIN.seventhNumber
-0CE     MAIN.eighthNumber
-0CF     MAIN.prevBuzzer
-0D0     MAIN.i
+0AF     MAIN.backup
+0B0     MAIN.r
+0B1     MAIN.g
+0B2     MAIN.buzzer
+0B3     MAIN.protection_bt
+0B4     MAIN.forcer_zero
+0B5     MAIN.inter1Q
+0B6     MAIN.inter1QI
+0B7     MAIN.temps_inter_1
+0B8     MAIN.inter2Q
+0B9     MAIN.inter2QI
+0BA     MAIN.temps_inter_2
+0BB     MAIN.finalSignalQ
+0BC     MAIN.finalSignalQI
+0BD-0BE MAIN.carNumber
+0BF     MAIN.nbrBonus
+0C0     MAIN.bonusLever1
+0C1     MAIN.bonusLever2
+0C2     MAIN.bonusElevator1
+0C3     MAIN.bonusElevator2
+0C4     MAIN.bonusXLR8
+0C5     MAIN.bonusBlower
+0C6     MAIN.bonus7
+0C7     MAIN.bonus8
+0C8     MAIN.firstNumber
+0C9     MAIN.secondNumber
+0CA     MAIN.thirdNumber
+0CB     MAIN.fourthNumber
+0CC     MAIN.fifthNumber
+0CD     MAIN.sixthNumber
+0CE     MAIN.seventhNumber
+0CF     MAIN.eighthNumber
+0D0     MAIN.prevBuzzer
 0D1     MAIN.i
 0D2     MAIN.i
 0D3     MAIN.i
 0D4     MAIN.i
 0D5     MAIN.i
 0D6     MAIN.i
-0D7     startXLR8.startBonus
-0D7     DFPlayer_SetVolume.volume
-0D7-0D8 ws2812_showAll.r_array
-0D7     ComDisplay_Color.color
-0D7     select_multiplexer_channel.channel
-0D7     mcp23017_write.reg
-0D7     ComFeuAllume.f1
-0D7     mcp23017_write_2.reg
-0D7-0D8 ComINF_MessageInfo.idCar
-0D7     ComFeuAnim.lumi
-0D7     DFPlayer_PlaySongNb.numSong
-0D7     ComDisplay_Mode.mode
-0D7     MAIN.@SCRATCH1
-0D8     @delay_ms1.P1
-0D8     ComFeuAllume.f2
-0D8     DFPlayer_SetVolume.i
-0D8     DFPlayer_PlaySongNb.i
-0D8     mcp23017_write_2.value
-0D8     mcp23017_write.value
-0D8     @PSTRINGC_9600_31852_31850.@SCRATCH1
-0D8     MAIN.@SCRATCH2
-0D9-0DA @MUL1616.P1
-0D9     ComINF_MessageInfo.numMessage
-0D9     ComFeuAllume.f3
-0D9     @I2C_WRITE_129.P1
-0D9     @I2C_WRITE_130.P2
-0D9-0DA ws2812_showAll.g_array
-0D9     DFPlayer_SendData.i
-0D9     @PSTRINGC_9600_31852_31850.@SCRATCH2
-0D9     MAIN.@SCRATCH3
-0DA-0DB ComINF_MessageInfo.time
-0DA     ComFeuAllume.f4
-0DA     DFPlayer_SendData.@SCRATCH1
-0DA     @PSTRINGC_9600_31852_31850.@SCRATCH3
-0DA     MAIN.@SCRATCH4
-0DB-0DC @MUL1616.P1
-0DB     ComDisplay_Time.secondes
-0DB     ComFeuAllume.clr
-0DB-0DC ws2812_showAll.b_array
-0DC-0DD @PRINTF_LU_9600_31856_31857.P1
-0DC     ComDisplay_Time.centiemes
-0DC     ComFeuAllume.lum
-0DC     @PRINTF_D0_9600_31856_31857.P1
+0D7     MAIN.i
+0D8     DFPlayer_PlaySongNb.numSong
+0D8     mcp23017_write.reg
+0D8     DFPlayer_SetVolume.volume
+0D8     select_multiplexer_channel.channel
+0D8     ComDisplay_Color.color
+0D8     ComFeuAllume.f1
+0D8     mcp23017_write_2.reg
+0D8-0D9 ComINF_MessageInfo.idCar
+0D8     startXLR8.startBonus
+0D8     ComDisplay_Mode.mode
+0D8-0D9 ws2812_showAll.r_array
+0D8     ComFeuAnim.lumi
+0D8     MAIN.@SCRATCH1
+0D9     DFPlayer_SetVolume.i
+0D9     @delay_ms1.P1
+0D9     mcp23017_write_2.value
+0D9     DFPlayer_PlaySongNb.i
+0D9     mcp23017_write.value
+0D9     ComFeuAllume.f2
+0D9     @PSTRINGC_9600_31852_31850.@SCRATCH1
+0D9     MAIN.@SCRATCH2
+0DA     @I2C_WRITE_129.P1
+0DA-0DB @MUL1616.P2
+0DA     ComINF_MessageInfo.numMessage
+0DA     @I2C_WRITE_130.P1
+0DA     ComFeuAllume.f3
+0DA-0DB ws2812_showAll.g_array
+0DA     DFPlayer_SendData.i
+0DA     @PSTRINGC_9600_31852_31850.@SCRATCH2
+0DA     MAIN.@SCRATCH3
+0DB-0DC ComINF_MessageInfo.time
+0DB     ComFeuAllume.f4
+0DB     DFPlayer_SendData.@SCRATCH1
+0DB     @PSTRINGC_9600_31852_31850.@SCRATCH3
+0DB     MAIN.@SCRATCH4
+0DC     ComFeuAllume.clr
+0DC     ComDisplay_Time.secondes
+0DC-0DD @MUL1616.P1
+0DC-0DD ws2812_showAll.b_array
+0DD-0DE @PRINTF_LU_9600_31856_31857.P1
+0DD     ComDisplay_Time.centiemes
 0DD     @PRINTF_D0_9600_31856_31857.P1
-0DD     @PRINTF_D_9600_31852_31850.P2
-0DD     @PRINTF_D0_9600_31852_31850.P3
-0DD     ws2812_showAll.count
-0DD     @MUL1616.@SCRATCH1
-0DE     @PRINTF_D0_9600_31852_31850.P1
-0DE     ws2812_showAll.i
+0DD     ComFeuAllume.lum
+0DE     ws2812_showAll.count
 0DE     @PRINTF_D_9600_31852_31850.P1
-0DE     @PRINTF_LU_9600_31856_31857.@SCRATCH1
-0DE     @PRINTF_D0_9600_31856_31857.@SCRATCH1
-0DF     @delay_us1.P1
-0DF     @PRINTF_LU_9600_31856_31857.@SCRATCH2
-0DF     @PRINTF_D0_9600_31856_31857.@SCRATCH2
-0DF     @PRINTF_D0_9600_31852_31850.@SCRATCH1
-0DF     @PRINTF_D_9600_31852_31850.@SCRATCH1
-0DF     ws2812_showAll.@SCRATCH1
-0E0     @PRINTF_LU_9600_31856_31857.@SCRATCH3
-0E0     @PRINTF_D0_9600_31856_31857.@SCRATCH3
-0E0     @PRINTF_D0_9600_31852_31850.@SCRATCH2
-0E0     @PRINTF_D_9600_31852_31850.@SCRATCH2
-0E0     ws2812_showAll.@SCRATCH2
-0E1     @PRINTF_LU_9600_31856_31857.@SCRATCH4
-0E1     @PRINTF_D0_9600_31856_31857.@SCRATCH4
-0E1     @PRINTF_D0_9600_31852_31850.@SCRATCH3
-0E1     @PRINTF_D_9600_31852_31850.@SCRATCH3
-0E1     ws2812_showAll.@SCRATCH3
-0E2     ws2812_sendColor.re
-0E2     @PRINTF_LU_9600_31856_31857.@SCRATCH5
-0E2     @PRINTF_D0_9600_31852_31850.@SCRATCH4
-0E2     @PRINTF_D_9600_31852_31850.@SCRATCH4
-0E3     @DIV88.P1
-0E3     ws2812_sendColor.gr
-0E3     @PRINTF_LU_9600_31856_31857.@SCRATCH6
+0DE     @PRINTF_D0_9600_31852_31850.P2
+0DE     @PRINTF_D0_9600_31856_31857.P3
+0DE     @MUL1616.@SCRATCH1
+0DF     ws2812_showAll.i
+0DF     @PRINTF_D_9600_31852_31850.P1
+0DF     @PRINTF_D0_9600_31852_31850.P2
+0DF     @PRINTF_LU_9600_31856_31857.@SCRATCH1
+0DF     @PRINTF_D0_9600_31856_31857.@SCRATCH1
+0E0     @delay_us1.P1
+0E0     @PRINTF_LU_9600_31856_31857.@SCRATCH2
+0E0     @PRINTF_D0_9600_31856_31857.@SCRATCH2
+0E0     @PRINTF_D0_9600_31852_31850.@SCRATCH1
+0E0     @PRINTF_D_9600_31852_31850.@SCRATCH1
+0E0     ws2812_showAll.@SCRATCH1
+0E1     @PRINTF_LU_9600_31856_31857.@SCRATCH3
+0E1     @PRINTF_D0_9600_31856_31857.@SCRATCH3
+0E1     @PRINTF_D0_9600_31852_31850.@SCRATCH2
+0E1     @PRINTF_D_9600_31852_31850.@SCRATCH2
+0E1     ws2812_showAll.@SCRATCH2
+0E2     @PRINTF_LU_9600_31856_31857.@SCRATCH4
+0E2     @PRINTF_D0_9600_31856_31857.@SCRATCH4
+0E2     @PRINTF_D0_9600_31852_31850.@SCRATCH3
+0E2     @PRINTF_D_9600_31852_31850.@SCRATCH3
+0E2     ws2812_showAll.@SCRATCH3
+0E3     ws2812_sendColor.re
+0E3     @PRINTF_LU_9600_31856_31857.@SCRATCH5
+0E3     @PRINTF_D0_9600_31852_31850.@SCRATCH4
+0E3     @PRINTF_D_9600_31852_31850.@SCRATCH4
 0E4     @DIV88.P1
-0E4     ws2812_sendColor.bl
-0E4     @PRINTF_LU_9600_31856_31857.@SCRATCH7
-0E5     ws2812_sendByte.val
-0E5     @DIV88.@SCRATCH1
-0E6     ws2812_sendByte.i
-0E7     ws2812_sendByte.@SCRATCH1
-0E8     ws2812_sendBit.bit
-0E9-0EA @DIV1616.P1
-0E9     Rx_Da_INT.i
-0E9     Timer0_ISR.@SCRATCH1
-0EA     Rx_Da_INT.@SCRATCH1
-0EA     Timer0_ISR.@SCRATCH2
-0EB-0EC @DIV1616.P1
-0EB     Rx_Da_INT.@SCRATCH2
-0ED     @DIV1616.@SCRATCH1
+0E4     ws2812_sendColor.gr
+0E4     @PRINTF_LU_9600_31856_31857.@SCRATCH6
+0E5     ws2812_sendColor.bl
+0E5     @DIV88.P1
+0E5     @PRINTF_LU_9600_31856_31857.@SCRATCH7
+0E6     ws2812_sendByte.val
+0E6     @DIV88.@SCRATCH1
+0E7     ws2812_sendByte.i
+0E8     ws2812_sendByte.@SCRATCH1
+0E9     ws2812_sendBit.bit
+0EA-0EB @DIV1616.P1
+0EA     Rx_Da_INT.i
+0EA     Timer0_ISR.@SCRATCH1
+0EB     Rx_Da_INT.@SCRATCH1
+0EB     Timer0_ISR.@SCRATCH2
+0EC-0ED @DIV1616.P1
+0EC     Rx_Da_INT.@SCRATCH2
+0EE     @DIV1616.@SCRATCH1
 E27.5   LC1OUT
 E31.5   LC2OUT
 E3B.5   LC3OUT
@@ -201,17 +202,17 @@ F4C.5   MDOUT
 F55.3   ADACLR
 FA1.5   PWM4OUT
 FA4.5   PWM3OUT
-FA5     CCP_2_LOW
 FA5     CCP_2
+FA5     CCP_2_LOW
 FA6     CCP_2_HIGH
 FA9     CCP_1
 FA9     CCP_1_LOW
 FAA     CCP_1_HIGH
 FE1-FE2 @READ_PACKED_MEMORY.P1
 FE1-FE2 @WRITE_PACKED_MEMORY.P2
-FE9-FEA @READ_PACKED_MEMORY.P1
-FE9-FEA @WRITE_PACKED_MEMORY.P2
-FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
 FE9-FEA @READ_PROGRAM_MEMORY.P4
 FF6-FF8 @READ_PROGRAM_MEMORY.P1
 FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
@@ -219,20 +220,20 @@ FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
 ROM Allocation:
 0000CC  @PUTCHARI_BIU_1
 0000DA  Rx_Da_INT
-000134  @const1053.call
-00013A  @const1058.call
-000140  @const1059.call
-000146  @const1060.call
-00014C  @const1061.call
-000152  @const1062.call
-000158  @const1063.call
-00015E  @const1077.call
-000166  @const1078.call
+000134  @const1059.call
+00013A  @const1064.call
+000140  @const1065.call
+000146  @const1066.call
+00014C  @const1067.call
+000152  @const1068.call
+000158  @const1069.call
+00015E  @const1083.call
+000166  @const1084.call
 00016E  @DIV1616
 0001B0  Timer0_ISR
 000214  @delay_ms1
 00023C  select_multiplexer_channel
-000270  @goto43781
+000270  @goto8038
 000298  @PSTRINGC_9600_31852_31850
 0002C6  ComDisplay_Color
 00032A  ComDisplay_Mode
@@ -272,31 +273,33 @@ ROM Allocation:
 000A08  @PRINTF_D_9600_31852_31850
 000ACA  ComFeuAllume
 000B0A  startXLR8
-000B2C  activate_bonus_8_startBlower
-000B3C  set_gpb7_high
-000B4A  activate_bonus_4_elevator
-000B5C  activate_bonus_1_lever
-000B6C  activate_bonus_2_lever
-000B7E  activate_bonus_3_lever
-000B90  activate_bonus_6_blower
-000BA2  activate_bonus_5_elevator
-000BB4  activate_bonus_7_blower
-000BC6  MAIN
-000BC6  @cinit1
-000C56  @cinit2
-001BD6  @goto44223
+000B2C  activate_XLR8_backup
+000B3C  activate_bonus_8_startBlower
+000B4C  set_gpb7_high
+000B5A  deactivate_XLR8_backup
+000B6C  activate_bonus_4_elevator
+000B7E  activate_bonus_1_lever
+000B8E  activate_bonus_2_lever
+000BA0  activate_bonus_3_lever
+000BB2  activate_bonus_6_blower
+000BC4  activate_bonus_5_elevator
+000BD6  activate_bonus_7_blower
+000BE8  MAIN
+000BE8  @cinit1
+000C78  @cinit2
+001C1E  @goto8432
 
 Project Directory:
     C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\
 
 Project Files:
-    Main.c                                                  [28-nov.-25 16:30  CRC=89CECBEB]
-    ..\..\..\..\..\..\..\Program Files (x86)\PICC\devices\18F47Q10.h [17-juil.-24 20:57  CRC=135C7EA1]
+    Main.c                                                  [13-févr.-26 15:20  CRC=A033DB5D]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\devices\18F47Q10.h [20-nov.-25 22:30  CRC=BFAFE12E]
     ComINF.c                                                [09-mai-25 13:22  CRC=32C27D48]
     ComINF.h                                                [09-mai-25 13:22  CRC=41DF7DD9]
     DFPlayer.c                                              [05-juin-25 10:17  CRC=F4F12F40]
     DFPlayer.h                                              [09-mai-25 13:22  CRC=8047EF0D]
-    ComXLR8.c                                               [09-mai-25 13:22  CRC=D872A938]
+    ComXLR8.c                                               [13-févr.-26 08:46  CRC=D872A938]
     ComXLR8.h                                               [09-mai-25 13:22  CRC=00000000]
     ComDisplay.c                                            [09-mai-25 13:22  CRC=0E722BE3]
     ComDisplay.h                                            [09-mai-25 13:22  CRC=1CF72327]
@@ -304,15 +307,15 @@ Project Files:
     ComFeux.h                                               [09-mai-25 13:22  CRC=D872A938]
     I2C.c                                                   [28-nov.-25 14:07  CRC=957F85BB]
     I2C.h                                                   [09-mai-25 13:22  CRC=86F637DD]
-    I2C2.c                                                  [28-nov.-25 11:27  CRC=87B2E653]
+    I2C2.c                                                  [10-févr.-26 14:57  CRC=00088096]
     I2C2.h                                                  [09-mai-25 13:22  CRC=978F2E8A]
     ws2812.c                                                [12-sept.-25 08:30  CRC=D1A309E6]
     ws2812.h                                                [16-mai-25 09:38  CRC=9B1E5A8E]
-    ..\..\..\..\..\..\..\Program Files (x86)\PICC\drivers\stdint.h [13-mai-20 09:33  CRC=4FD89CC0]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\drivers\stdint.h [13-mai-20 08:33  CRC=4FD89CC0]
 
-Source signature=17B3DAC3
+Source signature=52C1E705
 Program memory checksum=0000
-Hex file CRC=3D72
+Hex file CRC=0443
 
 Units:
     C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\Main (main)

@@ -1,10 +1,10 @@
 ÀÄ2024_PO_CentralBoard
-   ÃÄMAIN  0/4112  Ram=52
+   ÃÄMAIN  0/4150  Ram=53
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄ@cinit2  (Inline)  Ram=0
    ³  ÃÄ@delay_ms1  0/40  Ram=1
    ³  ÃÄselect_multiplexer_channel  0/52  Ram=1
-   ³  ³  ÀÄ@goto43781  0/40  Ram=0
+   ³  ³  ÀÄ@goto8038  0/40  Ram=0
    ³  ÃÄComDisplay_Color  0/100  Ram=1
    ³  ³  ÃÄ@PSTRINGC_9600_31852_31850  0/46  Ram=3
    ³  ³  ÃÄ@PSTRINGC_9600_31852_31850  0/46  Ram=3
@@ -46,7 +46,7 @@
    ³  ³  ÀÄmcp23017_write  0/88  Ram=2
    ³  ³     ÀÄ*
    ³  ÃÄ@delay_ms1  0/40  Ram=1
-   ³  ÃÄ@goto44223  0/48  Ram=0
+   ³  ÃÄ@goto8432  0/48  Ram=0
    ³  ÃÄws2812_showAll  0/70  Ram=11
    ³  ³  ÃÄws2812_sendColor  0/22  Ram=3
    ³  ³  ³  ÃÄws2812_sendByte  0/42  Ram=3
@@ -199,6 +199,13 @@
    ³  ÃÄselect_multiplexer_channel  0/52  Ram=1
    ³  ³  ÀÄ*
    ³  ÃÄstartXLR8  0/34  Ram=1
+   ³  ÃÄbonus_activator  0/18  Ram=0
+   ³  ³  ÀÄ*
+   ³  ÃÄactivate_XLR8_backup  0/16  Ram=0
+   ³  ³  ÃÄbonus_activator  0/18  Ram=0
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄmcp23017_write_2  0/88  Ram=2
+   ³  ³     ÀÄ*
    ³  ÃÄ@delay_ms1  0/40  Ram=1
    ³  ÃÄbonus_activator  0/18  Ram=0
    ³  ³  ÀÄ*
@@ -235,6 +242,10 @@
    ³  ÃÄselect_multiplexer_channel  0/52  Ram=1
    ³  ³  ÀÄ*
    ³  ÃÄstartXLR8  0/34  Ram=1
+   ³  ÃÄbonus_activator  0/18  Ram=0
+   ³  ³  ÀÄ*
+   ³  ÃÄactivate_XLR8_backup  0/16  Ram=0
+   ³  ³  ÀÄ*
    ³  ÃÄ@delay_ms1  0/40  Ram=1
    ³  ÃÄComINF_MessageInfo  0/64  Ram=5
    ³  ³  ÀÄ*
@@ -266,6 +277,13 @@
    ³  ³  ÀÄ*
    ³  ÃÄdeactivate_bonus_8_startBlower  0/16  Ram=0
    ³  ³  ÀÄ*
+   ³  ÃÄbonus_activator  0/18  Ram=0
+   ³  ³  ÀÄ*
+   ³  ÃÄdeactivate_XLR8_backup  0/18  Ram=0
+   ³  ³  ÃÄbonus_activator  0/18  Ram=0
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄmcp23017_write_2  0/88  Ram=2
+   ³  ³     ÀÄ*
    ³  ÃÄactivate_bonus_4_elevator  0/18  Ram=0
    ³  ³  ÃÄbonus_activator  0/18  Ram=0
    ³  ³  ³  ÀÄ*

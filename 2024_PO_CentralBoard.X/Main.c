@@ -23,19 +23,18 @@
 
 #define BUZZER_PIN      PIN_C5                                                  // Buzzer //
 
-#define PROTECT_BT      PIN_A2                                                 // Switch de protection pour mode normal / test //
-#define MISE_ZERO       PIN_D3                                                  //uniquement pour la mise à 0 de la pin//
+#define PROTECT_BT      PIN_C7                                                  // Switch de protection pour mode normal / test (changée pour C7, à vérifier) //
+#define MISE_ZERO       PIN_D3                                                  // Uniquement pour la mise à 0 de la pin //                                                                             // Inter 1,2 and final //
 
-#define PIN_1_Q         PIN_D1                                                  // Inter 1,2 and final // 
-#define PIN_1_QI        PIN_A4 
+#define PIN_1_Q         PIN_D1                                                  // Inter 1 branché sur le connecteur J31 // 
+#define PIN_1_QI        PIN_A4  
 
-#define PIN_2_Q         PIN_D2
+#define PIN_2_Q         PIN_D2                                                  // Inter 2 branché sur le connecteur J32 //
 #define PIN_2_QI        PIN_A3
 
-//#define FINAL_PIN_Q     PIN_D0
-//#define FINAL_PIN_QI    PIN_A5
-#define FINAL_PIN_Q     PIN_D4
-#define FINAL_PIN_QI    PIN_A1
+#define FINAL_PIN_Q     PIN_D0                                                  // Final branché sur le connecteur J30 //
+#define FINAL_PIN_QI    PIN_A5
+
 
 #define MULTIPLEXER_SELECT_PIN_1  PIN_B0
 #define MULTIPLEXER_SELECT_PIN_2  PIN_B1
@@ -59,9 +58,9 @@
 //DÉFINITION DES BONUS POUR TESTS
 //==============================================================================
 
-#define AUTOMATIQUE                                                             // à mettre en commentaire pour mode normal //
+#define AUTOMATIQUE                                                             // Mise à la main des bonus pour le mode test //
 
-#define BONUS_LEVER_1       0                                                   // Tout doit être à 1 pour que ce soit le plus rapide
+#define BONUS_LEVER_1       0                                                   // Tout doit être à 1 pour que ce soit le plus rapide //
 #define BONUS_LEVER_2       0
 #define BONUS_ELEVATOR_1    1
 #define BONUS_ELEVATOR_2    1
@@ -155,7 +154,7 @@ void main()
     delay_ms(2000);
     
     //== INITIALISATION BONUS ==//
-    enable_interrupts(INT_RDA);
+    enable_interrupts(INT_RDA); 
     enable_interrupts(GLOBAL);
     
     //== DÉCLARATION DES VARIABLES ==//                                                 
@@ -166,6 +165,8 @@ void main()
     int8 state = 0;                                                             // État // 
     
     int8 zero = 0;                                                              // Reset de l'affichage du chrono //
+    
+    int8 backup = 1;                                                            //VARIABLE A METTRE A 1 SI L'ACCELERATEUR NE MARCHE PLUS
     
     char r = 'r';                                                               // Sert à mettre la bonne couleur aux feux //
     char g = 'g';
@@ -271,7 +272,7 @@ void main()
 //==============================================================================
         
         switch (state)
-        {         
+        {
             
             case STARTING:                                                      // Reset de toutes les valeurs //
                 
@@ -534,14 +535,21 @@ void main()
                     state = LAUNCHING;                       
                 } 
                 
-                //== FAUX DÉPART ==//
+                //== FAUX DÉPART ==// 
                 if(buzzer == 0 && prevBuzzer == 1)
                 {
                     bonus_activator();
                     
                     delay_ms(5);                    
                     select_multiplexer_channel(3);
-                    startXLR8(bonusXLR8);
+                    startXLR8(1);
+                    
+                    if(backup == 1)
+                    {
+                        bonus_activator();
+
+                        activate_XLR8_backup();
+                    }
                     delay_ms(5);
                     
                     if(bonusBlower == 1)
@@ -604,7 +612,15 @@ void main()
             
                     delay_ms(5);                    
                     select_multiplexer_channel(3);
-                    startXLR8(bonusXLR8);
+                    startXLR8(1);
+                    
+                    if(backup == 1)
+                    {
+                        bonus_activator();
+
+                        activate_XLR8_backup();
+                    }
+                    
                     delay_ms(5);
                     
                     reactionTime = counter;                                     // Enregistre temps de réaction //               
@@ -657,6 +673,12 @@ void main()
                     temps_inter_1 = 1;
                     bonus_activator();
                     deactivate_bonus_8_startBlower();
+                    
+                    if(backup == 1)
+                    {
+                        bonus_activator();
+                        deactivate_XLR8_backup();
+                    }
                     
                     if(bonusElevator1 == 1)
                     {

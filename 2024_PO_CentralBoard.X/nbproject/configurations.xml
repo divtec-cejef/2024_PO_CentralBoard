@@ -280,8 +280,6 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-1ffff"/>
         <property key="poweroptions.powerenable" value="false"/>
-        <property key="programmerToGoFilePath"
-                  value="C:/Users/Kylian Dos Santos/MPLABXProjects/Github/2024_PO_CentralBoard-Master/2024_PO_CentralBoard/2024_PO_CentralBoard.X/debug/default/2024_PO_CentralBoard_ptg"/>
         <property key="programmerToGoImageName" value="2024_PO_CentralBoard_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>

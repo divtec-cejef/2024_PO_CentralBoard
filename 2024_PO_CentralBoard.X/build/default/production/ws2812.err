@@ -1,4 +1,0 @@
-Compiling C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\ws2812 on 30-oct.-25 at 10:22
-C:\Program Files (x86)\PICC\drivers\stdint.h:19:9:  Error#128  A #DEVICE required before this line
-C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\ws2812.o ===>  1 Errors,  0 Warnings.
-Build Failed.

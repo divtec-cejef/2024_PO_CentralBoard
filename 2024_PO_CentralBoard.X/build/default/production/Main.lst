@@ -1,17 +1,17 @@
-CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
+CCS PCH C Compiler, Version 5.122, 6547               27-févr.-26 08:59
 
                Filename:   C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\build\default\production\Main.lst
 
-               ROM used:   7172 bytes (5%)
+               ROM used:   7244 bytes (6%)
                            Largest free fragment is 65536
-               RAM used:   219 (6%) at main() level
-                           238 (7%) worst case
+               RAM used:   220 (6%) at main() level
+                           239 (7%) worst case
                Stack used: 6 locations (4 in main + 2 for interrupts)
                Stack size: 31
 
 *
 00000:  NOP   
-00002:  GOTO   0BC6
+00002:  GOTO   0BE8
 *
 00008:  MOVWF  04
 0000A:  MOVFF  FD8,05
@@ -119,33 +119,33 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 00170:  CLRF   02
 00172:  CLRF   00
 00174:  CLRF   03
-00176:  MOVF   xEC,W
+00176:  MOVF   xED,W
 00178:  BNZ   017E
-0017A:  MOVF   xEB,W
+0017A:  MOVF   xEC,W
 0017C:  BZ    01AE
 0017E:  MOVLW  10
-00180:  MOVWF  xED
+00180:  MOVWF  xEE
 00182:  BCF    FD8.0
-00184:  RLCF   xE9,F
-00186:  RLCF   xEA,F
+00184:  RLCF   xEA,F
+00186:  RLCF   xEB,F
 00188:  RLCF   00,F
 0018A:  RLCF   03,F
-0018C:  MOVF   xEC,W
+0018C:  MOVF   xED,W
 0018E:  SUBWF  03,W
 00190:  BNZ   0196
-00192:  MOVF   xEB,W
+00192:  MOVF   xEC,W
 00194:  SUBWF  00,W
 00196:  BNC   01A6
-00198:  MOVF   xEB,W
+00198:  MOVF   xEC,W
 0019A:  SUBWF  00,F
 0019C:  BTFSS  FD8.0
 0019E:  DECF   03,F
-001A0:  MOVF   xEC,W
+001A0:  MOVF   xED,W
 001A2:  SUBWF  03,F
 001A4:  BSF    FD8.0
 001A6:  RLCF   01,F
 001A8:  RLCF   02,F
-001AA:  DECFSZ xED,F
+001AA:  DECFSZ xEE,F
 001AC:  BRA    0182
 001AE:  RETURN 0
 *
@@ -172,123 +172,123 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 00298:  TBLRD*+
 0029A:  MOVF   FF5,F
 0029C:  BZ    02C4
-0029E:  MOVFF  FF6,D8
-002A2:  MOVFF  FF7,D9
-002A6:  MOVFF  FF8,DA
+0029E:  MOVFF  FF6,D9
+002A2:  MOVFF  FF7,DA
+002A6:  MOVFF  FF8,DB
 002AA:  MOVF   FF5,W
 002AC:  MOVLB  E
 002AE:  BTFSS  xC8.6
 002B0:  BRA    02AE
 002B2:  MOVWF  x95
-002B4:  MOVFF  D8,FF6
-002B8:  MOVFF  D9,FF7
-002BC:  MOVFF  DA,FF8
+002B4:  MOVFF  D9,FF6
+002B8:  MOVFF  DA,FF7
+002BC:  MOVFF  DB,FF8
 002C0:  MOVLB  0
 002C2:  BRA    0298
 002C4:  RETURN 0
 *
-00704:  MOVF   xE4,W
+00704:  MOVF   xE5,W
 00706:  CLRF   01
-00708:  SUBWF  xE3,W
+00708:  SUBWF  xE4,W
 0070A:  BC    0712
-0070C:  MOVFF  E3,00
+0070C:  MOVFF  E4,00
 00710:  BRA    072A
 00712:  CLRF   00
 00714:  MOVLW  08
-00716:  MOVWF  xE5
-00718:  RLCF   xE3,F
+00716:  MOVWF  xE6
+00718:  RLCF   xE4,F
 0071A:  RLCF   00,F
-0071C:  MOVF   xE4,W
+0071C:  MOVF   xE5,W
 0071E:  SUBWF  00,W
 00720:  BTFSC  FD8.0
 00722:  MOVWF  00
 00724:  RLCF   01,F
-00726:  DECFSZ xE5,F
+00726:  DECFSZ xE6,F
 00728:  BRA    0718
 0072A:  RETURN 0
 0072C:  MOVLW  20
-0072E:  BTFSS  xDE.4
+0072E:  BTFSS  xDF.4
 00730:  MOVLW  30
-00732:  MOVWF  xDF
-00734:  MOVFF  DD,00
-00738:  BTFSS  xDD.7
+00732:  MOVWF  xE0
+00734:  MOVFF  DE,00
+00738:  BTFSS  xDE.7
 0073A:  BRA    074C
 0073C:  COMF   00,F
 0073E:  INCF   00,F
-00740:  MOVFF  00,DD
+00740:  MOVFF  00,DE
 00744:  MOVLW  2D
-00746:  MOVWF  xDF
-00748:  BSF    xDE.7
-0074A:  BSF    xDE.0
+00746:  MOVWF  xE0
+00748:  BSF    xDF.7
+0074A:  BSF    xDF.0
 0074C:  MOVF   01,W
-0074E:  MOVFF  DD,E3
+0074E:  MOVFF  DE,E4
 00752:  MOVLW  64
-00754:  MOVWF  xE4
+00754:  MOVWF  xE5
 00756:  RCALL  0704
-00758:  MOVFF  00,DD
+00758:  MOVFF  00,DE
 0075C:  MOVLW  30
 0075E:  ADDWF  01,W
-00760:  MOVWF  xE0
-00762:  MOVFF  DD,E3
+00760:  MOVWF  xE1
+00762:  MOVFF  DE,E4
 00766:  MOVLW  0A
-00768:  MOVWF  xE4
+00768:  MOVWF  xE5
 0076A:  RCALL  0704
 0076C:  MOVLW  30
 0076E:  ADDWF  00,W
-00770:  MOVWF  xE2
+00770:  MOVWF  xE3
 00772:  MOVLW  30
 00774:  ADDWF  01,W
-00776:  MOVWF  xE1
-00778:  MOVFF  DF,00
+00776:  MOVWF  xE2
+00778:  MOVFF  E0,00
 0077C:  MOVLW  30
-0077E:  SUBWF  xE0,W
+0077E:  SUBWF  xE1,W
 00780:  BZ    078A
-00782:  BSF    xDE.1
-00784:  BTFSC  xDE.7
-00786:  BSF    xDE.2
+00782:  BSF    xDF.1
+00784:  BTFSC  xDF.7
+00786:  BSF    xDF.2
 00788:  BRA    07AE
-0078A:  BTFSC  xDE.2
+0078A:  BTFSC  xDF.2
 0078C:  BRA    07AE
-0078E:  MOVFF  DF,E0
-00792:  BTFSC  xDE.1
+0078E:  MOVFF  E0,E1
+00792:  BTFSC  xDF.1
 00794:  BRA    079E
 00796:  MOVLW  30
-00798:  SUBWF  xE1,W
+00798:  SUBWF  xE2,W
 0079A:  BZ    07A4
-0079C:  BSF    xDE.0
-0079E:  BTFSC  xDE.7
-007A0:  BSF    xDE.1
+0079C:  BSF    xDF.0
+0079E:  BTFSC  xDF.7
+007A0:  BSF    xDF.1
 007A2:  BRA    07AE
 007A4:  BTFSS  FD8.2
-007A6:  BSF    xDE.0
+007A6:  BSF    xDF.0
 007A8:  BTFSC  FD8.2
-007AA:  MOVFF  E0,E1
-007AE:  BTFSC  xDE.2
+007AA:  MOVFF  E1,E2
+007AE:  BTFSC  xDF.2
 007B0:  BRA    07BC
-007B2:  BTFSC  xDE.1
+007B2:  BTFSC  xDF.1
 007B4:  BRA    07C8
-007B6:  BTFSC  xDE.0
+007B6:  BTFSC  xDF.0
 007B8:  BRA    07D4
 007BA:  BRA    07E0
-007BC:  MOVF   xDF,W
+007BC:  MOVF   xE0,W
 007BE:  MOVLB  E
 007C0:  BTFSS  xC8.6
 007C2:  BRA    07C0
 007C4:  MOVWF  x95
 007C6:  MOVLB  0
-007C8:  MOVF   xE0,W
+007C8:  MOVF   xE1,W
 007CA:  MOVLB  E
 007CC:  BTFSS  xC8.6
 007CE:  BRA    07CC
 007D0:  MOVWF  x95
 007D2:  MOVLB  0
-007D4:  MOVF   xE1,W
+007D4:  MOVF   xE2,W
 007D6:  MOVLB  E
 007D8:  BTFSS  xC8.6
 007DA:  BRA    07D8
 007DC:  MOVWF  x95
 007DE:  MOVLB  0
-007E0:  MOVF   xE2,W
+007E0:  MOVF   xE3,W
 007E2:  MOVLB  E
 007E4:  BTFSS  xC8.6
 007E6:  BRA    07E4
@@ -296,93 +296,93 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 007EA:  MOVLB  0
 007EC:  RETURN 0
 *
-00818:  MOVF   xD9,W
-0081A:  MULWF  xDB
+00818:  MOVF   xDA,W
+0081A:  MULWF  xDC
 0081C:  MOVFF  FF3,01
 00820:  MOVFF  FF4,00
-00824:  MULWF  xDC
+00824:  MULWF  xDD
 00826:  MOVF   FF3,W
 00828:  ADDWF  00,F
-0082A:  MOVF   xDA,W
-0082C:  MULWF  xDB
+0082A:  MOVF   xDB,W
+0082C:  MULWF  xDC
 0082E:  MOVF   FF3,W
 00830:  ADDWFC 00,W
 00832:  MOVWF  02
 00834:  RETURN 0
-00836:  MOVFF  FEA,E4
-0083A:  MOVFF  FE9,E3
-0083E:  SWAPF  xDD,W
+00836:  MOVFF  FEA,E5
+0083A:  MOVFF  FE9,E4
+0083E:  SWAPF  xDE,W
 00840:  IORLW  F0
-00842:  MOVWF  xDF
-00844:  ADDWF  xDF,F
+00842:  MOVWF  xE0
+00844:  ADDWF  xE0,F
 00846:  ADDLW  E2
-00848:  MOVWF  xE0
+00848:  MOVWF  xE1
 0084A:  ADDLW  32
-0084C:  MOVWF  xE2
-0084E:  MOVF   xDD,W
+0084C:  MOVWF  xE3
+0084E:  MOVF   xDE,W
 00850:  ANDLW  0F
-00852:  ADDWF  xE0,F
-00854:  ADDWF  xE0,F
-00856:  ADDWF  xE2,F
+00852:  ADDWF  xE1,F
+00854:  ADDWF  xE1,F
+00856:  ADDWF  xE3,F
 00858:  ADDLW  E9
-0085A:  MOVWF  xE1
-0085C:  ADDWF  xE1,F
-0085E:  ADDWF  xE1,F
-00860:  SWAPF  xDC,W
+0085A:  MOVWF  xE2
+0085C:  ADDWF  xE2,F
+0085E:  ADDWF  xE2,F
+00860:  SWAPF  xDD,W
 00862:  ANDLW  0F
-00864:  ADDWF  xE1,F
-00866:  ADDWF  xE2,F
-00868:  RLCF   xE1,F
-0086A:  RLCF   xE2,F
-0086C:  COMF   xE2,F
-0086E:  RLCF   xE2,F
-00870:  MOVF   xDC,W
+00864:  ADDWF  xE2,F
+00866:  ADDWF  xE3,F
+00868:  RLCF   xE2,F
+0086A:  RLCF   xE3,F
+0086C:  COMF   xE3,F
+0086E:  RLCF   xE3,F
+00870:  MOVF   xDD,W
 00872:  ANDLW  0F
-00874:  ADDWF  xE2,F
-00876:  RLCF   xDF,F
+00874:  ADDWF  xE3,F
+00876:  RLCF   xE0,F
 00878:  MOVLW  07
-0087A:  MOVWF  xDE
+0087A:  MOVWF  xDF
 0087C:  MOVLW  0A
-0087E:  DECF   xE1,F
-00880:  ADDWF  xE2,F
+0087E:  DECF   xE2,F
+00880:  ADDWF  xE3,F
 00882:  BNC   087E
-00884:  DECF   xE0,F
-00886:  ADDWF  xE1,F
+00884:  DECF   xE1,F
+00886:  ADDWF  xE2,F
 00888:  BNC   0884
-0088A:  DECF   xDF,F
-0088C:  ADDWF  xE0,F
+0088A:  DECF   xE0,F
+0088C:  ADDWF  xE1,F
 0088E:  BNC   088A
-00890:  DECF   xDE,F
-00892:  ADDWF  xDF,F
+00890:  DECF   xDF,F
+00892:  ADDWF  xE0,F
 00894:  BNC   0890
 00896:  CLRF   FEA
-00898:  MOVLW  DE
+00898:  MOVLW  DF
 0089A:  MOVWF  FE9
 0089C:  MOVLW  07
-0089E:  ANDWF  xE3,W
-008A0:  BCF    xE3.6
+0089E:  ANDWF  xE4,W
+008A0:  BCF    xE4.6
 008A2:  ADDWF  FE9,F
 008A4:  MOVLW  00
 008A6:  ADDWFC FEA,F
 008A8:  MOVF   FE9,W
-008AA:  SUBLW  E2
+008AA:  SUBLW  E3
 008AC:  BNZ   08B4
 008AE:  MOVF   FEA,F
 008B0:  BNZ   08B4
-008B2:  BSF    xE3.6
+008B2:  BSF    xE4.6
 008B4:  MOVF   FEF,W
 008B6:  MOVWF  00
 008B8:  BNZ   08CA
-008BA:  BTFSC  xE3.6
+008BA:  BTFSC  xE4.6
 008BC:  BRA    08CA
-008BE:  BTFSC  xE3.4
+008BE:  BTFSC  xE4.4
 008C0:  BRA    08DE
-008C2:  BTFSC  xE3.3
+008C2:  BTFSC  xE4.3
 008C4:  BRA    08CA
 008C6:  MOVLW  20
 008C8:  BRA    08D0
-008CA:  BSF    xE3.3
-008CC:  BCF    xE3.4
+008CA:  BSF    xE4.3
+008CC:  BCF    xE4.4
 008CE:  MOVLW  30
 008D0:  ADDWF  00,F
 008D2:  MOVF   00,W
@@ -392,92 +392,92 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 008DA:  MOVWF  F99
 008DC:  MOVLB  0
 008DE:  MOVF   FEE,W
-008E0:  BTFSS  xE3.6
+008E0:  BTFSS  xE4.6
 008E2:  BRA    08A8
 008E4:  RETURN 0
 008E6:  MOVLW  20
-008E8:  BTFSS  xDD.4
+008E8:  BTFSS  xDE.4
 008EA:  MOVLW  30
-008EC:  MOVWF  xDE
-008EE:  MOVFF  DC,00
-008F2:  BTFSS  xDC.7
+008EC:  MOVWF  xDF
+008EE:  MOVFF  DD,00
+008F2:  BTFSS  xDD.7
 008F4:  BRA    0906
 008F6:  COMF   00,F
 008F8:  INCF   00,F
-008FA:  MOVFF  00,DC
+008FA:  MOVFF  00,DD
 008FE:  MOVLW  2D
-00900:  MOVWF  xDE
-00902:  BSF    xDD.7
-00904:  BSF    xDD.0
+00900:  MOVWF  xDF
+00902:  BSF    xDE.7
+00904:  BSF    xDE.0
 00906:  MOVF   01,W
-00908:  MOVFF  DC,E3
+00908:  MOVFF  DD,E4
 0090C:  MOVLW  64
-0090E:  MOVWF  xE4
+0090E:  MOVWF  xE5
 00910:  RCALL  0704
-00912:  MOVFF  00,DC
+00912:  MOVFF  00,DD
 00916:  MOVLW  30
 00918:  ADDWF  01,W
-0091A:  MOVWF  xDF
-0091C:  MOVFF  DC,E3
+0091A:  MOVWF  xE0
+0091C:  MOVFF  DD,E4
 00920:  MOVLW  0A
-00922:  MOVWF  xE4
+00922:  MOVWF  xE5
 00924:  RCALL  0704
 00926:  MOVLW  30
 00928:  ADDWF  00,W
-0092A:  MOVWF  xE1
+0092A:  MOVWF  xE2
 0092C:  MOVLW  30
 0092E:  ADDWF  01,W
-00930:  MOVWF  xE0
-00932:  MOVFF  DE,00
+00930:  MOVWF  xE1
+00932:  MOVFF  DF,00
 00936:  MOVLW  30
-00938:  SUBWF  xDF,W
+00938:  SUBWF  xE0,W
 0093A:  BZ    0944
-0093C:  BSF    xDD.1
-0093E:  BTFSC  xDD.7
-00940:  BSF    xDD.2
+0093C:  BSF    xDE.1
+0093E:  BTFSC  xDE.7
+00940:  BSF    xDE.2
 00942:  BRA    0968
-00944:  BTFSC  xDD.2
+00944:  BTFSC  xDE.2
 00946:  BRA    0968
-00948:  MOVFF  DE,DF
-0094C:  BTFSC  xDD.1
+00948:  MOVFF  DF,E0
+0094C:  BTFSC  xDE.1
 0094E:  BRA    0958
 00950:  MOVLW  30
-00952:  SUBWF  xE0,W
+00952:  SUBWF  xE1,W
 00954:  BZ    095E
-00956:  BSF    xDD.0
-00958:  BTFSC  xDD.7
-0095A:  BSF    xDD.1
+00956:  BSF    xDE.0
+00958:  BTFSC  xDE.7
+0095A:  BSF    xDE.1
 0095C:  BRA    0968
 0095E:  BTFSS  FD8.2
-00960:  BSF    xDD.0
+00960:  BSF    xDE.0
 00962:  BTFSC  FD8.2
-00964:  MOVFF  DF,E0
-00968:  BTFSC  xDD.2
+00964:  MOVFF  E0,E1
+00968:  BTFSC  xDE.2
 0096A:  BRA    0976
-0096C:  BTFSC  xDD.1
+0096C:  BTFSC  xDE.1
 0096E:  BRA    0982
-00970:  BTFSC  xDD.0
+00970:  BTFSC  xDE.0
 00972:  BRA    098E
 00974:  BRA    099A
-00976:  MOVF   xDE,W
+00976:  MOVF   xDF,W
 00978:  MOVLB  E
 0097A:  BTFSS  xC8.4
 0097C:  BRA    097A
 0097E:  MOVWF  F99
 00980:  MOVLB  0
-00982:  MOVF   xDF,W
+00982:  MOVF   xE0,W
 00984:  MOVLB  E
 00986:  BTFSS  xC8.4
 00988:  BRA    0986
 0098A:  MOVWF  F99
 0098C:  MOVLB  0
-0098E:  MOVF   xE0,W
+0098E:  MOVF   xE1,W
 00990:  MOVLB  E
 00992:  BTFSS  xC8.4
 00994:  BRA    0992
 00996:  MOVWF  F99
 00998:  MOVLB  0
-0099A:  MOVF   xE1,W
+0099A:  MOVF   xE2,W
 0099C:  MOVLB  E
 0099E:  BTFSS  xC8.4
 009A0:  BRA    099E
@@ -486,88 +486,88 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 009A6:  GOTO   09CE (RETURN)
 *
 00A08:  MOVLW  20
-00A0A:  BTFSS  xDE.4
+00A0A:  BTFSS  xDF.4
 00A0C:  MOVLW  30
-00A0E:  MOVWF  xDF
-00A10:  MOVFF  DD,00
-00A14:  BTFSS  xDD.7
+00A0E:  MOVWF  xE0
+00A10:  MOVFF  DE,00
+00A14:  BTFSS  xDE.7
 00A16:  BRA    0A28
 00A18:  COMF   00,F
 00A1A:  INCF   00,F
-00A1C:  MOVFF  00,DD
+00A1C:  MOVFF  00,DE
 00A20:  MOVLW  2D
-00A22:  MOVWF  xDF
-00A24:  BSF    xDE.7
-00A26:  BSF    xDE.0
+00A22:  MOVWF  xE0
+00A24:  BSF    xDF.7
+00A26:  BSF    xDF.0
 00A28:  MOVF   01,W
-00A2A:  MOVFF  DD,E3
+00A2A:  MOVFF  DE,E4
 00A2E:  MOVLW  64
-00A30:  MOVWF  xE4
+00A30:  MOVWF  xE5
 00A32:  RCALL  0704
-00A34:  MOVFF  00,DD
+00A34:  MOVFF  00,DE
 00A38:  MOVLW  30
 00A3A:  ADDWF  01,W
-00A3C:  MOVWF  xE0
-00A3E:  MOVFF  DD,E3
+00A3C:  MOVWF  xE1
+00A3E:  MOVFF  DE,E4
 00A42:  MOVLW  0A
-00A44:  MOVWF  xE4
+00A44:  MOVWF  xE5
 00A46:  RCALL  0704
 00A48:  MOVLW  30
 00A4A:  ADDWF  00,W
-00A4C:  MOVWF  xE2
+00A4C:  MOVWF  xE3
 00A4E:  MOVLW  30
 00A50:  ADDWF  01,W
-00A52:  MOVWF  xE1
-00A54:  MOVFF  DF,00
+00A52:  MOVWF  xE2
+00A54:  MOVFF  E0,00
 00A58:  MOVLW  30
-00A5A:  SUBWF  xE0,W
+00A5A:  SUBWF  xE1,W
 00A5C:  BZ    0A66
-00A5E:  BSF    xDE.1
-00A60:  BTFSC  xDE.7
-00A62:  BSF    xDE.2
+00A5E:  BSF    xDF.1
+00A60:  BTFSC  xDF.7
+00A62:  BSF    xDF.2
 00A64:  BRA    0A8A
-00A66:  MOVFF  DF,E0
+00A66:  MOVFF  E0,E1
 00A6A:  MOVLW  20
-00A6C:  MOVWF  xDF
+00A6C:  MOVWF  xE0
 00A6E:  MOVLW  30
-00A70:  SUBWF  xE1,W
+00A70:  SUBWF  xE2,W
 00A72:  BZ    0A7C
-00A74:  BSF    xDE.0
-00A76:  BTFSC  xDE.7
-00A78:  BSF    xDE.1
+00A74:  BSF    xDF.0
+00A76:  BTFSC  xDF.7
+00A78:  BSF    xDF.1
 00A7A:  BRA    0A8A
 00A7C:  BTFSS  FD8.2
-00A7E:  BSF    xDE.0
+00A7E:  BSF    xDF.0
 00A80:  BNZ   0A8A
-00A82:  MOVFF  E0,E1
+00A82:  MOVFF  E1,E2
 00A86:  MOVLW  20
-00A88:  MOVWF  xE0
-00A8A:  BTFSC  xDE.2
+00A88:  MOVWF  xE1
+00A8A:  BTFSC  xDF.2
 00A8C:  BRA    0A98
-00A8E:  BTFSC  xDE.1
+00A8E:  BTFSC  xDF.1
 00A90:  BRA    0AA4
-00A92:  BTFSC  xDE.0
+00A92:  BTFSC  xDF.0
 00A94:  BRA    0AB0
 00A96:  BRA    0ABC
-00A98:  MOVF   xDF,W
+00A98:  MOVF   xE0,W
 00A9A:  MOVLB  E
 00A9C:  BTFSS  xC8.6
 00A9E:  BRA    0A9C
 00AA0:  MOVWF  x95
 00AA2:  MOVLB  0
-00AA4:  MOVF   xE0,W
+00AA4:  MOVF   xE1,W
 00AA6:  MOVLB  E
 00AA8:  BTFSS  xC8.6
 00AAA:  BRA    0AA8
 00AAC:  MOVWF  x95
 00AAE:  MOVLB  0
-00AB0:  MOVF   xE1,W
+00AB0:  MOVF   xE2,W
 00AB2:  MOVLB  E
 00AB4:  BTFSS  xC8.6
 00AB6:  BRA    0AB4
 00AB8:  MOVWF  x95
 00ABA:  MOVLB  0
-00ABC:  MOVF   xE2,W
+00ABC:  MOVF   xE3,W
 00ABE:  MOVLB  E
 00AC0:  BTFSS  xC8.6
 00AC2:  BRA    0AC0
@@ -575,30 +575,30 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 00AC6:  MOVLB  0
 00AC8:  RETURN 0
 *
-01BD6:  ADDWF  FE8,W
-01BD8:  CLRF   FF7
-01BDA:  RLCF   FF7,F
-01BDC:  ADDLW  F7
-01BDE:  MOVWF  FF6
-01BE0:  MOVLW  1B
-01BE2:  ADDWFC FF7,F
-01BE4:  MOVLW  00
-01BE6:  MOVWF  FF8
-01BE8:  MOVWF  FFB
-01BEA:  TBLRD*-
-01BEC:  MOVF   FF5,W
-01BEE:  MOVWF  FFA
-01BF0:  TBLRD*
-01BF2:  MOVF   FF5,W
-01BF4:  MOVWF  FF9
-01BF6:  DATA B8,0D
-01BF8:  DATA DC,0E
-01BFA:  DATA 6E,11
-01BFC:  DATA A8,11
-01BFE:  DATA 9C,13
-01C00:  DATA CA,14
-01C02:  DATA BE,18
-01C04:  DATA A4,19
+01C1E:  ADDWF  FE8,W
+01C20:  CLRF   FF7
+01C22:  RLCF   FF7,F
+01C24:  ADDLW  3F
+01C26:  MOVWF  FF6
+01C28:  MOVLW  1C
+01C2A:  ADDWFC FF7,F
+01C2C:  MOVLW  00
+01C2E:  MOVWF  FF8
+01C30:  MOVWF  FFB
+01C32:  TBLRD*-
+01C34:  MOVF   FF5,W
+01C36:  MOVWF  FFA
+01C38:  TBLRD*
+01C3A:  MOVF   FF5,W
+01C3C:  MOVWF  FF9
+01C3E:  DATA DE,0D
+01C40:  DATA 02,0F
+01C42:  DATA 94,11
+01C44:  DATA CE,11
+01C46:  DATA CC,13
+01C48:  DATA 06,15
+01C4A:  DATA 06,19
+01C4C:  DATA EC,19
 .................... 
 .................... #list
 .................... 
@@ -606,7 +606,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... #use delay (clock=64000000)
 *
 00214:  CLRF   FEA
-00216:  MOVLW  D8
+00216:  MOVLW  D9
 00218:  MOVWF  FE9
 0021A:  MOVF   FEF,W
 0021C:  BZ    023A
@@ -627,10 +627,10 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 0023A:  RETURN 0
 *
 00548:  MOVLW  01
-0054A:  SUBWF  xDF,F
+0054A:  SUBWF  xE0,F
 0054C:  BNC   0564
 0054E:  CLRF   FEA
-00550:  MOVLW  DF
+00550:  MOVLW  E0
 00552:  MOVWF  FE9
 00554:  MOVF   FEF,W
 00556:  BZ    0564
@@ -698,18 +698,18 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 *
 009AA:  MOVLW  09
 009AC:  MOVWF  FE9
-009AE:  MOVFF  D8,DD
-009B2:  MOVFF  D7,DC
+009AE:  MOVFF  D9,DE
+009B2:  MOVFF  D8,DD
 009B6:  RCALL  0836
 009B8:  MOVLW  2C
 009BA:  MOVLB  E
 009BC:  BTFSS  xC8.4
 009BE:  BRA    09BC
 009C0:  MOVWF  F99
-009C2:  MOVFF  D9,DC
+009C2:  MOVFF  DA,DD
 009C6:  MOVLW  01
 009C8:  MOVLB  0
-009CA:  MOVWF  xDD
+009CA:  MOVWF  xDE
 009CC:  BRA    08E6
 009CE:  MOVLW  2C
 009D0:  MOVLB  E
@@ -718,8 +718,8 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 009D6:  MOVWF  F99
 009D8:  MOVLW  09
 009DA:  MOVWF  FE9
-009DC:  MOVFF  DB,DD
-009E0:  MOVFF  DA,DC
+009DC:  MOVFF  DC,DE
+009E0:  MOVFF  DB,DD
 009E4:  MOVLB  0
 009E6:  RCALL  0836
 009E8:  RETURN 0
@@ -773,23 +773,23 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 ....................             
 ....................             for(int i = 0; i<TAILLE_BUFFER ;i++)
 00106:  MOVLB  0
-00108:  CLRF   xE9
-0010A:  MOVF   xE9,W
+00108:  CLRF   xEA
+0010A:  MOVF   xEA,W
 0010C:  SUBLW  13
 0010E:  BNC   012A
 ....................             {
 ....................                 fputc(rxBuffer[i],UART1);
 00110:  CLRF   03
-00112:  MOVF   xE9,W
+00112:  MOVF   xEA,W
 00114:  ADDLW  30
 00116:  MOVWF  FE9
 00118:  MOVLW  00
 0011A:  ADDWFC 03,W
 0011C:  MOVWF  FEA
-0011E:  MOVFF  FEF,EA
-00122:  MOVF   xEA,W
+0011E:  MOVFF  FEF,EB
+00122:  MOVF   xEB,W
 00124:  BRA    00CC
-00126:  INCF   xE9,F
+00126:  INCF   xEA,F
 00128:  BRA    010A
 0012A:  MOVLB  E
 ....................             } 
@@ -835,13 +835,13 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 ....................     DFPlayer_SetVolume(20);                                                     // Set volume max //
 *
 003DE:  MOVLW  14
-003E0:  MOVWF  xD7
+003E0:  MOVWF  xD8
 003E2:  BRA    03A2
 ....................     DFPlayer_PlaySongNb(1);                                                     // Plays first song //
 003E4:  MOVLW  01
-003E6:  MOVWF  xD7
+003E6:  MOVWF  xD8
 003E8:  RCALL  03C0
-003EA:  GOTO   0D2A (RETURN)
+003EA:  GOTO   0D50 (RETURN)
 .................... }
 .................... 
 .................... void DFPlayer_NextSong()
@@ -872,7 +872,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 ....................    
 ....................    DFPlayer_SendData();
 00A02:  RCALL  0376
-00A04:  GOTO   1178 (RETURN)
+00A04:  GOTO   119E (RETURN)
 .................... }
 .................... 
 .................... //== SET VOLUME FROM 0 TO 30 ==//
@@ -895,7 +895,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 ....................    send_buf[5] = 0x00;                                                          // High byte (DH), para 1 //
 003B0:  CLRF   4D
 ....................    send_buf[6] = volume;                                                        // Low byte (DL), para 2 //
-003B2:  MOVFF  D7,4E
+003B2:  MOVFF  D8,4E
 .................... //!send_buf[7] = 0xFF;                                                          // checksum highbyte //
 .................... //!send_buf[8] = 0xE6;                                                          // checksum low byte //
 ....................    send_buf[7] = 0xEF;                                                          // end //
@@ -963,7 +963,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 ....................    send_buf[5] = 0x00;                                                          // High byte (DH), para 1 //
 003D0:  CLRF   4D
 ....................    send_buf[6] = numSong;                                                       // Low byte (DL), para 2 //
-003D2:  MOVFF  D7,4E
+003D2:  MOVFF  D8,4E
 .................... //!send_buf[7] = 0xFF;                                                          // checksum highbyte //
 .................... //!send_buf[8] = 0xE6;                                                          // checksum low byte //
 ....................    send_buf[7] = 0xEF;                                                          // end //
@@ -980,27 +980,27 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 ....................     unsigned int i;
 ....................     for(i = 0; i < 8; i ++)
 *
-00376:  CLRF   xD9
-00378:  MOVF   xD9,W
+00376:  CLRF   xDA
+00378:  MOVF   xDA,W
 0037A:  SUBLW  07
 0037C:  BNC   03A0
 ....................     {    
 ....................       printf("%c",send_buf[i]);
 0037E:  CLRF   03
-00380:  MOVF   xD9,W
+00380:  MOVF   xDA,W
 00382:  ADDLW  48
 00384:  MOVWF  FE9
 00386:  MOVLW  00
 00388:  ADDWFC 03,W
 0038A:  MOVWF  FEA
-0038C:  MOVFF  FEF,DA
-00390:  MOVF   xDA,W
+0038C:  MOVFF  FEF,DB
+00390:  MOVF   xDB,W
 00392:  MOVLB  E
 00394:  BTFSS  xC8.6
 00396:  BRA    0394
 00398:  MOVWF  x95
 0039A:  MOVLB  0
-0039C:  INCF   xD9,F
+0039C:  INCF   xDA,F
 0039E:  BRA    0378
 ....................     }
 003A0:  RETURN 0
@@ -1023,7 +1023,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {
 ....................     if(startBonus == 1)
 *
-00B0A:  DECFSZ xD7,W
+00B0A:  DECFSZ xD8,W
 00B0C:  BRA    0B1A
 ....................     {
 ....................         printf("1");
@@ -1036,7 +1036,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 ....................     }
 ....................     
 ....................     if(startBonus == 0)
-00B1A:  MOVF   xD7,F
+00B1A:  MOVF   xD8,F
 00B1C:  BNZ   0B2A
 ....................     {
 ....................         printf("0");
@@ -1077,33 +1077,33 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {
 ....................     if(secondes > 99)                                                        
 *
-007EE:  MOVF   xDB,W
+007EE:  MOVF   xDC,W
 007F0:  SUBLW  63
 007F2:  BC    07F8
 ....................     {
 ....................         secondes = 99;
 007F4:  MOVLW  63
-007F6:  MOVWF  xDB
+007F6:  MOVWF  xDC
 ....................     }
 ....................     
 ....................     if (centiemes >99)
-007F8:  MOVF   xDC,W
+007F8:  MOVF   xDD,W
 007FA:  SUBLW  63
 007FC:  BC    0802
 ....................     {
 ....................         centiemes = 99;
 007FE:  MOVLW  63
-00800:  MOVWF  xDC
+00800:  MOVWF  xDD
 ....................     }
 ....................     
 ....................     printf("%02d%02d",secondes,centiemes);
-00802:  MOVFF  DB,DD
+00802:  MOVFF  DC,DE
 00806:  MOVLW  01
-00808:  MOVWF  xDE
+00808:  MOVWF  xDF
 0080A:  RCALL  072C
-0080C:  MOVFF  DC,DD
+0080C:  MOVFF  DD,DE
 00810:  MOVLW  01
-00812:  MOVWF  xDE
+00812:  MOVWF  xDF
 00814:  RCALL  072C
 00816:  RETURN 0
 .................... }
@@ -1113,7 +1113,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {
 ....................     if(mode == MODE_RUNNING_TIME)
 *
-0032A:  DECFSZ xD7,W
+0032A:  DECFSZ xD8,W
 0032C:  BRA    033E
 ....................     {
 ....................         printf("run1");
@@ -1127,7 +1127,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 ....................     }
 0033C:  BRA    0350
 ....................     else if(mode == MODE_NET_TIME)
-0033E:  MOVF   xD7,F
+0033E:  MOVF   xD8,F
 00340:  BNZ   0350
 ....................     {
 ....................         printf("run2");
@@ -1147,7 +1147,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {
 ....................     switch (color)
 *
-002C6:  MOVF   xD7,W
+002C6:  MOVF   xD8,W
 002C8:  XORLW  00
 002CA:  BZ    02DA
 002CC:  XORLW  02
@@ -1240,31 +1240,31 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {
 ....................     printf("%d%d%d%d%c%d",f1,f2,f3,f4,clr,lum);
 *
-00ACA:  MOVFF  D7,DD
+00ACA:  MOVFF  D8,DE
 00ACE:  MOVLW  18
-00AD0:  MOVWF  xDE
+00AD0:  MOVWF  xDF
 00AD2:  RCALL  0A08
-00AD4:  MOVFF  D8,DD
+00AD4:  MOVFF  D9,DE
 00AD8:  MOVLW  18
-00ADA:  MOVWF  xDE
+00ADA:  MOVWF  xDF
 00ADC:  RCALL  0A08
-00ADE:  MOVFF  D9,DD
+00ADE:  MOVFF  DA,DE
 00AE2:  MOVLW  18
-00AE4:  MOVWF  xDE
+00AE4:  MOVWF  xDF
 00AE6:  RCALL  0A08
-00AE8:  MOVFF  DA,DD
+00AE8:  MOVFF  DB,DE
 00AEC:  MOVLW  18
-00AEE:  MOVWF  xDE
+00AEE:  MOVWF  xDF
 00AF0:  RCALL  0A08
-00AF2:  MOVF   xDB,W
+00AF2:  MOVF   xDC,W
 00AF4:  MOVLB  E
 00AF6:  BTFSS  xC8.6
 00AF8:  BRA    0AF6
 00AFA:  MOVWF  x95
-00AFC:  MOVFF  DC,DD
+00AFC:  MOVFF  DD,DE
 00B00:  MOVLW  18
 00B02:  MOVLB  0
-00B04:  MOVWF  xDE
+00B04:  MOVWF  xDF
 00B06:  RCALL  0A08
 00B08:  RETURN 0
 .................... }
@@ -1274,7 +1274,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {
 ....................     if(lumi == 1)
 *
-00352:  DECFSZ xD7,W
+00352:  DECFSZ xD8,W
 00354:  BRA    0366
 ....................     {
 ....................         printf("anim13");
@@ -1329,7 +1329,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 00400:  MOVWF  00
 00402:  DECFSZ 00,F
 00404:  BRA    0402
-00406:  RLCF   xD9,F
+00406:  RLCF   xDA,F
 00408:  BCF    F84.4
 0040A:  BTFSC  FD8.0
 0040C:  BSF    F89.4
@@ -1404,13 +1404,13 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 0047C:  BCF    F89.3
 ....................     i2c_write(MCP23017_ADDRESS);                                                // Envoi de l'adresse I2C du MCP23017
 0047E:  MOVLW  40
-00480:  MOVWF  xD9
+00480:  MOVWF  xDA
 00482:  RCALL  03EE
 ....................     i2c_write(reg);                                                             // Sélection du registre à écrire
-00484:  MOVFF  D7,D9
+00484:  MOVFF  D8,DA
 00488:  RCALL  03EE
 ....................     i2c_write(value);                                                           // Envoi des données
-0048A:  MOVFF  D8,D9
+0048A:  MOVFF  D9,DA
 0048E:  RCALL  03EE
 ....................     i2c_stop();                                                                 // Arrêter la communication I2C
 00490:  BCF    F89.4
@@ -1435,13 +1435,13 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... void setup_mcp23017()
 .................... {
 ....................     mcp23017_write(IODIRA, 0x00);                                               // Configurer toutes les broches du port A (GPA0 à GPA7) comme sorties
-004B2:  CLRF   xD7
-004B4:  CLRF   xD8
+004B2:  CLRF   xD8
+004B4:  CLRF   xD9
 004B6:  RCALL  045A
 ....................     mcp23017_write(IODIRB, 0x01);                                               // Configurer toutes les broches du port B (GPB0 à GPB7) comme sorties 
 004B8:  MOVLW  01
-004BA:  MOVWF  xD7
-004BC:  MOVWF  xD8
+004BA:  MOVWF  xD8
+004BC:  MOVWF  xD9
 004BE:  RCALL  045A
 004C0:  RETURN 0
 .................... }
@@ -1451,15 +1451,15 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {     
 ....................     setup_mcp23017();
 *
-00B3C:  RCALL  04B2
+00B4C:  RCALL  04B2
 ....................     //mcp23017_write(GPIOB, 0b11100000);                                          // Mettre GPB7 à HIGH (bit 7 à 1)
 ....................     mcp23017_write(GPIOB, 0b11101111);   
-00B3E:  MOVLW  13
-00B40:  MOVWF  xD7
-00B42:  MOVLW  EF
-00B44:  MOVWF  xD8
-00B46:  RCALL  045A
-00B48:  RETURN 0
+00B4E:  MOVLW  13
+00B50:  MOVWF  xD8
+00B52:  MOVLW  EF
+00B54:  MOVWF  xD9
+00B56:  RCALL  045A
+00B58:  RETURN 0
 .................... }
 .................... 
 .................... //== DÉSACTIVER GPB7 ==//
@@ -1470,8 +1470,8 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 004C2:  RCALL  04B2
 ....................     mcp23017_write(GPIOB, 0b00000000);                                          // Mettre GPB7 à LOW (bit 7 à 0) 
 004C4:  MOVLW  13
-004C6:  MOVWF  xD7
-004C8:  CLRF   xD8
+004C6:  MOVWF  xD8
+004C8:  CLRF   xD9
 004CA:  RCALL  045A
 004CC:  RETURN 0
 .................... }
@@ -1503,7 +1503,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 005C0:  MOVWF  00
 005C2:  DECFSZ 00,F
 005C4:  BRA    05C2
-005C6:  RLCF   xD9,F
+005C6:  RLCF   xDA,F
 005C8:  BCF    F84.4
 005CA:  BTFSC  FD8.0
 005CC:  BSF    F89.4
@@ -1603,13 +1603,13 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 0063C:  BCF    F89.3
 ....................     i2c_write(MCP23017_ADDRESS_2);                                              // Envoi de l'adresse I2C du MCP23017
 0063E:  MOVLW  48
-00640:  MOVWF  xD9
+00640:  MOVWF  xDA
 00642:  RCALL  05AE
 ....................     i2c_write(reg);                                                             // Sélection du registre à écrire
-00644:  MOVFF  D7,D9
+00644:  MOVFF  D8,DA
 00648:  RCALL  05AE
 ....................     i2c_write(value);                                                           // Envoi des données
-0064A:  MOVFF  D8,D9
+0064A:  MOVFF  D9,DA
 0064E:  RCALL  05AE
 ....................     i2c_stop();                                                                 // Arrêter la communication I2C
 00650:  BCF    F89.4
@@ -1634,35 +1634,37 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... void bonus_activator()
 .................... {
 ....................     mcp23017_write_2(IODIRA_2, 0x01);                                           // Configurer toutes les broches du port A (GPA0 à GPA7) comme sorties
-00672:  CLRF   xD7
+00672:  CLRF   xD8
 00674:  MOVLW  01
-00676:  MOVWF  xD8
+00676:  MOVWF  xD9
 00678:  RCALL  061A
 ....................     mcp23017_write_2(IODIRB_2, 0x01);                                           // Configurer toutes les broches du port B (GPB0 à GPB7) comme sorties 
 0067A:  MOVLW  01
-0067C:  MOVWF  xD7
-0067E:  MOVWF  xD8
+0067C:  MOVWF  xD8
+0067E:  MOVWF  xD9
 00680:  RCALL  061A
 00682:  RETURN 0
 .................... }
+.................... 
+.................... // TOUS LES PORTS SONT A LA SUITE, MANQUE UNIQUEMENT AU 8eme PORT ET APRES LE 10e (en commençant a compter depuis les entrées des capteurs)
 .................... 
 .................... //== ACTIVER BONUS ASCENSEUR 1 ==//
 .................... void activate_bonus_1_lever() 
 .................... {     
 ....................     bonus_activator();
 *
-00B5C:  RCALL  0672
+00B7E:  RCALL  0672
 ....................     stateGpiob_2 |= 0x80; 
-00B5E:  BSF    54.7
-....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB7 à HIGH (bit 7 à 1)
-00B60:  MOVLW  13
-00B62:  MOVWF  xD7
-00B64:  MOVFF  54,D8
-00B68:  RCALL  061A
-00B6A:  RETURN 0
+00B80:  BSF    54.7
+....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB9 à HIGH (bit 9 à 1)
+00B82:  MOVLW  13
+00B84:  MOVWF  xD8
+00B86:  MOVFF  54,D9
+00B8A:  RCALL  061A
+00B8C:  RETURN 0
 .................... }
 .................... 
-.................... //== DÉSACTIVER BONUS ASCENSEUR 1 ==//
+.................... //== DÉSACTIVER BONUS ASCENSEUR 1 ==// 
 .................... void deactivate_bonus_1_lever()
 .................... {
 ....................     bonus_activator();
@@ -1670,10 +1672,10 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 00684:  RCALL  0672
 ....................     stateGpiob_2 &= 0x7F;
 00686:  BCF    54.7
-....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB7 à LOW (bit 7 à 0) 
+....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB9 à LOW (bit 9 à 0) 
 00688:  MOVLW  13
-0068A:  MOVWF  xD7
-0068C:  MOVFF  54,D8
+0068A:  MOVWF  xD8
+0068C:  MOVFF  54,D9
 00690:  RCALL  061A
 00692:  RETURN 0
 .................... }
@@ -1685,15 +1687,15 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {     
 ....................     bonus_activator();
 *
-00B6C:  RCALL  0672
+00B8E:  RCALL  0672
 ....................     stateGpiob_2 |= 0x40; 
-00B6E:  BSF    54.6
-....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB6 à HIGH (bit 6 à 1)
-00B70:  MOVLW  13
-00B72:  MOVWF  xD7
-00B74:  MOVFF  54,D8
-00B78:  RCALL  061A
-00B7A:  GOTO   1566 (RETURN)
+00B90:  BSF    54.6
+....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB8 à HIGH (bit 8 à 1)
+00B92:  MOVLW  13
+00B94:  MOVWF  xD8
+00B96:  MOVFF  54,D9
+00B9A:  RCALL  061A
+00B9C:  GOTO   15AE (RETURN)
 .................... }
 .................... 
 .................... //== DÉSACTIVER BONUS ASCENSEUR 2 ==//
@@ -1704,12 +1706,46 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 00694:  RCALL  0672
 ....................     stateGpiob_2 &= 0xBF;
 00696:  BCF    54.6
-....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB6 à LOW (bit 6 à 0) 
+....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB8 à LOW (bit 8 à 0) 
 00698:  MOVLW  13
-0069A:  MOVWF  xD7
-0069C:  MOVFF  54,D8
+0069A:  MOVWF  xD8
+0069C:  MOVFF  54,D9
 006A0:  RCALL  061A
 006A2:  RETURN 0
+.................... }
+.................... 
+.................... ////////////////////////////////////////////////////////////////////////////////
+.................... 
+.................... //== ACTIVER ACCELERATION BACKUP (soufflette) ==//                              
+.................... void activate_XLR8_backup()
+.................... {
+....................     bonus_activator();                                                          // Mettre GPB1 à HIGH (PIN 2, J20, port num.7)
+*
+00B2C:  RCALL  0672
+....................     stateGpiob_2 |= 0x02; //--> 0b00000010
+00B2E:  BSF    54.1
+....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    
+00B30:  MOVLW  13
+00B32:  MOVWF  xD8
+00B34:  MOVFF  54,D9
+00B38:  RCALL  061A
+00B3A:  RETURN 0
+.................... }
+.................... 
+.................... //== DESACTIVER ACCELERATION BACKUP (soufflette) ==//                           
+.................... void deactivate_XLR8_backup()
+.................... {
+....................     bonus_activator();                                                      // Mettre GPB1 à LOW (PIN 2, J20, port num.7)
+*
+00B5A:  RCALL  0672
+....................     stateGpiob_2 &= 0xFD;
+00B5C:  BCF    54.1
+....................     mcp23017_write_2(GPIOB_2, stateGpiob_2); 
+00B5E:  MOVLW  13
+00B60:  MOVWF  xD8
+00B62:  MOVFF  54,D9
+00B66:  RCALL  061A
+00B68:  GOTO   1582 (RETURN)
 .................... }
 .................... 
 .................... ////////////////////////////////////////////////////////////////////////////////
@@ -1719,15 +1755,15 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {     
 ....................     bonus_activator();
 *
-00B7E:  RCALL  0672
+00BA0:  RCALL  0672
 ....................     stateGpiob_2 |= 0x20; 
-00B80:  BSF    54.5
+00BA2:  BSF    54.5
 ....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB5 à HIGH (bit 5 à 1)
-00B82:  MOVLW  13
-00B84:  MOVWF  xD7
-00B86:  MOVFF  54,D8
-00B8A:  RCALL  061A
-00B8C:  GOTO   156A (RETURN)
+00BA4:  MOVLW  13
+00BA6:  MOVWF  xD8
+00BA8:  MOVFF  54,D9
+00BAC:  RCALL  061A
+00BAE:  GOTO   15B2 (RETURN)
 .................... }
 .................... 
 .................... //== DÉSACTIVER BONUS 3 ==//
@@ -1740,8 +1776,8 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 006A6:  BCF    54.5
 ....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB5 à LOW (bit 5 à 0) 
 006A8:  MOVLW  13
-006AA:  MOVWF  xD7
-006AC:  MOVFF  54,D8
+006AA:  MOVWF  xD8
+006AC:  MOVFF  54,D9
 006B0:  RCALL  061A
 006B2:  RETURN 0
 .................... }
@@ -1753,15 +1789,15 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {     
 ....................     bonus_activator();
 *
-00B4A:  RCALL  0672
+00B6C:  RCALL  0672
 ....................     stateGpiob_2 |= 0x10; 
-00B4C:  BSF    54.4
+00B6E:  BSF    54.4
 ....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB4 à HIGH (bit 4 à 1)
-00B4E:  MOVLW  13
-00B50:  MOVWF  xD7
-00B52:  MOVFF  54,D8
-00B56:  RCALL  061A
-00B58:  GOTO   1542 (RETURN)
+00B70:  MOVLW  13
+00B72:  MOVWF  xD8
+00B74:  MOVFF  54,D9
+00B78:  RCALL  061A
+00B7A:  GOTO   158A (RETURN)
 .................... }
 .................... 
 .................... //== DÉSACTIVER BONUS 4 ==//
@@ -1774,8 +1810,8 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 006B6:  BCF    54.4
 ....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB4 à LOW (bit 4 à 0) 
 006B8:  MOVLW  13
-006BA:  MOVWF  xD7
-006BC:  MOVFF  54,D8
+006BA:  MOVWF  xD8
+006BC:  MOVFF  54,D9
 006C0:  RCALL  061A
 006C2:  RETURN 0
 .................... }
@@ -1788,15 +1824,15 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {     
 ....................     bonus_activator();
 *
-00BA2:  RCALL  0672
+00BC4:  RCALL  0672
 ....................     stateGpiob_2 |= 0x08; 
-00BA4:  BSF    54.3
+00BC6:  BSF    54.3
 ....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB3 à HIGH (bit 3 à 1)
-00BA6:  MOVLW  13
-00BA8:  MOVWF  xD7
-00BAA:  MOVFF  54,D8
-00BAE:  RCALL  061A
-00BB0:  GOTO   1644 (RETURN)
+00BC8:  MOVLW  13
+00BCA:  MOVWF  xD8
+00BCC:  MOVFF  54,D9
+00BD0:  RCALL  061A
+00BD2:  GOTO   168C (RETURN)
 .................... }
 .................... 
 .................... //== DÉSACTIVER BONUS 5 ==//
@@ -1809,8 +1845,8 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 006C6:  BCF    54.3
 ....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB3 à LOW (bit 3 à 0) 
 006C8:  MOVLW  13
-006CA:  MOVWF  xD7
-006CC:  MOVFF  54,D8
+006CA:  MOVWF  xD8
+006CC:  MOVFF  54,D9
 006D0:  RCALL  061A
 006D2:  RETURN 0
 .................... }
@@ -1822,15 +1858,15 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {     
 ....................     bonus_activator();
 *
-00B90:  RCALL  0672
-....................     stateGpiob_2 |= 0x04; 
-00B92:  BSF    54.2
+00BB2:  RCALL  0672
+....................     stateGpiob_2 |= 0x04; //--> 0b00000100
+00BB4:  BSF    54.2
 ....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB2 à HIGH (bit 2 à 1)
-00B94:  MOVLW  13
-00B96:  MOVWF  xD7
-00B98:  MOVFF  54,D8
-00B9C:  RCALL  061A
-00B9E:  GOTO   158C (RETURN)
+00BB6:  MOVLW  13
+00BB8:  MOVWF  xD8
+00BBA:  MOVFF  54,D9
+00BBE:  RCALL  061A
+00BC0:  GOTO   15D4 (RETURN)
 .................... }
 .................... 
 .................... //== DÉSACTIVER BONUS 6 ==//
@@ -1843,8 +1879,8 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 006D6:  BCF    54.2
 ....................     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB2 à LOW (bit 2 à 0) 
 006D8:  MOVLW  13
-006DA:  MOVWF  xD7
-006DC:  MOVFF  54,D8
+006DA:  MOVWF  xD8
+006DC:  MOVFF  54,D9
 006E0:  RCALL  061A
 006E2:  RETURN 0
 .................... }
@@ -1856,33 +1892,29 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {     
 ....................     bonus_activator();
 *
-00BB4:  RCALL  0672
-....................     //stateGpiob_2 |= 0x02; 
-....................     stateGpiob_2 |= 0x40; 
-00BB6:  BSF    54.6
-....................     //mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB1 à HIGH (bit 1 à 1)
-....................     mcp23017_write_2(GPIOA_2, stateGpiob_2);            
-00BB8:  MOVLW  12
-00BBA:  MOVWF  xD7
-00BBC:  MOVFF  54,D8
-00BC0:  RCALL  061A
-00BC2:  GOTO   165C (RETURN)
+00BD6:  RCALL  0672
+....................     stateGpioa_2 |= 0x40;   //0x40 -> 0b01000000
+00BD8:  BSF    55.6
+....................     mcp23017_write_2(GPIOA_2, stateGpioa_2);                                    // Mettre GPA6 à HIGH (PIN 27, J23, port num.10)
+00BDA:  MOVLW  12
+00BDC:  MOVWF  xD8
+00BDE:  MOVFF  55,D9
+00BE2:  RCALL  061A
+00BE4:  GOTO   16A4 (RETURN)
 .................... }
 .................... 
 .................... //== DÉSACTIVER BONUS 7 ==//
 .................... void deactivate_bonus_7_blower()
 .................... {
-....................     bonus_activator();
+....................     bonus_activator();                                                          // Mettre GPA6 à LOW (PIN 27, J23, port num.10) 
 *
 006E4:  RCALL  0672
-....................     //stateGpiob_2 &= 0xFD;
-....................     //mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB1 à LOW (bit 1 à 0) 
-....................     stateGpiob_2 &= 0xBF;
-006E6:  BCF    54.6
-....................     mcp23017_write_2(GPIOA_2, stateGpiob_2);       
+....................     stateGpioa_2 &= 0xBF;  //0b10111111
+006E6:  BCF    55.6
+....................     mcp23017_write_2(GPIOA_2, stateGpioa_2);       
 006E8:  MOVLW  12
-006EA:  MOVWF  xD7
-006EC:  MOVFF  54,D8
+006EA:  MOVWF  xD8
+006EC:  MOVFF  55,D9
 006F0:  RCALL  061A
 006F2:  RETURN 0
 .................... }
@@ -1894,15 +1926,15 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {     
 ....................     bonus_activator();
 *
-00B2C:  RCALL  0672
+00B3C:  RCALL  0672
 ....................     stateGpioa_2 |= 0x80; 
-00B2E:  BSF    55.7
-....................     mcp23017_write_2(GPIOA_2, stateGpioa_2);                                    // Mettre GPB0 à HIGH (bit 0 à 1)
-00B30:  MOVLW  12
-00B32:  MOVWF  xD7
-00B34:  MOVFF  55,D8
-00B38:  RCALL  061A
-00B3A:  RETURN 0
+00B3E:  BSF    55.7
+....................     mcp23017_write_2(GPIOA_2, stateGpioa_2);                                    // Mettre GPA7 à HIGH (PIN 28, J22, port num.9)
+00B40:  MOVLW  12
+00B42:  MOVWF  xD8
+00B44:  MOVFF  55,D9
+00B48:  RCALL  061A
+00B4A:  RETURN 0
 .................... }
 .................... 
 .................... //== DÉSACTIVER BONUS 8 ==//
@@ -1913,10 +1945,10 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 006F4:  RCALL  0672
 ....................     stateGpioa_2 &= 0x7F;
 006F6:  BCF    55.7
-....................     mcp23017_write_2(GPIOA_2, stateGpioa_2);                                    // Mettre GPB0 à LOW (bit 0 à 0) 
+....................     mcp23017_write_2(GPIOA_2, stateGpioa_2);                                    // Mettre GPA7 à LOW (PIN 28, J22, port num.9)
 006F8:  MOVLW  12
-006FA:  MOVWF  xD7
-006FC:  MOVFF  55,D8
+006FA:  MOVWF  xD8
+006FC:  MOVFF  55,D9
 00700:  RCALL  061A
 00702:  RETURN 0
 .................... }
@@ -2347,7 +2379,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {
 ....................     if (bit) 
 *
-004CE:  MOVF   xE8,F
+004CE:  MOVF   xE9,F
 004D0:  BZ    04EC
 ....................     {
 ....................         output_high(WS2812_PIN);     // T1 = 1
@@ -2394,13 +2426,13 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {
 ....................     for (int8_t i = 7; i >= 0; i--) 
 00508:  MOVLW  07
-0050A:  MOVWF  xE6
-0050C:  BTFSC  xE6.7
+0050A:  MOVWF  xE7
+0050C:  BTFSC  xE7.7
 0050E:  BRA    0530
 ....................     {
 ....................         ws2812_sendBit((val >> i) & 0x01);
-00510:  MOVFF  E5,00
-00514:  MOVF   xE6,W
+00510:  MOVFF  E6,00
+00514:  MOVF   xE7,W
 00516:  MOVWF  01
 00518:  BZ    0522
 0051A:  BCF    FD8.0
@@ -2409,10 +2441,10 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 00520:  BRA    051A
 00522:  MOVF   00,W
 00524:  ANDLW  01
-00526:  MOVWF  xE7
-00528:  MOVWF  xE8
+00526:  MOVWF  xE8
+00528:  MOVWF  xE9
 0052A:  BRA    04CE
-0052C:  DECF   xE6,F
+0052C:  DECF   xE7,F
 0052E:  BRA    050C
 ....................     }
 00530:  RETURN 0
@@ -2421,13 +2453,13 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... void ws2812_sendColor(uint8_t re, uint8_t gr, uint8_t bl) 
 .................... {
 ....................     ws2812_sendByte(gr);
-00532:  MOVFF  E3,E5
+00532:  MOVFF  E4,E6
 00536:  RCALL  0508
 ....................     ws2812_sendByte(re);
-00538:  MOVFF  E2,E5
+00538:  MOVFF  E3,E6
 0053C:  RCALL  0508
 ....................     ws2812_sendByte(bl);
-0053E:  MOVFF  E4,E5
+0053E:  MOVFF  E5,E6
 00542:  RCALL  0508
 00544:  GOTO   05A2 (RETURN)
 .................... }
@@ -2436,40 +2468,40 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {
 ....................     for (uint8_t i = 0; i < count; i++) 
 *
-00568:  CLRF   xDE
-0056A:  MOVF   xDD,W
-0056C:  SUBWF  xDE,W
+00568:  CLRF   xDF
+0056A:  MOVF   xDE,W
+0056C:  SUBWF  xDF,W
 0056E:  BC    05A6
 ....................     {
 ....................         ws2812_sendColor(r_array[i], g_array[i], b_array[i]);
-00570:  MOVF   xDE,W
-00572:  ADDWF  xD7,W
+00570:  MOVF   xDF,W
+00572:  ADDWF  xD8,W
 00574:  MOVWF  FE9
 00576:  MOVLW  00
-00578:  ADDWFC xD8,W
+00578:  ADDWFC xD9,W
 0057A:  MOVWF  FEA
-0057C:  MOVFF  FEF,E2
-00580:  MOVF   xDE,W
-00582:  ADDWF  xD9,W
+0057C:  MOVFF  FEF,E3
+00580:  MOVF   xDF,W
+00582:  ADDWF  xDA,W
 00584:  MOVWF  FE9
 00586:  MOVLW  00
-00588:  ADDWFC xDA,W
+00588:  ADDWFC xDB,W
 0058A:  MOVWF  FEA
-0058C:  MOVFF  FEF,E3
-00590:  MOVF   xDE,W
-00592:  ADDWF  xDB,W
+0058C:  MOVFF  FEF,E4
+00590:  MOVF   xDF,W
+00592:  ADDWF  xDC,W
 00594:  MOVWF  FE9
 00596:  MOVLW  00
-00598:  ADDWFC xDC,W
+00598:  ADDWFC xDD,W
 0059A:  MOVWF  FEA
-0059C:  MOVFF  FEF,E4
+0059C:  MOVFF  FEF,E5
 005A0:  BRA    0532
-005A2:  INCF   xDE,F
+005A2:  INCF   xDF,F
 005A4:  BRA    056A
 ....................     }
 ....................     delay_us(60); // Reset time
 005A6:  MOVLW  3C
-005A8:  MOVWF  xDF
+005A8:  MOVWF  xE0
 005AA:  BRA    0548
 005AC:  RETURN 0
 .................... }
@@ -2505,19 +2537,18 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... 
 .................... #define BUZZER_PIN      PIN_C5                                                  // Buzzer //
 .................... 
-.................... #define PROTECT_BT      PIN_A2                                                 // Switch de protection pour mode normal / test //
-.................... #define MISE_ZERO       PIN_D3                                                  //uniquement pour la mise à 0 de la pin//
+.................... #define PROTECT_BT      PIN_C7                                                  // Switch de protection pour mode normal / test (changée pour C7, à vérifier) //
+.................... #define MISE_ZERO       PIN_D3                                                  // Uniquement pour la mise à 0 de la pin //                                                                             // Inter 1,2 and final //
 .................... 
-.................... #define PIN_1_Q         PIN_D1                                                  // Inter 1,2 and final // 
-.................... #define PIN_1_QI        PIN_A4 
+.................... #define PIN_1_Q         PIN_D1                                                  // Inter 1 branché sur le connecteur J31 // 
+.................... #define PIN_1_QI        PIN_A4  
 .................... 
-.................... #define PIN_2_Q         PIN_D2
+.................... #define PIN_2_Q         PIN_D2                                                  // Inter 2 branché sur le connecteur J32 //
 .................... #define PIN_2_QI        PIN_A3
 .................... 
-.................... //#define FINAL_PIN_Q     PIN_D0
-.................... //#define FINAL_PIN_QI    PIN_A5
-.................... #define FINAL_PIN_Q     PIN_D4
-.................... #define FINAL_PIN_QI    PIN_A1
+.................... #define FINAL_PIN_Q     PIN_D0                                                  // Final branché sur le connecteur J30 //
+.................... #define FINAL_PIN_QI    PIN_A5
+.................... 
 .................... 
 .................... #define MULTIPLEXER_SELECT_PIN_1  PIN_B0
 .................... #define MULTIPLEXER_SELECT_PIN_2  PIN_B1
@@ -2541,9 +2572,9 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... //DÉFINITION DES BONUS POUR TESTS
 .................... //==============================================================================
 .................... 
-.................... #define AUTOMATIQUE                                                             // à mettre en commentaire pour mode normal //
+.................... #define AUTOMATIQUE                                                             // Mise à la main des bonus pour le mode test //
 .................... 
-.................... #define BONUS_LEVER_1       0                                                   // Tout doit être à 1 pour que ce soit le plus rapide
+.................... #define BONUS_LEVER_1       0                                                   // Tout doit être à 1 pour que ce soit le plus rapide //
 .................... #define BONUS_LEVER_2       0
 .................... #define BONUS_ELEVATOR_1    1
 .................... #define BONUS_ELEVATOR_2    1
@@ -2594,17 +2625,17 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 001C6:  INCF   5E,F
 .................... 
 ....................         if(counter % 10 == 0)
-001C8:  MOVFF  5E,EA
-001CC:  MOVFF  5D,E9
-001D0:  CLRF   xEC
+001C8:  MOVFF  5E,EB
+001CC:  MOVFF  5D,EA
+001D0:  CLRF   xED
 001D2:  MOVLW  0A
-001D4:  MOVWF  xEB
+001D4:  MOVWF  xEC
 001D6:  RCALL  016E
-001D8:  MOVFF  00,E9
-001DC:  MOVFF  03,EA
-001E0:  MOVF   xE9,F
+001D8:  MOVFF  00,EA
+001DC:  MOVFF  03,EB
+001E0:  MOVF   xEA,F
 001E2:  BNZ   01EC
-001E4:  MOVF   xEA,F
+001E4:  MOVF   xEB,F
 001E6:  BNZ   01EC
 ....................         {
 ....................             toDisplay = 1;  
@@ -2652,7 +2683,7 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... {
 ....................     switch(channel) 
 *
-0023C:  MOVF   xD7,W
+0023C:  MOVF   xD8,W
 0023E:  ADDLW  FC
 00240:  BC    026E
 00242:  ADDLW  04
@@ -2706,96 +2737,96 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... 
 .................... void main()
 *
-00BC6:  CLRF   FF8
-00BC8:  BCF    FF2.5
-00BCA:  BSF    07.7
-00BCC:  MOVLB  E
-00BCE:  MOVLW  55
-00BD0:  MOVWF  x9B
-00BD2:  MOVLW  AA
-00BD4:  MOVWF  x9B
-00BD6:  BCF    x9B.0
-00BD8:  MOVLW  11
-00BDA:  MOVWF  xB0
-00BDC:  MOVLW  0A
-00BDE:  MOVWF  x88
-00BE0:  MOVLW  0B
-00BE2:  MOVWF  xEE
-00BE4:  MOVLW  09
-00BE6:  MOVWF  xF2
-00BE8:  MOVLW  55
-00BEA:  MOVWF  x9B
-00BEC:  MOVLW  AA
-00BEE:  MOVWF  x9B
-00BF0:  BSF    x9B.0
-00BF2:  BSF    F9E.3
-00BF4:  MOVLW  82
-00BF6:  MOVWF  F9A
-00BF8:  MOVLW  06
-00BFA:  MOVWF  F9B
-00BFC:  MOVLW  A6
-00BFE:  MOVWF  F9D
-00C00:  MOVLW  90
-00C02:  MOVWF  F9C
-00C04:  CLRF   44
-00C06:  CLRF   45
-00C08:  CLRF   46
-00C0A:  CLRF   47
-00C0C:  BSF    x9A.3
-00C0E:  MOVLW  82
-00C10:  MOVWF  x96
-00C12:  MOVLW  06
-00C14:  MOVWF  x97
-00C16:  MOVLW  A6
-00C18:  MOVWF  x99
-00C1A:  MOVLW  90
-00C1C:  MOVWF  x98
-00C1E:  CLRF   51
-00C20:  CLRF   53
-00C22:  CLRF   52
-00C24:  CLRF   54
-00C26:  CLRF   55
-00C28:  CLRF   56
-00C2A:  CLRF   57
-00C2C:  CLRF   58
-00C2E:  CLRF   5A
-00C30:  CLRF   59
-00C32:  CLRF   5C
-00C34:  CLRF   5B
-00C36:  CLRF   5E
-00C38:  CLRF   5D
-00C3A:  MOVLB  F
-00C3C:  CLRF   x0C
-00C3E:  CLRF   x14
-00C40:  CLRF   x1C
-00C42:  CLRF   x21
-00C44:  CLRF   x29
-00C46:  CLRF   x35
-00C48:  CLRF   x36
-00C4A:  CLRF   x37
-00C4C:  CLRF   x34
-00C4E:  CLRF   x31
-00C50:  CLRF   x32
-00C52:  CLRF   x33
-00C54:  CLRF   x30
+00BE8:  CLRF   FF8
+00BEA:  BCF    FF2.5
+00BEC:  BSF    07.7
+00BEE:  MOVLB  E
+00BF0:  MOVLW  55
+00BF2:  MOVWF  x9B
+00BF4:  MOVLW  AA
+00BF6:  MOVWF  x9B
+00BF8:  BCF    x9B.0
+00BFA:  MOVLW  11
+00BFC:  MOVWF  xB0
+00BFE:  MOVLW  0A
+00C00:  MOVWF  x88
+00C02:  MOVLW  0B
+00C04:  MOVWF  xEE
+00C06:  MOVLW  09
+00C08:  MOVWF  xF2
+00C0A:  MOVLW  55
+00C0C:  MOVWF  x9B
+00C0E:  MOVLW  AA
+00C10:  MOVWF  x9B
+00C12:  BSF    x9B.0
+00C14:  BSF    F9E.3
+00C16:  MOVLW  82
+00C18:  MOVWF  F9A
+00C1A:  MOVLW  06
+00C1C:  MOVWF  F9B
+00C1E:  MOVLW  A6
+00C20:  MOVWF  F9D
+00C22:  MOVLW  90
+00C24:  MOVWF  F9C
+00C26:  CLRF   44
+00C28:  CLRF   45
+00C2A:  CLRF   46
+00C2C:  CLRF   47
+00C2E:  BSF    x9A.3
+00C30:  MOVLW  82
+00C32:  MOVWF  x96
+00C34:  MOVLW  06
+00C36:  MOVWF  x97
+00C38:  MOVLW  A6
+00C3A:  MOVWF  x99
+00C3C:  MOVLW  90
+00C3E:  MOVWF  x98
+00C40:  CLRF   51
+00C42:  CLRF   53
+00C44:  CLRF   52
+00C46:  CLRF   54
+00C48:  CLRF   55
+00C4A:  CLRF   56
+00C4C:  CLRF   57
+00C4E:  CLRF   58
+00C50:  CLRF   5A
+00C52:  CLRF   59
+00C54:  CLRF   5C
+00C56:  CLRF   5B
+00C58:  CLRF   5E
+00C5A:  CLRF   5D
+00C5C:  MOVLB  F
+00C5E:  CLRF   x0C
+00C60:  CLRF   x14
+00C62:  CLRF   x1C
+00C64:  CLRF   x21
+00C66:  CLRF   x29
+00C68:  CLRF   x35
+00C6A:  CLRF   x36
+00C6C:  CLRF   x37
+00C6E:  CLRF   x34
+00C70:  CLRF   x31
+00C72:  CLRF   x32
+00C74:  CLRF   x33
+00C76:  CLRF   x30
 .................... {    
 ....................     delay_ms(2000);
-00C56:  MOVLW  08
-00C58:  MOVLB  0
-00C5A:  MOVWF  xD7
-00C5C:  MOVLW  FA
-00C5E:  MOVWF  xD8
-00C60:  CALL   0214
-00C64:  DECFSZ xD7,F
-00C66:  BRA    0C5C
+00C78:  MOVLW  08
+00C7A:  MOVLB  0
+00C7C:  MOVWF  xD8
+00C7E:  MOVLW  FA
+00C80:  MOVWF  xD9
+00C82:  CALL   0214
+00C86:  DECFSZ xD8,F
+00C88:  BRA    0C7E
 ....................     
 ....................     //== INITIALISATION BONUS ==//
-....................     enable_interrupts(INT_RDA);
-00C68:  MOVLB  E
-00C6A:  BSF    xC0.5
+....................     enable_interrupts(INT_RDA); 
+00C8A:  MOVLB  E
+00C8C:  BSF    xC0.5
 ....................     enable_interrupts(GLOBAL);
-00C6C:  MOVLW  C0
-00C6E:  IORWF  FF2,F
+00C8E:  MOVLW  C0
+00C90:  IORWF  FF2,F
 ....................     
 ....................     //== DÉCLARATION DES VARIABLES ==//                                                 
 ....................     int16 stopTime = 0;                                                         // Sauvegarde temps tournant //
@@ -2805,6 +2836,8 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 ....................     int8 state = 0;                                                             // État // 
 ....................     
 ....................     int8 zero = 0;                                                              // Reset de l'affichage du chrono //
+....................     
+....................     int8 backup = 1;                                                            //VARIABLE A METTRE A 1 SI L'ACCELERATEUR NE MARCHE PLUS
 ....................     
 ....................     char r = 'r';                                                               // Sert à mettre la bonne couleur aux feux //
 ....................     char g = 'g';
@@ -2849,199 +2882,201 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 ....................     
 ....................     //== FLANCS DESCENDANTS ==//                         
 ....................     int8 prevBuzzer = 0;       
-00C70:  MOVLB  0
-00C72:  CLRF   xA8
-00C74:  CLRF   xA7
-00C76:  CLRF   xAA
-00C78:  CLRF   xA9
-00C7A:  CLRF   xAC
-00C7C:  CLRF   xAB
-00C7E:  CLRF   xAD
-00C80:  CLRF   xAE
-00C82:  MOVLW  72
-00C84:  MOVWF  xAF
-00C86:  MOVLW  67
-00C88:  MOVWF  xB0
-00C8A:  CLRF   xB1
-00C8C:  CLRF   xB2
-00C8E:  CLRF   xB3
-00C90:  CLRF   xB4
-00C92:  CLRF   xB5
-00C94:  CLRF   xB6
-00C96:  CLRF   xB7
-00C98:  CLRF   xB8
-00C9A:  CLRF   xB9
-00C9C:  CLRF   xBA
-00C9E:  CLRF   xBB
-00CA0:  CLRF   xBD
-00CA2:  CLRF   xBC
-00CA4:  CLRF   xBE
-00CA6:  CLRF   xBF
-00CA8:  CLRF   xC0
-00CAA:  CLRF   xC1
-00CAC:  CLRF   xC2
-00CAE:  CLRF   xC3
-00CB0:  CLRF   xC4
-00CB2:  CLRF   xC5
-00CB4:  CLRF   xC6
-00CB6:  CLRF   xC7
-00CB8:  CLRF   xC8
-00CBA:  CLRF   xC9
-00CBC:  CLRF   xCA
-00CBE:  CLRF   xCB
-00CC0:  CLRF   xCC
-00CC2:  CLRF   xCD
-00CC4:  CLRF   xCE
-00CC6:  CLRF   xCF
+00C92:  MOVLB  0
+00C94:  CLRF   xA8
+00C96:  CLRF   xA7
+00C98:  CLRF   xAA
+00C9A:  CLRF   xA9
+00C9C:  CLRF   xAC
+00C9E:  CLRF   xAB
+00CA0:  CLRF   xAD
+00CA2:  CLRF   xAE
+00CA4:  MOVLW  01
+00CA6:  MOVWF  xAF
+00CA8:  MOVLW  72
+00CAA:  MOVWF  xB0
+00CAC:  MOVLW  67
+00CAE:  MOVWF  xB1
+00CB0:  CLRF   xB2
+00CB2:  CLRF   xB3
+00CB4:  CLRF   xB4
+00CB6:  CLRF   xB5
+00CB8:  CLRF   xB6
+00CBA:  CLRF   xB7
+00CBC:  CLRF   xB8
+00CBE:  CLRF   xB9
+00CC0:  CLRF   xBA
+00CC2:  CLRF   xBB
+00CC4:  CLRF   xBC
+00CC6:  CLRF   xBE
+00CC8:  CLRF   xBD
+00CCA:  CLRF   xBF
+00CCC:  CLRF   xC0
+00CCE:  CLRF   xC1
+00CD0:  CLRF   xC2
+00CD2:  CLRF   xC3
+00CD4:  CLRF   xC4
+00CD6:  CLRF   xC5
+00CD8:  CLRF   xC6
+00CDA:  CLRF   xC7
+00CDC:  CLRF   xC8
+00CDE:  CLRF   xC9
+00CE0:  CLRF   xCA
+00CE2:  CLRF   xCB
+00CE4:  CLRF   xCC
+00CE6:  CLRF   xCD
+00CE8:  CLRF   xCE
+00CEA:  CLRF   xCF
+00CEC:  CLRF   xD0
 ....................     
 ....................     //== INITIALISATION TIMER ==//      
 ....................     setup_timer_0(T0_INTERNAL|T0_DIV_4);                                        // Fosc/4, divisé par 4 //
-00CC8:  MOVLW  90
-00CCA:  MOVWF  FD4
-00CCC:  MOVLW  42
-00CCE:  MOVWF  FD5
+00CEE:  MOVLW  90
+00CF0:  MOVWF  FD4
+00CF2:  MOVLW  42
+00CF4:  MOVWF  FD5
 ....................     set_timer0(25536);
-00CD0:  BTFSS  FD4.4
-00CD2:  BRA    0CD8
-00CD4:  MOVLW  63
-00CD6:  MOVWF  FD3
-00CD8:  MOVLW  C0
-00CDA:  MOVWF  FD2
+00CF6:  BTFSS  FD4.4
+00CF8:  BRA    0CFE
+00CFA:  MOVLW  63
+00CFC:  MOVWF  FD3
+00CFE:  MOVLW  C0
+00D00:  MOVWF  FD2
 ....................     enable_interrupts(INT_TIMER0);
-00CDC:  MOVLB  E
-00CDE:  BSF    xBD.5
+00D02:  MOVLB  E
+00D04:  BSF    xBD.5
 ....................     enable_interrupts(GLOBAL);
-00CE0:  IORWF  FF2,F
+00D06:  IORWF  FF2,F
 ....................     
 ....................     //== INITIALISATION CHRONOMÈTRE ==//
 ....................     select_multiplexer_channel(0);
-00CE2:  MOVLB  0
-00CE4:  CLRF   xD7
-00CE6:  CALL   023C
+00D08:  MOVLB  0
+00D0A:  CLRF   xD8
+00D0C:  CALL   023C
 ....................     ComDisplay_Color(COLOR_RED);
-00CEA:  CLRF   xD7
-00CEC:  CALL   02C6
+00D10:  CLRF   xD8
+00D12:  CALL   02C6
 ....................     ComDisplay_Mode(MODE_RUNNING_TIME); 
-00CF0:  MOVLW  01
-00CF2:  MOVWF  xD7
-00CF4:  CALL   032A
+00D16:  MOVLW  01
+00D18:  MOVWF  xD8
+00D1A:  CALL   032A
 ....................        
 ....................     //== INITIALISATION FEUX ==//
 ....................     delay_ms(5);
-00CF8:  MOVLW  05
-00CFA:  MOVWF  xD8
-00CFC:  CALL   0214
+00D1E:  MOVLW  05
+00D20:  MOVWF  xD9
+00D22:  CALL   0214
 ....................     select_multiplexer_channel(1);
-00D00:  MOVLW  01
-00D02:  MOVWF  xD7
-00D04:  CALL   023C
+00D26:  MOVLW  01
+00D28:  MOVWF  xD8
+00D2A:  CALL   023C
 ....................     delay_ms(5);
-00D08:  MOVLW  05
-00D0A:  MOVWF  xD8
-00D0C:  CALL   0214
+00D2E:  MOVLW  05
+00D30:  MOVWF  xD9
+00D32:  CALL   0214
 ....................     ComFeuAnim(0);
-00D10:  CLRF   xD7
-00D12:  CALL   0352
+00D36:  CLRF   xD8
+00D38:  CALL   0352
 ....................     delay_ms(5);
-00D16:  MOVLW  05
-00D18:  MOVWF  xD8
-00D1A:  CALL   0214
+00D3C:  MOVLW  05
+00D3E:  MOVWF  xD9
+00D40:  CALL   0214
 ....................     
 ....................     //== INITIALISATION MUSIQUE ==//
 ....................     select_multiplexer_channel(2);
-00D1E:  MOVLW  02
-00D20:  MOVWF  xD7
-00D22:  CALL   023C
+00D44:  MOVLW  02
+00D46:  MOVWF  xD8
+00D48:  CALL   023C
 ....................     DFPlayer_Init();
-00D26:  GOTO   03DE
+00D4C:  GOTO   03DE
 ....................     delay_ms(5);
-00D2A:  MOVLW  05
-00D2C:  MOVWF  xD8
-00D2E:  CALL   0214
+00D50:  MOVLW  05
+00D52:  MOVWF  xD9
+00D54:  CALL   0214
 ....................     DFPlayer_PlaySongNb(1);
-00D32:  MOVLW  01
-00D34:  MOVWF  xD7
-00D36:  CALL   03C0
+00D58:  MOVLW  01
+00D5A:  MOVWF  xD8
+00D5C:  CALL   03C0
 ....................     delay_ms(5);
-00D3A:  MOVLW  05
-00D3C:  MOVWF  xD8
-00D3E:  CALL   0214
+00D60:  MOVLW  05
+00D62:  MOVWF  xD9
+00D64:  CALL   0214
 ....................     
 ....................     //== MISE HORS TENSION DES CELLULES ==//
 ....................     setup_mcp23017();
-00D42:  CALL   04B2
+00D68:  CALL   04B2
 ....................     set_gpb7_low();
-00D46:  CALL   04C2
+00D6C:  CALL   04C2
 ....................     delay_ms(5);
-00D4A:  MOVLW  05
-00D4C:  MOVWF  xD8
-00D4E:  CALL   0214
+00D70:  MOVLW  05
+00D72:  MOVWF  xD9
+00D74:  CALL   0214
 ....................     
 ....................     //== INITIALISATION MULTIPLEXEUR ==//
 ....................     output_bit(MULTIPLEXER_SELECT_PIN_1 , 0);
-00D52:  BCF    F83.0
-00D54:  BCF    F88.0
+00D78:  BCF    F83.0
+00D7A:  BCF    F88.0
 ....................     output_bit(MULTIPLEXER_SELECT_PIN_2 , 0);
-00D56:  BCF    F83.1
-00D58:  BCF    F88.1
+00D7C:  BCF    F83.1
+00D7E:  BCF    F88.1
 ....................     
 ....................     //== INITIALISATION PROGRAMME PRINCIPAL ==//
 ....................     state = STARTING;
-00D5A:  MOVLW  01
-00D5C:  MOVWF  xAD
+00D80:  MOVLW  01
+00D82:  MOVWF  xAD
 ....................     
 ....................     //== DÉBUT BOUCLE INFINIE ==//
 ....................     while(TRUE)
 ....................     { 
 ....................         //== LECTURE DES ENTRÉES ==//        
 ....................         buzzer = input(BUZZER_PIN);
-00D5E:  BSF    F89.5
-00D60:  CLRF   xB1
-00D62:  BTFSC  F8E.5
-00D64:  INCF   xB1,F
+00D84:  BSF    F89.5
+00D86:  CLRF   xB2
+00D88:  BTFSC  F8E.5
+00D8A:  INCF   xB2,F
 ....................         protection_bt = input(PROTECT_BT);
-00D66:  BSF    F87.2
-00D68:  CLRF   xB2
-00D6A:  BTFSC  F8C.2
-00D6C:  INCF   xB2,F
+00D8C:  BSF    F89.7
+00D8E:  CLRF   xB3
+00D90:  BTFSC  F8E.7
+00D92:  INCF   xB3,F
 ....................         forcer_zero = input(MISE_ZERO);
-00D6E:  BSF    F8A.3
-00D70:  CLRF   xB3
-00D72:  BTFSC  F8F.3
-00D74:  INCF   xB3,F
+00D94:  BSF    F8A.3
+00D96:  CLRF   xB4
+00D98:  BTFSC  F8F.3
+00D9A:  INCF   xB4,F
 ....................         
 ....................         inter1Q = input(PIN_1_Q);
-00D76:  BSF    F8A.1
-00D78:  CLRF   xB4
-00D7A:  BTFSC  F8F.1
-00D7C:  INCF   xB4,F
+00D9C:  BSF    F8A.1
+00D9E:  CLRF   xB5
+00DA0:  BTFSC  F8F.1
+00DA2:  INCF   xB5,F
 ....................         inter1QI = input(PIN_1_QI);
-00D7E:  BSF    F87.4
-00D80:  CLRF   xB5
-00D82:  BTFSC  F8C.4
-00D84:  INCF   xB5,F
+00DA4:  BSF    F87.4
+00DA6:  CLRF   xB6
+00DA8:  BTFSC  F8C.4
+00DAA:  INCF   xB6,F
 ....................         
 ....................         inter2Q = input(PIN_2_Q);
-00D86:  BSF    F8A.2
-00D88:  CLRF   xB7
-00D8A:  BTFSC  F8F.2
-00D8C:  INCF   xB7,F
+00DAC:  BSF    F8A.2
+00DAE:  CLRF   xB8
+00DB0:  BTFSC  F8F.2
+00DB2:  INCF   xB8,F
 ....................         inter2QI = input(PIN_2_QI);
-00D8E:  BSF    F87.3
-00D90:  CLRF   xB8
-00D92:  BTFSC  F8C.3
-00D94:  INCF   xB8,F
+00DB4:  BSF    F87.3
+00DB6:  CLRF   xB9
+00DB8:  BTFSC  F8C.3
+00DBA:  INCF   xB9,F
 ....................         
 ....................         finalSignalQ = input(FINAL_PIN_Q);
-00D96:  BSF    F8A.4
-00D98:  CLRF   xBA
-00D9A:  BTFSC  F8F.4
-00D9C:  INCF   xBA,F
+00DBC:  BSF    F8A.0
+00DBE:  CLRF   xBB
+00DC0:  BTFSC  F8F.0
+00DC2:  INCF   xBB,F
 ....................         finalSignalQI = input(FINAL_PIN_QI);
-00D9E:  BSF    F87.1
-00DA0:  CLRF   xBB
-00DA2:  BTFSC  F8C.1
-00DA4:  INCF   xBB,F
+00DC4:  BSF    F87.5
+00DC6:  CLRF   xBC
+00DC8:  BTFSC  F8C.5
+00DCA:  INCF   xBC,F
 .................... 
 ....................         
 .................... //==============================================================================        
@@ -3049,216 +3084,216 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... //==============================================================================
 ....................         
 ....................         switch (state)
-00DA6:  MOVLW  01
-00DA8:  SUBWF  xAD,W
-00DAA:  ADDLW  F8
-00DAC:  BTFSC  FD8.0
-00DAE:  GOTO   1BBC
-00DB2:  ADDLW  08
-00DB4:  GOTO   1BD6
-....................         {         
+00DCC:  MOVLW  01
+00DCE:  SUBWF  xAD,W
+00DD0:  ADDLW  F8
+00DD2:  BTFSC  FD8.0
+00DD4:  GOTO   1C04
+00DD8:  ADDLW  08
+00DDA:  GOTO   1C1E
+....................         {
 ....................             
 ....................             case STARTING:                                                      // Reset de toutes les valeurs //
 ....................                 
 ....................                 forcer_zero = 0;                                                //mise à 0 de la pin A1 pour que le switch de mode aie un GND proche//
-00DB8:  CLRF   xB3
+00DDE:  CLRF   xB4
 ....................                 
 ....................                 for (int i = 0; i < WS2812_LED_COUNT; i++)                      // Extinction du buzzer //
-00DBA:  CLRF   xD0
-00DBC:  MOVF   xD0,W
-00DBE:  SUBLW  17
-00DC0:  BNC   0DF6
+00DE0:  CLRF   xD1
+00DE2:  MOVF   xD1,W
+00DE4:  SUBLW  17
+00DE6:  BNC   0E1C
 ....................             {
 ....................                 red_array[i] = 0;
-00DC2:  CLRF   03
-00DC4:  MOVF   xD0,W
-00DC6:  ADDLW  5F
-00DC8:  MOVWF  FE9
-00DCA:  MOVLW  00
-00DCC:  ADDWFC 03,W
-00DCE:  MOVWF  FEA
-00DD0:  CLRF   FEF
+00DE8:  CLRF   03
+00DEA:  MOVF   xD1,W
+00DEC:  ADDLW  5F
+00DEE:  MOVWF  FE9
+00DF0:  MOVLW  00
+00DF2:  ADDWFC 03,W
+00DF4:  MOVWF  FEA
+00DF6:  CLRF   FEF
 ....................                 green_array[i] = 0;
-00DD2:  CLRF   03
-00DD4:  MOVF   xD0,W
-00DD6:  ADDLW  77
-00DD8:  MOVWF  FE9
-00DDA:  MOVLW  00
-00DDC:  ADDWFC 03,W
-00DDE:  MOVWF  FEA
-00DE0:  CLRF   FEF
+00DF8:  CLRF   03
+00DFA:  MOVF   xD1,W
+00DFC:  ADDLW  77
+00DFE:  MOVWF  FE9
+00E00:  MOVLW  00
+00E02:  ADDWFC 03,W
+00E04:  MOVWF  FEA
+00E06:  CLRF   FEF
 ....................                 blue_array[i] = 0;
-00DE2:  CLRF   03
-00DE4:  MOVF   xD0,W
-00DE6:  ADDLW  8F
-00DE8:  MOVWF  FE9
-00DEA:  MOVLW  00
-00DEC:  ADDWFC 03,W
-00DEE:  MOVWF  FEA
-00DF0:  CLRF   FEF
-00DF2:  INCF   xD0,F
-00DF4:  BRA    0DBC
+00E08:  CLRF   03
+00E0A:  MOVF   xD1,W
+00E0C:  ADDLW  8F
+00E0E:  MOVWF  FE9
+00E10:  MOVLW  00
+00E12:  ADDWFC 03,W
+00E14:  MOVWF  FEA
+00E16:  CLRF   FEF
+00E18:  INCF   xD1,F
+00E1A:  BRA    0DE2
 ....................             }
 ....................              
 ....................             ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
-00DF6:  CLRF   xD8
-00DF8:  MOVLW  5F
-00DFA:  MOVWF  xD7
-00DFC:  CLRF   xDA
-00DFE:  MOVLW  77
-00E00:  MOVWF  xD9
-00E02:  CLRF   xDC
-00E04:  MOVLW  8F
-00E06:  MOVWF  xDB
-00E08:  MOVLW  18
-00E0A:  MOVWF  xDD
-00E0C:  CALL   0568
+00E1C:  CLRF   xD9
+00E1E:  MOVLW  5F
+00E20:  MOVWF  xD8
+00E22:  CLRF   xDB
+00E24:  MOVLW  77
+00E26:  MOVWF  xDA
+00E28:  CLRF   xDD
+00E2A:  MOVLW  8F
+00E2C:  MOVWF  xDC
+00E2E:  MOVLW  18
+00E30:  MOVWF  xDE
+00E32:  CALL   0568
 ....................                       
 ....................                 
 ....................                 setup_mcp23017();
-00E10:  CALL   04B2
+00E36:  CALL   04B2
 ....................                 set_gpb7_low();
-00E14:  CALL   04C2
+00E3A:  CALL   04C2
 ....................                 
 ....................                 bonus_activator();
-00E18:  RCALL  0672
+00E3E:  RCALL  0672
 ....................                 deactivate_bonus_1_lever();
-00E1A:  RCALL  0684
+00E40:  RCALL  0684
 ....................                 deactivate_bonus_2_lever();  
-00E1C:  RCALL  0694
+00E42:  RCALL  0694
 ....................                 deactivate_bonus_3_lever();
-00E1E:  RCALL  06A4
+00E44:  RCALL  06A4
 ....................                 deactivate_bonus_4_elevator();
-00E20:  RCALL  06B4
+00E46:  RCALL  06B4
 ....................                 deactivate_bonus_5_elevator();
-00E22:  RCALL  06C4
+00E48:  RCALL  06C4
 ....................                 deactivate_bonus_6_blower();
-00E24:  RCALL  06D4
+00E4A:  RCALL  06D4
 ....................                 deactivate_bonus_7_blower();
-00E26:  RCALL  06E4
+00E4C:  RCALL  06E4
 ....................                 deactivate_bonus_8_startBlower();
-00E28:  RCALL  06F4
+00E4E:  RCALL  06F4
 .................... 
 ....................                 select_multiplexer_channel(2);
-00E2A:  MOVLW  02
-00E2C:  MOVWF  xD7
-00E2E:  CALL   023C
+00E50:  MOVLW  02
+00E52:  MOVWF  xD8
+00E54:  CALL   023C
 ....................                 DFPlayer_PlaySongNb(1);
-00E32:  MOVLW  01
-00E34:  MOVWF  xD7
-00E36:  CALL   03C0
+00E58:  MOVLW  01
+00E5A:  MOVWF  xD8
+00E5C:  CALL   03C0
 ....................                 delay_ms(5);
-00E3A:  MOVLW  05
-00E3C:  MOVWF  xD8
-00E3E:  CALL   0214
+00E60:  MOVLW  05
+00E62:  MOVWF  xD9
+00E64:  CALL   0214
 ....................                 
 ....................                 counterActivator = 0;
-00E42:  CLRF   57
+00E68:  CLRF   57
 ....................                 counter = 0;
-00E44:  CLRF   5E
-00E46:  CLRF   5D
+00E6A:  CLRF   5E
+00E6C:  CLRF   5D
 ....................                 secondaryCounterActivator = 0;
-00E48:  CLRF   56
+00E6E:  CLRF   56
 ....................                 secondaryCounter = 0;
-00E4A:  CLRF   5C
-00E4C:  CLRF   5B
+00E70:  CLRF   5C
+00E72:  CLRF   5B
 ....................                 
 ....................                 byteNumber = 0;
-00E4E:  CLRF   47
+00E74:  CLRF   47
 ....................                 
 ....................                 elevatorBonus = 0;
-00E50:  CLRF   45
+00E76:  CLRF   45
 ....................                 bonusFull = 0;
-00E52:  CLRF   44
+00E78:  CLRF   44
 ....................                 bonusBlock = 0;
-00E54:  CLRF   46
+00E7A:  CLRF   46
 ....................                 
 ....................                 bonusLever1 = 0;
-00E56:  CLRF   xBF
+00E7C:  CLRF   xC0
 ....................                 bonusLever2 = 0;
-00E58:  CLRF   xC0
+00E7E:  CLRF   xC1
 ....................                 bonusElevator1 = 0;
-00E5A:  CLRF   xC1
+00E80:  CLRF   xC2
 ....................                 bonusElevator2 = 0;
-00E5C:  CLRF   xC2
+00E82:  CLRF   xC3
 ....................                 bonusXLR8 = 0;
-00E5E:  CLRF   xC3
+00E84:  CLRF   xC4
 ....................                 bonusBlower = 0;
-00E60:  CLRF   xC4
+00E86:  CLRF   xC5
 ....................                 bonus7 = 0;
-00E62:  CLRF   xC5
+00E88:  CLRF   xC6
 ....................                 bonus8 = 0; 
-00E64:  CLRF   xC6
+00E8A:  CLRF   xC7
 ....................                 
 ....................                 carNumber = 0;
-00E66:  CLRF   xBD
-00E68:  CLRF   xBC
+00E8C:  CLRF   xBE
+00E8E:  CLRF   xBD
 ....................                 
 ....................                 stopTime = 0;
-00E6A:  CLRF   xA8
-00E6C:  CLRF   xA7
+00E90:  CLRF   xA8
+00E92:  CLRF   xA7
 ....................                 finalTime = 0;
-00E6E:  CLRF   xAA
-00E70:  CLRF   xA9
+00E94:  CLRF   xAA
+00E96:  CLRF   xA9
 ....................                 reactionTime = 0;
-00E72:  CLRF   xAC
-00E74:  CLRF   xAB
+00E98:  CLRF   xAC
+00E9A:  CLRF   xAB
 ....................                 
 ....................                 delay_ms(5);
-00E76:  MOVLW  05
-00E78:  MOVWF  xD8
-00E7A:  CALL   0214
+00E9C:  MOVLW  05
+00E9E:  MOVWF  xD9
+00EA0:  CALL   0214
 ....................                 select_multiplexer_channel(0);
-00E7E:  CLRF   xD7
-00E80:  CALL   023C
+00EA4:  CLRF   xD8
+00EA6:  CALL   023C
 ....................                 ComDisplay_Time(zero, zero);                                    // Affiche 0:0 sur l'afficheur //
-00E84:  MOVFF  AE,DB
-00E88:  MOVFF  AE,DC
-00E8C:  RCALL  07EE
+00EAA:  MOVFF  AE,DC
+00EAE:  MOVFF  AE,DD
+00EB2:  RCALL  07EE
 ....................                 ComDisplay_Color(COLOR_RED);
-00E8E:  CLRF   xD7
-00E90:  CALL   02C6
+00EB4:  CLRF   xD8
+00EB6:  CALL   02C6
 ....................                 ComDisplay_Mode(MODE_RUNNING_TIME);
-00E94:  MOVLW  01
-00E96:  MOVWF  xD7
-00E98:  CALL   032A
+00EBA:  MOVLW  01
+00EBC:  MOVWF  xD8
+00EBE:  CALL   032A
 ....................                
 ....................                 delay_ms(2000);
-00E9C:  MOVLW  08
-00E9E:  MOVWF  xD7
-00EA0:  MOVLW  FA
-00EA2:  MOVWF  xD8
-00EA4:  CALL   0214
-00EA8:  DECFSZ xD7,F
-00EAA:  BRA    0EA0
+00EC2:  MOVLW  08
+00EC4:  MOVWF  xD8
+00EC6:  MOVLW  FA
+00EC8:  MOVWF  xD9
+00ECA:  CALL   0214
+00ECE:  DECFSZ xD8,F
+00ED0:  BRA    0EC6
 ....................                 select_multiplexer_channel(1);
-00EAC:  MOVLW  01
-00EAE:  MOVWF  xD7
-00EB0:  CALL   023C
+00ED2:  MOVLW  01
+00ED4:  MOVWF  xD8
+00ED6:  CALL   023C
 ....................                 delay_ms(5);
-00EB4:  MOVLW  05
-00EB6:  MOVWF  xD8
-00EB8:  CALL   0214
+00EDA:  MOVLW  05
+00EDC:  MOVWF  xD9
+00EDE:  CALL   0214
 ....................                 ComFeuAnim(1);                                                  // Active animation Feux //
-00EBC:  MOVLW  01
-00EBE:  MOVWF  xD7
-00EC0:  CALL   0352
+00EE2:  MOVLW  01
+00EE4:  MOVWF  xD8
+00EE6:  CALL   0352
 ....................                 
 ....................                 delay_ms(1000);                                                 // Délai pour éviter perturbations //
-00EC4:  MOVLW  04
-00EC6:  MOVWF  xD7
-00EC8:  MOVLW  FA
-00ECA:  MOVWF  xD8
-00ECC:  CALL   0214
-00ED0:  DECFSZ xD7,F
-00ED2:  BRA    0EC8
+00EEA:  MOVLW  04
+00EEC:  MOVWF  xD8
+00EEE:  MOVLW  FA
+00EF0:  MOVWF  xD9
+00EF2:  CALL   0214
+00EF6:  DECFSZ xD8,F
+00EF8:  BRA    0EEE
 ....................                  
 ....................                 state = WAIT;
-00ED4:  MOVLW  02
-00ED6:  MOVWF  xAD
+00EFA:  MOVLW  02
+00EFC:  MOVWF  xAD
 ....................  
 ....................             break;
-00ED8:  GOTO   1BBC
+00EFE:  GOTO   1C04
 .................... 
 .................... //============================================================================//
 .................... 
@@ -3266,431 +3301,431 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 ....................         case WAIT:                                                              // État de stand-by //
 ....................                     
 ....................                 secondaryCounterActivator = 1;
-00EDC:  MOVLW  01
-00EDE:  MOVWF  56
+00F02:  MOVLW  01
+00F04:  MOVWF  56
 ....................                 if(protection_bt == 0)
-00EE0:  MOVF   xB2,F
-00EE2:  BTFSS  FD8.2
-00EE4:  BRA    1000
+00F06:  MOVF   xB3,F
+00F08:  BTFSS  FD8.2
+00F0A:  BRA    1026
 ....................                 {
 ....................                     //== MODE TEST == //                                        // Pour les différents test avant les portes ouvertes //
 ....................                     
 ....................                     if(buzzer == 0 && prevBuzzer == 1)
-00EE6:  MOVF   xB1,F
-00EE8:  BTFSS  FD8.2
-00EEA:  BRA    0FFE
-00EEC:  DECFSZ xCF,W
-00EEE:  BRA    0FFE
+00F0C:  MOVF   xB2,F
+00F0E:  BTFSS  FD8.2
+00F10:  BRA    1024
+00F12:  DECFSZ xD0,W
+00F14:  BRA    1024
 ....................                     {      
 ....................                         for (int i = 0; i < WS2812_LED_COUNT; i++)                          // Éclairage en rouge du buzzer //
-00EF0:  CLRF   xD1
-00EF2:  MOVF   xD1,W
-00EF4:  SUBLW  17
-00EF6:  BNC   0F2C
+00F16:  CLRF   xD2
+00F18:  MOVF   xD2,W
+00F1A:  SUBLW  17
+00F1C:  BNC   0F52
 ....................             {
 ....................                 red_array[i] = 255;
-00EF8:  CLRF   03
-00EFA:  MOVF   xD1,W
-00EFC:  ADDLW  5F
-00EFE:  MOVWF  FE9
-00F00:  MOVLW  00
-00F02:  ADDWFC 03,W
-00F04:  MOVWF  FEA
-00F06:  SETF   FEF
+00F1E:  CLRF   03
+00F20:  MOVF   xD2,W
+00F22:  ADDLW  5F
+00F24:  MOVWF  FE9
+00F26:  MOVLW  00
+00F28:  ADDWFC 03,W
+00F2A:  MOVWF  FEA
+00F2C:  SETF   FEF
 ....................                 green_array[i] = 0;
-00F08:  CLRF   03
-00F0A:  MOVF   xD1,W
-00F0C:  ADDLW  77
-00F0E:  MOVWF  FE9
-00F10:  MOVLW  00
-00F12:  ADDWFC 03,W
-00F14:  MOVWF  FEA
-00F16:  CLRF   FEF
+00F2E:  CLRF   03
+00F30:  MOVF   xD2,W
+00F32:  ADDLW  77
+00F34:  MOVWF  FE9
+00F36:  MOVLW  00
+00F38:  ADDWFC 03,W
+00F3A:  MOVWF  FEA
+00F3C:  CLRF   FEF
 ....................                 blue_array[i] = 0;
-00F18:  CLRF   03
-00F1A:  MOVF   xD1,W
-00F1C:  ADDLW  8F
-00F1E:  MOVWF  FE9
-00F20:  MOVLW  00
-00F22:  ADDWFC 03,W
-00F24:  MOVWF  FEA
-00F26:  CLRF   FEF
-00F28:  INCF   xD1,F
-00F2A:  BRA    0EF2
+00F3E:  CLRF   03
+00F40:  MOVF   xD2,W
+00F42:  ADDLW  8F
+00F44:  MOVWF  FE9
+00F46:  MOVLW  00
+00F48:  ADDWFC 03,W
+00F4A:  MOVWF  FEA
+00F4C:  CLRF   FEF
+00F4E:  INCF   xD2,F
+00F50:  BRA    0F18
 ....................             }
 ....................             ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
-00F2C:  CLRF   xD8
-00F2E:  MOVLW  5F
-00F30:  MOVWF  xD7
-00F32:  CLRF   xDA
-00F34:  MOVLW  77
-00F36:  MOVWF  xD9
-00F38:  CLRF   xDC
-00F3A:  MOVLW  8F
-00F3C:  MOVWF  xDB
-00F3E:  MOVLW  18
-00F40:  MOVWF  xDD
-00F42:  CALL   0568
+00F52:  CLRF   xD9
+00F54:  MOVLW  5F
+00F56:  MOVWF  xD8
+00F58:  CLRF   xDB
+00F5A:  MOVLW  77
+00F5C:  MOVWF  xDA
+00F5E:  CLRF   xDD
+00F60:  MOVLW  8F
+00F62:  MOVWF  xDC
+00F64:  MOVLW  18
+00F66:  MOVWF  xDE
+00F68:  CALL   0568
 .................... 
 ....................                         carNumber = (rxBuffer[0]-48)*1000 + (rxBuffer[1]-48)*100 + (rxBuffer[2]-48)*10 + rxBuffer[3]-48;                    
-00F46:  MOVLW  30
-00F48:  SUBWF  30,W
-00F4A:  MOVWF  xD8
-00F4C:  CLRF   xDA
-00F4E:  MOVWF  xD9
-00F50:  MOVLW  03
-00F52:  MOVWF  xDC
-00F54:  MOVLW  E8
-00F56:  MOVWF  xDB
-00F58:  RCALL  0818
-00F5A:  MOVFF  02,D8
-00F5E:  MOVFF  01,D7
-00F62:  MOVLW  30
-00F64:  SUBWF  31,W
-00F66:  MULLW  64
-00F68:  MOVF   FF3,W
-00F6A:  ADDWF  xD7,F
-00F6C:  MOVLW  00
-00F6E:  ADDWFC xD8,F
-00F70:  MOVLW  30
-00F72:  SUBWF  32,W
-00F74:  MULLW  0A
-00F76:  MOVF   FF3,W
-00F78:  ADDWF  xD7,F
-00F7A:  MOVLW  00
-00F7C:  ADDWFC xD8,F
-00F7E:  MOVF   33,W
-00F80:  ADDWF  xD7,F
-00F82:  MOVLW  00
-00F84:  ADDWFC xD8,F
-00F86:  MOVLW  30
-00F88:  SUBWF  xD7,W
-00F8A:  MOVWF  xBC
-00F8C:  MOVLW  00
-00F8E:  SUBWFB xD8,W
-00F90:  MOVWF  xBD
+00F6C:  MOVLW  30
+00F6E:  SUBWF  30,W
+00F70:  MOVWF  xD9
+00F72:  CLRF   xDB
+00F74:  MOVWF  xDA
+00F76:  MOVLW  03
+00F78:  MOVWF  xDD
+00F7A:  MOVLW  E8
+00F7C:  MOVWF  xDC
+00F7E:  RCALL  0818
+00F80:  MOVFF  02,D9
+00F84:  MOVFF  01,D8
+00F88:  MOVLW  30
+00F8A:  SUBWF  31,W
+00F8C:  MULLW  64
+00F8E:  MOVF   FF3,W
+00F90:  ADDWF  xD8,F
+00F92:  MOVLW  00
+00F94:  ADDWFC xD9,F
+00F96:  MOVLW  30
+00F98:  SUBWF  32,W
+00F9A:  MULLW  0A
+00F9C:  MOVF   FF3,W
+00F9E:  ADDWF  xD8,F
+00FA0:  MOVLW  00
+00FA2:  ADDWFC xD9,F
+00FA4:  MOVF   33,W
+00FA6:  ADDWF  xD8,F
+00FA8:  MOVLW  00
+00FAA:  ADDWFC xD9,F
+00FAC:  MOVLW  30
+00FAE:  SUBWF  xD8,W
+00FB0:  MOVWF  xBD
+00FB2:  MOVLW  00
+00FB4:  SUBWFB xD9,W
+00FB6:  MOVWF  xBE
 .................... 
 ....................                         bonusLever1     = BONUS_LEVER_1;                        // Bonus de levier 1
-00F92:  CLRF   xBF
+00FB8:  CLRF   xC0
 ....................                         bonusLever2     = BONUS_LEVER_2;                        // Bonus de levier 2
-00F94:  CLRF   xC0
+00FBA:  CLRF   xC1
 ....................                         bonusElevator1  = BONUS_ELEVATOR_1;                     // Bonus de l'ascenseur 1 (temps de montée)
-00F96:  MOVLW  01
-00F98:  MOVWF  xC1
+00FBC:  MOVLW  01
+00FBE:  MOVWF  xC2
 ....................                         bonusElevator2  = BONUS_ELEVATOR_2;                     // Bonus de l'ascenseur 2 (temps de montée)
-00F9A:  MOVWF  xC2
+00FC0:  MOVWF  xC3
 ....................                         bonusXLR8       = BONUS_XLR8;                           // Bonus d'accélération (dans l'accélérateur)
-00F9C:  MOVWF  xC3
+00FC2:  MOVWF  xC4
 ....................                         bonusBlower     = BONUS_BLOWER;                         // Bonus 1ère soufflette
-00F9E:  MOVWF  xC4
+00FC4:  MOVWF  xC5
 ....................                         bonus7          = BONUS_7;                              // Bonus vierge
-00FA0:  MOVWF  xC5
+00FC6:  MOVWF  xC6
 ....................                         bonus8          = BONUS_8;                              // Bonus vierge
-00FA2:  MOVWF  xC6
+00FC8:  MOVWF  xC7
 .................... 
 ....................                         bonusBlock = 1;                     
-00FA4:  MOVWF  46
+00FCA:  MOVWF  46
 .................... 
 ....................                         select_multiplexer_channel(1);
-00FA6:  MOVWF  xD7
-00FA8:  CALL   023C
+00FCC:  MOVWF  xD8
+00FCE:  CALL   023C
 ....................                         ComFeuAnim(0);                                              // Arrête l'animation des feux //
-00FAC:  CLRF   xD7
-00FAE:  CALL   0352
+00FD2:  CLRF   xD8
+00FD4:  CALL   0352
 ....................                         delay_ms(5);
-00FB2:  MOVLW  05
-00FB4:  MOVWF  xD8
-00FB6:  CALL   0214
+00FD8:  MOVLW  05
+00FDA:  MOVWF  xD9
+00FDC:  CALL   0214
 .................... 
 ....................                         ComINF_MessageInfo(1111,1,0000);                            // Envoi message prêt //
-00FBA:  MOVLW  04
-00FBC:  MOVWF  xD8
-00FBE:  MOVLW  57
-00FC0:  MOVWF  xD7
-00FC2:  MOVLW  01
-00FC4:  MOVWF  xD9
-00FC6:  CLRF   xDB
-00FC8:  CLRF   xDA
-00FCA:  RCALL  09AA
+00FE0:  MOVLW  04
+00FE2:  MOVWF  xD9
+00FE4:  MOVLW  57
+00FE6:  MOVWF  xD8
+00FE8:  MOVLW  01
+00FEA:  MOVWF  xDA
+00FEC:  CLRF   xDC
+00FEE:  CLRF   xDB
+00FF0:  RCALL  09AA
 .................... 
 ....................                         secondaryCounter = 0;                                       
-00FCC:  CLRF   5C
-00FCE:  CLRF   5B
+00FF2:  CLRF   5C
+00FF4:  CLRF   5B
 ....................                         secondaryCounterActivator = 0;                              // Reset compteur secondaire pour commencer à 0 //                    
-00FD0:  CLRF   56
+00FF6:  CLRF   56
 .................... 
 ....................                         delay_ms(1000);
-00FD2:  MOVLW  04
-00FD4:  MOVWF  xD7
-00FD6:  MOVLW  FA
-00FD8:  MOVWF  xD8
-00FDA:  CALL   0214
-00FDE:  DECFSZ xD7,F
-00FE0:  BRA    0FD6
+00FF8:  MOVLW  04
+00FFA:  MOVWF  xD8
+00FFC:  MOVLW  FA
+00FFE:  MOVWF  xD9
+01000:  CALL   0214
+01004:  DECFSZ xD8,F
+01006:  BRA    0FFC
 .................... 
 ....................                         select_multiplexer_channel(2);
-00FE2:  MOVLW  02
-00FE4:  MOVWF  xD7
-00FE6:  CALL   023C
+01008:  MOVLW  02
+0100A:  MOVWF  xD8
+0100C:  CALL   023C
 ....................                         //DFPlayer_NextSong(); //2                                    // Change la musique //
 .................... 
 ....................                         delay_ms(1000);                                             // Délai pour éviter perturbations //
-00FEA:  MOVLW  04
-00FEC:  MOVWF  xD7
-00FEE:  MOVLW  FA
-00FF0:  MOVWF  xD8
-00FF2:  CALL   0214
-00FF6:  DECFSZ xD7,F
-00FF8:  BRA    0FEE
+01010:  MOVLW  04
+01012:  MOVWF  xD8
+01014:  MOVLW  FA
+01016:  MOVWF  xD9
+01018:  CALL   0214
+0101C:  DECFSZ xD8,F
+0101E:  BRA    1014
 .................... 
 .................... 
 ....................                         state = READY;
-00FFA:  MOVLW  03
-00FFC:  MOVWF  xAD
+01020:  MOVLW  03
+01022:  MOVWF  xAD
 ....................                     }
 ....................                  }
-00FFE:  BRA    116A
+01024:  BRA    1190
 ....................                 else
 ....................                 {
 ....................                     //== MODE NORMAL ==//                                       // à activer pour les portes ouvertes //
 ....................                     
 ....................                     if(buzzer == 0 && prevBuzzer == 1 && bonusFull == 1)
-01000:  MOVF   xB1,F
-01002:  BTFSS  FD8.2
-01004:  BRA    116A
-01006:  DECFSZ xCF,W
-01008:  BRA    116A
-0100A:  DECFSZ 44,W
-0100C:  BRA    116A
+01026:  MOVF   xB2,F
+01028:  BTFSS  FD8.2
+0102A:  BRA    1190
+0102C:  DECFSZ xD0,W
+0102E:  BRA    1190
+01030:  DECFSZ 44,W
+01032:  BRA    1190
 ....................                     {      
 ....................                         for (int i = 0; i < WS2812_LED_COUNT; i++)              // Éclairage en rouge du buzzer //
-0100E:  CLRF   xD2
-01010:  MOVF   xD2,W
-01012:  SUBLW  17
-01014:  BNC   104A
+01034:  CLRF   xD3
+01036:  MOVF   xD3,W
+01038:  SUBLW  17
+0103A:  BNC   1070
 ....................             {
 ....................                 red_array[i] = 255;
-01016:  CLRF   03
-01018:  MOVF   xD2,W
-0101A:  ADDLW  5F
-0101C:  MOVWF  FE9
-0101E:  MOVLW  00
-01020:  ADDWFC 03,W
-01022:  MOVWF  FEA
-01024:  SETF   FEF
+0103C:  CLRF   03
+0103E:  MOVF   xD3,W
+01040:  ADDLW  5F
+01042:  MOVWF  FE9
+01044:  MOVLW  00
+01046:  ADDWFC 03,W
+01048:  MOVWF  FEA
+0104A:  SETF   FEF
 ....................                 green_array[i] = 0;
-01026:  CLRF   03
-01028:  MOVF   xD2,W
-0102A:  ADDLW  77
-0102C:  MOVWF  FE9
-0102E:  MOVLW  00
-01030:  ADDWFC 03,W
-01032:  MOVWF  FEA
-01034:  CLRF   FEF
+0104C:  CLRF   03
+0104E:  MOVF   xD3,W
+01050:  ADDLW  77
+01052:  MOVWF  FE9
+01054:  MOVLW  00
+01056:  ADDWFC 03,W
+01058:  MOVWF  FEA
+0105A:  CLRF   FEF
 ....................                 blue_array[i] = 0;
-01036:  CLRF   03
-01038:  MOVF   xD2,W
-0103A:  ADDLW  8F
-0103C:  MOVWF  FE9
-0103E:  MOVLW  00
-01040:  ADDWFC 03,W
-01042:  MOVWF  FEA
-01044:  CLRF   FEF
-01046:  INCF   xD2,F
-01048:  BRA    1010
+0105C:  CLRF   03
+0105E:  MOVF   xD3,W
+01060:  ADDLW  8F
+01062:  MOVWF  FE9
+01064:  MOVLW  00
+01066:  ADDWFC 03,W
+01068:  MOVWF  FEA
+0106A:  CLRF   FEF
+0106C:  INCF   xD3,F
+0106E:  BRA    1036
 ....................             }
 ....................             ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
-0104A:  CLRF   xD8
-0104C:  MOVLW  5F
-0104E:  MOVWF  xD7
-01050:  CLRF   xDA
-01052:  MOVLW  77
-01054:  MOVWF  xD9
-01056:  CLRF   xDC
-01058:  MOVLW  8F
-0105A:  MOVWF  xDB
-0105C:  MOVLW  18
-0105E:  MOVWF  xDD
-01060:  CALL   0568
+01070:  CLRF   xD9
+01072:  MOVLW  5F
+01074:  MOVWF  xD8
+01076:  CLRF   xDB
+01078:  MOVLW  77
+0107A:  MOVWF  xDA
+0107C:  CLRF   xDD
+0107E:  MOVLW  8F
+01080:  MOVWF  xDC
+01082:  MOVLW  18
+01084:  MOVWF  xDE
+01086:  CALL   0568
 ....................             
 ....................                         carNumber = (rxBuffer[0]-48)*1000 + (rxBuffer[1]-48)*100 + (rxBuffer[2]-48)*10 + rxBuffer[3]-48;                    
-01064:  MOVLW  30
-01066:  SUBWF  30,W
-01068:  MOVWF  xD8
-0106A:  CLRF   xDA
-0106C:  MOVWF  xD9
-0106E:  MOVLW  03
-01070:  MOVWF  xDC
-01072:  MOVLW  E8
-01074:  MOVWF  xDB
-01076:  CALL   0818
-0107A:  MOVFF  02,D8
-0107E:  MOVFF  01,D7
-01082:  MOVLW  30
-01084:  SUBWF  31,W
-01086:  MULLW  64
-01088:  MOVF   FF3,W
-0108A:  ADDWF  xD7,F
-0108C:  MOVLW  00
-0108E:  ADDWFC xD8,F
-01090:  MOVLW  30
-01092:  SUBWF  32,W
-01094:  MULLW  0A
-01096:  MOVF   FF3,W
-01098:  ADDWF  xD7,F
-0109A:  MOVLW  00
-0109C:  ADDWFC xD8,F
-0109E:  MOVF   33,W
-010A0:  ADDWF  xD7,F
-010A2:  MOVLW  00
-010A4:  ADDWFC xD8,F
-010A6:  MOVLW  30
-010A8:  SUBWF  xD7,W
-010AA:  MOVWF  xBC
-010AC:  MOVLW  00
-010AE:  SUBWFB xD8,W
-010B0:  MOVWF  xBD
+0108A:  MOVLW  30
+0108C:  SUBWF  30,W
+0108E:  MOVWF  xD9
+01090:  CLRF   xDB
+01092:  MOVWF  xDA
+01094:  MOVLW  03
+01096:  MOVWF  xDD
+01098:  MOVLW  E8
+0109A:  MOVWF  xDC
+0109C:  CALL   0818
+010A0:  MOVFF  02,D9
+010A4:  MOVFF  01,D8
+010A8:  MOVLW  30
+010AA:  SUBWF  31,W
+010AC:  MULLW  64
+010AE:  MOVF   FF3,W
+010B0:  ADDWF  xD8,F
+010B2:  MOVLW  00
+010B4:  ADDWFC xD9,F
+010B6:  MOVLW  30
+010B8:  SUBWF  32,W
+010BA:  MULLW  0A
+010BC:  MOVF   FF3,W
+010BE:  ADDWF  xD8,F
+010C0:  MOVLW  00
+010C2:  ADDWFC xD9,F
+010C4:  MOVF   33,W
+010C6:  ADDWF  xD8,F
+010C8:  MOVLW  00
+010CA:  ADDWFC xD9,F
+010CC:  MOVLW  30
+010CE:  SUBWF  xD8,W
+010D0:  MOVWF  xBD
+010D2:  MOVLW  00
+010D4:  SUBWFB xD9,W
+010D6:  MOVWF  xBE
 .................... 
 ....................                         firstNumber         =(rxBuffer[5 ]-48);
-010B2:  MOVLW  30
-010B4:  SUBWF  35,W
-010B6:  MOVWF  xC7
+010D8:  MOVLW  30
+010DA:  SUBWF  35,W
+010DC:  MOVWF  xC8
 ....................                         secondNumber        =(rxBuffer[7 ]-48);
-010B8:  MOVLW  30
-010BA:  SUBWF  37,W
-010BC:  MOVWF  xC8
+010DE:  MOVLW  30
+010E0:  SUBWF  37,W
+010E2:  MOVWF  xC9
 ....................                         thirdNumber         =(rxBuffer[9 ]-48);
-010BE:  MOVLW  30
-010C0:  SUBWF  39,W
-010C2:  MOVWF  xC9
+010E4:  MOVLW  30
+010E6:  SUBWF  39,W
+010E8:  MOVWF  xCA
 ....................                         fourthNumber        =(rxBuffer[11]-48); // 1,1,1,1,1,1,0,0
-010C4:  MOVLW  30
-010C6:  SUBWF  3B,W
-010C8:  MOVWF  xCA
+010EA:  MOVLW  30
+010EC:  SUBWF  3B,W
+010EE:  MOVWF  xCB
 ....................                         fifthNumber         =(rxBuffer[13]-48);
-010CA:  MOVLW  30
-010CC:  SUBWF  3D,W
-010CE:  MOVWF  xCB
+010F0:  MOVLW  30
+010F2:  SUBWF  3D,W
+010F4:  MOVWF  xCC
 ....................                         sixthNumber         =(rxBuffer[15]-48);
-010D0:  MOVLW  30
-010D2:  SUBWF  3F,W
-010D4:  MOVWF  xCC
+010F6:  MOVLW  30
+010F8:  SUBWF  3F,W
+010FA:  MOVWF  xCD
 ....................                         seventhNumber       =(rxBuffer[17]-48);
-010D6:  MOVLW  30
-010D8:  SUBWF  41,W
-010DA:  MOVWF  xCD
+010FC:  MOVLW  30
+010FE:  SUBWF  41,W
+01100:  MOVWF  xCE
 ....................                         eighthNumber        =(rxBuffer[19]-48);
-010DC:  MOVLW  30
-010DE:  SUBWF  43,W
-010E0:  MOVWF  xCE
+01102:  MOVLW  30
+01104:  SUBWF  43,W
+01106:  MOVWF  xCF
 ....................                         
 ....................                         nbrBonus = (firstNumber + secondNumber + thirdNumber + fourthNumber + fifthNumber + sixthNumber + seventhNumber + eighthNumber);
-010E2:  MOVF   xC8,W
-010E4:  ADDWF  xC7,W
-010E6:  ADDWF  xC9,W
-010E8:  ADDWF  xCA,W
-010EA:  ADDWF  xCB,W
-010EC:  ADDWF  xCC,W
-010EE:  ADDWF  xCD,W
-010F0:  ADDWF  xCE,W
-010F2:  MOVWF  xBE
+01108:  MOVF   xC9,W
+0110A:  ADDWF  xC8,W
+0110C:  ADDWF  xCA,W
+0110E:  ADDWF  xCB,W
+01110:  ADDWF  xCC,W
+01112:  ADDWF  xCD,W
+01114:  ADDWF  xCE,W
+01116:  ADDWF  xCF,W
+01118:  MOVWF  xBF
 ....................                                 
 ....................                         if(nbrBonus > 0)
-010F4:  MOVF   xBE,F
-010F6:  BZ    10FC
+0111A:  MOVF   xBF,F
+0111C:  BZ    1122
 ....................                         {
 ....................                             bonusLever1 = 1;                                    // Barrière 1
-010F8:  MOVLW  01
-010FA:  MOVWF  xBF
+0111E:  MOVLW  01
+01120:  MOVWF  xC0
 ....................                         }
 ....................                         if(nbrBonus > 1)
-010FC:  MOVF   xBE,W
-010FE:  SUBLW  01
-01100:  BC    110A
+01122:  MOVF   xBF,W
+01124:  SUBLW  01
+01126:  BC    1130
 ....................                         {
 ....................                             bonusElevator1 = 1;
-01102:  MOVLW  01
-01104:  MOVWF  xC1
+01128:  MOVLW  01
+0112A:  MOVWF  xC2
 ....................                             bonusElevator2 = 1;
-01106:  MOVWF  xC2
+0112C:  MOVWF  xC3
 ....................                             bonusXLR8 = 1;                                      // 3 accélérations (les 2 ascenseurs et l'accélérateur)
-01108:  MOVWF  xC3
+0112E:  MOVWF  xC4
 ....................                         }
 ....................                         if(nbrBonus > 2)
-0110A:  MOVF   xBE,W
-0110C:  SUBLW  02
-0110E:  BC    1114
+01130:  MOVF   xBF,W
+01132:  SUBLW  02
+01134:  BC    113A
 ....................                         {
 ....................                             bonusLever2 = 1;                                    // Barrière 2
-01110:  MOVLW  01
-01112:  MOVWF  xC0
+01136:  MOVLW  01
+01138:  MOVWF  xC1
 ....................                         }
 ....................                         if (nbrBonus > 3)
-01114:  MOVF   xBE,W
-01116:  SUBLW  03
-01118:  BC    111E
+0113A:  MOVF   xBF,W
+0113C:  SUBLW  03
+0113E:  BC    1144
 ....................                         {
 ....................                             bonusBlower = 1;                                    // Soufflette dans la 1ère descente
-0111A:  MOVLW  01
-0111C:  MOVWF  xC4
+01140:  MOVLW  01
+01142:  MOVWF  xC5
 ....................                         }
 ....................                             
 .................... 
 ....................                         bonusBlock = 1;                     
-0111E:  MOVLW  01
-01120:  MOVWF  46
+01144:  MOVLW  01
+01146:  MOVWF  46
 .................... 
 ....................                         select_multiplexer_channel(1);
-01122:  MOVWF  xD7
-01124:  CALL   023C
+01148:  MOVWF  xD8
+0114A:  CALL   023C
 ....................                         ComFeuAnim(0);                                              // Arrête l'animation des feux //
-01128:  CLRF   xD7
-0112A:  CALL   0352
+0114E:  CLRF   xD8
+01150:  CALL   0352
 ....................                         delay_ms(5);
-0112E:  MOVLW  05
-01130:  MOVWF  xD8
-01132:  CALL   0214
+01154:  MOVLW  05
+01156:  MOVWF  xD9
+01158:  CALL   0214
 .................... 
 ....................                         ComINF_MessageInfo(1111,1,0000);                            // Envoi message prêt //
-01136:  MOVLW  04
-01138:  MOVWF  xD8
-0113A:  MOVLW  57
-0113C:  MOVWF  xD7
-0113E:  MOVLW  01
-01140:  MOVWF  xD9
-01142:  CLRF   xDB
-01144:  CLRF   xDA
-01146:  RCALL  09AA
+0115C:  MOVLW  04
+0115E:  MOVWF  xD9
+01160:  MOVLW  57
+01162:  MOVWF  xD8
+01164:  MOVLW  01
+01166:  MOVWF  xDA
+01168:  CLRF   xDC
+0116A:  CLRF   xDB
+0116C:  RCALL  09AA
 .................... 
 ....................                         secondaryCounter = 0;                                       
-01148:  CLRF   5C
-0114A:  CLRF   5B
+0116E:  CLRF   5C
+01170:  CLRF   5B
 ....................                         secondaryCounterActivator = 0;                              // Reset compteur secondaire pour commencer à 0 //                    
-0114C:  CLRF   56
+01172:  CLRF   56
 .................... 
 ....................                         select_multiplexer_channel(2);
-0114E:  MOVLW  02
-01150:  MOVWF  xD7
-01152:  CALL   023C
+01174:  MOVLW  02
+01176:  MOVWF  xD8
+01178:  CALL   023C
 ....................                         //DFPlayer_NextSong(); //2                                    // Change la musique //
 .................... 
 ....................                         delay_ms(1000);                                             // Délai pour éviter perturbations //
-01156:  MOVLW  04
-01158:  MOVWF  xD7
-0115A:  MOVLW  FA
-0115C:  MOVWF  xD8
-0115E:  CALL   0214
-01162:  DECFSZ xD7,F
-01164:  BRA    115A
+0117C:  MOVLW  04
+0117E:  MOVWF  xD8
+01180:  MOVLW  FA
+01182:  MOVWF  xD9
+01184:  CALL   0214
+01188:  DECFSZ xD8,F
+0118A:  BRA    1180
 .................... 
 ....................                         state = READY;
-01166:  MOVLW  03
-01168:  MOVWF  xAD
+0118C:  MOVLW  03
+0118E:  MOVWF  xAD
 ....................                     }
 ....................                 }
 ....................                 
 ....................             break;
-0116A:  GOTO   1BBC
+01190:  GOTO   1C04
 ....................             
 .................... //============================================================================//                
 ....................           
@@ -3699,1448 +3734,1483 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 .................... //                if(buzzer == 0 && prevBuzzer == 1)
 .................... //                {
 ....................                     select_multiplexer_channel(2);
-0116E:  MOVLW  02
-01170:  MOVWF  xD7
-01172:  CALL   023C
+01194:  MOVLW  02
+01196:  MOVWF  xD8
+01198:  CALL   023C
 ....................                     DFPlayer_NextSong(); //2
-01176:  BRA    09EA
+0119C:  BRA    09EA
 ....................                     delay_ms(5);
-01178:  MOVLW  05
-0117A:  MOVWF  xD8
-0117C:  CALL   0214
+0119E:  MOVLW  05
+011A0:  MOVWF  xD9
+011A2:  CALL   0214
 ....................                     
 ....................                     select_multiplexer_channel(1);
-01180:  MOVLW  01
-01182:  MOVWF  xD7
-01184:  CALL   023C
+011A6:  MOVLW  01
+011A8:  MOVWF  xD8
+011AA:  CALL   023C
 ....................                     ComFeuAllume(1,0,0,0,r,3);                                  // Feu 1 à "1" - Feu 2 à "0" - Feu 3 à "0" - Feu 4 à "0" - Rouge - luminosité max //
-01188:  MOVLW  01
-0118A:  MOVWF  xD7
-0118C:  CLRF   xD8
-0118E:  CLRF   xD9
-01190:  CLRF   xDA
-01192:  MOVFF  AF,DB
-01196:  MOVLW  03
-01198:  MOVWF  xDC
-0119A:  RCALL  0ACA
+011AE:  MOVLW  01
+011B0:  MOVWF  xD8
+011B2:  CLRF   xD9
+011B4:  CLRF   xDA
+011B6:  CLRF   xDB
+011B8:  MOVFF  B0,DC
+011BC:  MOVLW  03
+011BE:  MOVWF  xDD
+011C0:  RCALL  0ACA
 ....................                     
 ....................                     secondaryCounter = 0;
-0119C:  CLRF   5C
-0119E:  CLRF   5B
+011C2:  CLRF   5C
+011C4:  CLRF   5B
 ....................                                         
 ....................                     state = COUNTDOWN;                    
-011A0:  MOVLW  04
-011A2:  MOVWF  xAD
+011C6:  MOVLW  04
+011C8:  MOVWF  xAD
 .................... //                }
 ....................                 
 ....................             break;
-011A4:  GOTO   1BBC
+011CA:  GOTO   1C04
 ....................             
 .................... //============================================================================//                
 ....................             
 ....................             case COUNTDOWN:                                                     // Séquence compte à rebours // 
 ....................             
 ....................                 secondaryCounterActivator = 1;
-011A8:  MOVLW  01
-011AA:  MOVWF  56
+011CE:  MOVLW  01
+011D0:  MOVWF  56
 .................... 
 ....................                 if(secondaryCounter == 100)
-011AC:  MOVF   5B,W
-011AE:  SUBLW  64
-011B0:  BNZ   11CA
-011B2:  MOVF   5C,F
-011B4:  BNZ   11CA
+011D2:  MOVF   5B,W
+011D4:  SUBLW  64
+011D6:  BNZ   11F0
+011D8:  MOVF   5C,F
+011DA:  BNZ   11F0
 ....................                 { 
 ....................                     ComFeuAllume(1,1,0,0,r,3);
-011B6:  MOVLW  01
-011B8:  MOVWF  xD7
-011BA:  MOVWF  xD8
-011BC:  CLRF   xD9
-011BE:  CLRF   xDA
-011C0:  MOVFF  AF,DB
-011C4:  MOVLW  03
-011C6:  MOVWF  xDC
-011C8:  RCALL  0ACA
+011DC:  MOVLW  01
+011DE:  MOVWF  xD8
+011E0:  MOVWF  xD9
+011E2:  CLRF   xDA
+011E4:  CLRF   xDB
+011E6:  MOVFF  B0,DC
+011EA:  MOVLW  03
+011EC:  MOVWF  xDD
+011EE:  RCALL  0ACA
 ....................                 }
 .................... 
 ....................                 if(secondaryCounter == 200)
-011CA:  MOVF   5B,W
-011CC:  SUBLW  C8
-011CE:  BNZ   11E8
-011D0:  MOVF   5C,F
-011D2:  BNZ   11E8
+011F0:  MOVF   5B,W
+011F2:  SUBLW  C8
+011F4:  BNZ   120E
+011F6:  MOVF   5C,F
+011F8:  BNZ   120E
 ....................                 {
 ....................                     ComFeuAllume(1,1,1,0,r,3);
-011D4:  MOVLW  01
-011D6:  MOVWF  xD7
-011D8:  MOVWF  xD8
-011DA:  MOVWF  xD9
-011DC:  CLRF   xDA
-011DE:  MOVFF  AF,DB
-011E2:  MOVLW  03
-011E4:  MOVWF  xDC
-011E6:  RCALL  0ACA
+011FA:  MOVLW  01
+011FC:  MOVWF  xD8
+011FE:  MOVWF  xD9
+01200:  MOVWF  xDA
+01202:  CLRF   xDB
+01204:  MOVFF  B0,DC
+01208:  MOVLW  03
+0120A:  MOVWF  xDD
+0120C:  RCALL  0ACA
 ....................                 }
 .................... 
 ....................                 if(secondaryCounter == 300)    
-011E8:  MOVF   5B,W
-011EA:  SUBLW  2C
-011EC:  BNZ   1206
-011EE:  DECFSZ 5C,W
-011F0:  BRA    1206
+0120E:  MOVF   5B,W
+01210:  SUBLW  2C
+01212:  BNZ   122C
+01214:  DECFSZ 5C,W
+01216:  BRA    122C
 ....................                 {   
 ....................                     ComFeuAllume(1,1,1,1,r,3);
-011F2:  MOVLW  01
-011F4:  MOVWF  xD7
-011F6:  MOVWF  xD8
-011F8:  MOVWF  xD9
-011FA:  MOVWF  xDA
-011FC:  MOVFF  AF,DB
-01200:  MOVLW  03
-01202:  MOVWF  xDC
-01204:  RCALL  0ACA
+01218:  MOVLW  01
+0121A:  MOVWF  xD8
+0121C:  MOVWF  xD9
+0121E:  MOVWF  xDA
+01220:  MOVWF  xDB
+01222:  MOVFF  B0,DC
+01226:  MOVLW  03
+01228:  MOVWF  xDD
+0122A:  RCALL  0ACA
 ....................                 }
 .................... 
 ....................                 //== BON DÉPART ==//
 ....................                 if(secondaryCounter == 400)
-01206:  MOVF   5B,W
-01208:  SUBLW  90
-0120A:  BNZ   1294
-0120C:  DECFSZ 5C,W
-0120E:  BRA    1294
+0122C:  MOVF   5B,W
+0122E:  SUBLW  90
+01230:  BNZ   12BA
+01232:  DECFSZ 5C,W
+01234:  BRA    12BA
 ....................                 { 
 ....................                     ComFeuAllume(1,1,1,1,g,3);
-01210:  MOVLW  01
-01212:  MOVWF  xD7
-01214:  MOVWF  xD8
-01216:  MOVWF  xD9
-01218:  MOVWF  xDA
-0121A:  MOVFF  B0,DB
-0121E:  MOVLW  03
-01220:  MOVWF  xDC
-01222:  RCALL  0ACA
+01236:  MOVLW  01
+01238:  MOVWF  xD8
+0123A:  MOVWF  xD9
+0123C:  MOVWF  xDA
+0123E:  MOVWF  xDB
+01240:  MOVFF  B1,DC
+01244:  MOVLW  03
+01246:  MOVWF  xDD
+01248:  RCALL  0ACA
 ....................                     
 ....................                     for (int i = 0; i < WS2812_LED_COUNT; i++)                  // Éclairage en vert du buzzer //
-01224:  CLRF   xD3
-01226:  MOVF   xD3,W
-01228:  SUBLW  17
-0122A:  BNC   1260
+0124A:  CLRF   xD4
+0124C:  MOVF   xD4,W
+0124E:  SUBLW  17
+01250:  BNC   1286
 ....................                     {
 ....................                         red_array[i] = 0;
-0122C:  CLRF   03
-0122E:  MOVF   xD3,W
-01230:  ADDLW  5F
-01232:  MOVWF  FE9
-01234:  MOVLW  00
-01236:  ADDWFC 03,W
-01238:  MOVWF  FEA
-0123A:  CLRF   FEF
+01252:  CLRF   03
+01254:  MOVF   xD4,W
+01256:  ADDLW  5F
+01258:  MOVWF  FE9
+0125A:  MOVLW  00
+0125C:  ADDWFC 03,W
+0125E:  MOVWF  FEA
+01260:  CLRF   FEF
 ....................                         green_array[i] = 255;
-0123C:  CLRF   03
-0123E:  MOVF   xD3,W
-01240:  ADDLW  77
-01242:  MOVWF  FE9
-01244:  MOVLW  00
-01246:  ADDWFC 03,W
-01248:  MOVWF  FEA
-0124A:  SETF   FEF
+01262:  CLRF   03
+01264:  MOVF   xD4,W
+01266:  ADDLW  77
+01268:  MOVWF  FE9
+0126A:  MOVLW  00
+0126C:  ADDWFC 03,W
+0126E:  MOVWF  FEA
+01270:  SETF   FEF
 ....................                         blue_array[i] = 0;
-0124C:  CLRF   03
-0124E:  MOVF   xD3,W
-01250:  ADDLW  8F
-01252:  MOVWF  FE9
-01254:  MOVLW  00
-01256:  ADDWFC 03,W
-01258:  MOVWF  FEA
-0125A:  CLRF   FEF
-0125C:  INCF   xD3,F
-0125E:  BRA    1226
+01272:  CLRF   03
+01274:  MOVF   xD4,W
+01276:  ADDLW  8F
+01278:  MOVWF  FE9
+0127A:  MOVLW  00
+0127C:  ADDWFC 03,W
+0127E:  MOVWF  FEA
+01280:  CLRF   FEF
+01282:  INCF   xD4,F
+01284:  BRA    124C
 ....................                     }
 ....................                     ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
-01260:  CLRF   xD8
-01262:  MOVLW  5F
-01264:  MOVWF  xD7
-01266:  CLRF   xDA
-01268:  MOVLW  77
-0126A:  MOVWF  xD9
-0126C:  CLRF   xDC
-0126E:  MOVLW  8F
-01270:  MOVWF  xDB
-01272:  MOVLW  18
-01274:  MOVWF  xDD
-01276:  CALL   0568
+01286:  CLRF   xD9
+01288:  MOVLW  5F
+0128A:  MOVWF  xD8
+0128C:  CLRF   xDB
+0128E:  MOVLW  77
+01290:  MOVWF  xDA
+01292:  CLRF   xDD
+01294:  MOVLW  8F
+01296:  MOVWF  xDC
+01298:  MOVLW  18
+0129A:  MOVWF  xDE
+0129C:  CALL   0568
 ....................             
 ....................                     delay_ms(5);
-0127A:  MOVLW  05
-0127C:  MOVWF  xD8
-0127E:  CALL   0214
+012A0:  MOVLW  05
+012A2:  MOVWF  xD9
+012A4:  CALL   0214
 ....................                     
 ....................                     counter = 0;
-01282:  CLRF   5E
-01284:  CLRF   5D
+012A8:  CLRF   5E
+012AA:  CLRF   5D
 ....................                     counterActivator = 1;                                       // Démarre le chronomètre //   
-01286:  MOVLW  01
-01288:  MOVWF  57
+012AC:  MOVLW  01
+012AE:  MOVWF  57
 ....................                 
 ....................                     secondaryCounter = 0;
-0128A:  CLRF   5C
-0128C:  CLRF   5B
+012B0:  CLRF   5C
+012B2:  CLRF   5B
 ....................                     secondaryCounterActivator = 0;                              // Reset le timer secondaire //
-0128E:  CLRF   56
+012B4:  CLRF   56
 .................... 
 ....................                     state = LAUNCHING;                       
-01290:  MOVLW  05
-01292:  MOVWF  xAD
+012B6:  MOVLW  05
+012B8:  MOVWF  xAD
 ....................                 } 
 ....................                 
-....................                 //== FAUX DÉPART ==//
+....................                 //== FAUX DÉPART ==// 
 ....................                 if(buzzer == 0 && prevBuzzer == 1)
-01294:  MOVF   xB1,F
-01296:  BTFSS  FD8.2
-01298:  BRA    1398
-0129A:  DECFSZ xCF,W
-0129C:  BRA    1398
+012BA:  MOVF   xB2,F
+012BC:  BTFSS  FD8.2
+012BE:  BRA    13C8
+012C0:  DECFSZ xD0,W
+012C2:  BRA    13C8
 ....................                 {
 ....................                     bonus_activator();
-0129E:  CALL   0672
+012C4:  CALL   0672
 ....................                     
 ....................                     delay_ms(5);                    
-012A2:  MOVLW  05
-012A4:  MOVWF  xD8
-012A6:  CALL   0214
+012C8:  MOVLW  05
+012CA:  MOVWF  xD9
+012CC:  CALL   0214
 ....................                     select_multiplexer_channel(3);
-012AA:  MOVLW  03
-012AC:  MOVWF  xD7
-012AE:  CALL   023C
-....................                     startXLR8(bonusXLR8);
-012B2:  MOVFF  C3,D7
-012B6:  RCALL  0B0A
-....................                     delay_ms(5);
-012B8:  MOVLW  05
-012BA:  MOVWF  xD8
-012BC:  CALL   0214
+012D0:  MOVLW  03
+012D2:  MOVWF  xD8
+012D4:  CALL   023C
+....................                     startXLR8(1);
+012D8:  MOVLW  01
+012DA:  MOVWF  xD8
+012DC:  RCALL  0B0A
 ....................                     
-....................                     if(bonusBlower == 1)
-012C0:  DECFSZ xC4,W
-012C2:  BRA    12CA
+....................                     if(backup == 1)
+012DE:  DECFSZ xAF,W
+012E0:  BRA    12E8
 ....................                     {
 ....................                         bonus_activator();
-012C4:  CALL   0672
+012E2:  CALL   0672
+.................... 
+....................                         activate_XLR8_backup();
+012E6:  RCALL  0B2C
+....................                     }
+....................                     delay_ms(5);
+012E8:  MOVLW  05
+012EA:  MOVWF  xD9
+012EC:  CALL   0214
+....................                     
+....................                     if(bonusBlower == 1)
+012F0:  DECFSZ xC5,W
+012F2:  BRA    12FA
+....................                     {
+....................                         bonus_activator();
+012F4:  CALL   0672
 ....................                         activate_bonus_8_startBlower();
-012C8:  RCALL  0B2C
+012F8:  RCALL  0B3C
 ....................                     }
 ....................                     
 ....................                     setup_mcp23017();
-012CA:  CALL   04B2
+012FA:  CALL   04B2
 ....................                     set_gpb7_high();
-012CE:  RCALL  0B3C
+012FE:  RCALL  0B4C
 ....................                     
 ....................                     
 ....................                     ComINF_MessageInfo(carNumber,2,0000);                       // Envoie message faux départ //
-012D0:  MOVFF  BD,D8
-012D4:  MOVFF  BC,D7
-012D8:  MOVLW  02
-012DA:  MOVWF  xD9
-012DC:  CLRF   xDB
-012DE:  CLRF   xDA
-012E0:  CALL   09AA
+01300:  MOVFF  BE,D9
+01304:  MOVFF  BD,D8
+01308:  MOVLW  02
+0130A:  MOVWF  xDA
+0130C:  CLRF   xDC
+0130E:  CLRF   xDB
+01310:  CALL   09AA
 ....................                     delay_ms(5);
-012E4:  MOVLW  05
-012E6:  MOVWF  xD8
-012E8:  CALL   0214
+01314:  MOVLW  05
+01316:  MOVWF  xD9
+01318:  CALL   0214
 ....................                     
 ....................                     select_multiplexer_channel(2);
-012EC:  MOVLW  02
-012EE:  MOVWF  xD7
-012F0:  CALL   023C
+0131C:  MOVLW  02
+0131E:  MOVWF  xD8
+01320:  CALL   023C
 ....................                     DFPlayer_PlaySongNb(3);                                     //Son du faux départ (3)//
-012F4:  MOVLW  03
-012F6:  MOVWF  xD7
-012F8:  CALL   03C0
+01324:  MOVLW  03
+01326:  MOVWF  xD8
+01328:  CALL   03C0
 ....................                     delay_ms(5);
-012FC:  MOVLW  05
-012FE:  MOVWF  xD8
-01300:  CALL   0214
+0132C:  MOVLW  05
+0132E:  MOVWF  xD9
+01330:  CALL   0214
 ....................                     
 ....................                     secondaryCounterActivator = 0;                              // Stop séquence compte à rebours //
-01304:  CLRF   56
+01334:  CLRF   56
 ....................                     secondaryCounter = 0;
-01306:  CLRF   5C
-01308:  CLRF   5B
+01336:  CLRF   5C
+01338:  CLRF   5B
 ....................                     
 ....................                     counterActivator = 1;                                       // Démarre le chronomètre //     
-0130A:  MOVLW  01
-0130C:  MOVWF  57
+0133A:  MOVLW  01
+0133C:  MOVWF  57
 ....................                     
 ....................                     counter = DELAY_FALSE_START;                                // Pénalité de 2s //
-0130E:  CLRF   5E
-01310:  MOVLW  C8
-01312:  MOVWF  5D
+0133E:  CLRF   5E
+01340:  MOVLW  C8
+01342:  MOVWF  5D
 .................... 
 ....................                     select_multiplexer_channel(1);
-01314:  MOVLW  01
-01316:  MOVWF  xD7
-01318:  CALL   023C
+01344:  MOVLW  01
+01346:  MOVWF  xD8
+01348:  CALL   023C
 ....................                     ComFeuAllume(1,1,1,1,g,3); 
-0131C:  MOVLW  01
-0131E:  MOVWF  xD7
-01320:  MOVWF  xD8
-01322:  MOVWF  xD9
-01324:  MOVWF  xDA
-01326:  MOVFF  B0,DB
-0132A:  MOVLW  03
-0132C:  MOVWF  xDC
-0132E:  CALL   0ACA
+0134C:  MOVLW  01
+0134E:  MOVWF  xD8
+01350:  MOVWF  xD9
+01352:  MOVWF  xDA
+01354:  MOVWF  xDB
+01356:  MOVFF  B1,DC
+0135A:  MOVLW  03
+0135C:  MOVWF  xDD
+0135E:  CALL   0ACA
 ....................                     
 ....................                     for (int i = 0; i < WS2812_LED_COUNT; i++)                  // Éclairage en vert du buzzer //
-01332:  CLRF   xD4
-01334:  MOVF   xD4,W
-01336:  SUBLW  17
-01338:  BNC   136E
+01362:  CLRF   xD5
+01364:  MOVF   xD5,W
+01366:  SUBLW  17
+01368:  BNC   139E
 ....................                     {
 ....................                         red_array[i] = 0;
-0133A:  CLRF   03
-0133C:  MOVF   xD4,W
-0133E:  ADDLW  5F
-01340:  MOVWF  FE9
-01342:  MOVLW  00
-01344:  ADDWFC 03,W
-01346:  MOVWF  FEA
-01348:  CLRF   FEF
+0136A:  CLRF   03
+0136C:  MOVF   xD5,W
+0136E:  ADDLW  5F
+01370:  MOVWF  FE9
+01372:  MOVLW  00
+01374:  ADDWFC 03,W
+01376:  MOVWF  FEA
+01378:  CLRF   FEF
 ....................                         green_array[i] = 255;
-0134A:  CLRF   03
-0134C:  MOVF   xD4,W
-0134E:  ADDLW  77
-01350:  MOVWF  FE9
-01352:  MOVLW  00
-01354:  ADDWFC 03,W
-01356:  MOVWF  FEA
-01358:  SETF   FEF
+0137A:  CLRF   03
+0137C:  MOVF   xD5,W
+0137E:  ADDLW  77
+01380:  MOVWF  FE9
+01382:  MOVLW  00
+01384:  ADDWFC 03,W
+01386:  MOVWF  FEA
+01388:  SETF   FEF
 ....................                         blue_array[i] = 0;
-0135A:  CLRF   03
-0135C:  MOVF   xD4,W
-0135E:  ADDLW  8F
-01360:  MOVWF  FE9
-01362:  MOVLW  00
-01364:  ADDWFC 03,W
-01366:  MOVWF  FEA
-01368:  CLRF   FEF
-0136A:  INCF   xD4,F
-0136C:  BRA    1334
+0138A:  CLRF   03
+0138C:  MOVF   xD5,W
+0138E:  ADDLW  8F
+01390:  MOVWF  FE9
+01392:  MOVLW  00
+01394:  ADDWFC 03,W
+01396:  MOVWF  FEA
+01398:  CLRF   FEF
+0139A:  INCF   xD5,F
+0139C:  BRA    1364
 ....................                     }
 ....................                     ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
-0136E:  CLRF   xD8
-01370:  MOVLW  5F
-01372:  MOVWF  xD7
-01374:  CLRF   xDA
-01376:  MOVLW  77
-01378:  MOVWF  xD9
-0137A:  CLRF   xDC
-0137C:  MOVLW  8F
-0137E:  MOVWF  xDB
-01380:  MOVLW  18
-01382:  MOVWF  xDD
-01384:  CALL   0568
+0139E:  CLRF   xD9
+013A0:  MOVLW  5F
+013A2:  MOVWF  xD8
+013A4:  CLRF   xDB
+013A6:  MOVLW  77
+013A8:  MOVWF  xDA
+013AA:  CLRF   xDD
+013AC:  MOVLW  8F
+013AE:  MOVWF  xDC
+013B0:  MOVLW  18
+013B2:  MOVWF  xDE
+013B4:  CALL   0568
 .................... 
 ....................                     delay_ms(5);
-01388:  MOVLW  05
-0138A:  MOVWF  xD8
-0138C:  CALL   0214
+013B8:  MOVLW  05
+013BA:  MOVWF  xD9
+013BC:  CALL   0214
 ....................                     
 ....................                     secondaryCounter = 0;
-01390:  CLRF   5C
-01392:  CLRF   5B
+013C0:  CLRF   5C
+013C2:  CLRF   5B
 ....................                     
 ....................                     state = RACE;
-01394:  MOVLW  06
-01396:  MOVWF  xAD
+013C4:  MOVLW  06
+013C6:  MOVWF  xAD
 ....................                 }
 ....................                                 
 ....................             break;
-01398:  GOTO   1BBC
+013C8:  GOTO   1C04
 ....................             
 .................... //============================================================================//                  
 ....................             
 ....................             case LAUNCHING:                                                     // Lancement de la voiture //
 ....................                 
 ....................                 if(buzzer == 0 && prevBuzzer == 1)
-0139C:  MOVF   xB1,F
-0139E:  BNZ   1456
-013A0:  DECFSZ xCF,W
-013A2:  BRA    1456
+013CC:  MOVF   xB2,F
+013CE:  BNZ   1492
+013D0:  DECFSZ xD0,W
+013D2:  BRA    1492
 ....................                 {
 ....................                     for (int i = 0; i < WS2812_LED_COUNT; i++)                  // Éclairage en bleu du buzzer //
-013A4:  CLRF   xD5
-013A6:  MOVF   xD5,W
-013A8:  SUBLW  17
-013AA:  BNC   13E0
+013D4:  CLRF   xD6
+013D6:  MOVF   xD6,W
+013D8:  SUBLW  17
+013DA:  BNC   1410
 ....................                     {
 ....................                         red_array[i] = 0;
-013AC:  CLRF   03
-013AE:  MOVF   xD5,W
-013B0:  ADDLW  5F
-013B2:  MOVWF  FE9
-013B4:  MOVLW  00
-013B6:  ADDWFC 03,W
-013B8:  MOVWF  FEA
-013BA:  CLRF   FEF
+013DC:  CLRF   03
+013DE:  MOVF   xD6,W
+013E0:  ADDLW  5F
+013E2:  MOVWF  FE9
+013E4:  MOVLW  00
+013E6:  ADDWFC 03,W
+013E8:  MOVWF  FEA
+013EA:  CLRF   FEF
 ....................                         green_array[i] = 0;
-013BC:  CLRF   03
-013BE:  MOVF   xD5,W
-013C0:  ADDLW  77
-013C2:  MOVWF  FE9
-013C4:  MOVLW  00
-013C6:  ADDWFC 03,W
-013C8:  MOVWF  FEA
-013CA:  CLRF   FEF
+013EC:  CLRF   03
+013EE:  MOVF   xD6,W
+013F0:  ADDLW  77
+013F2:  MOVWF  FE9
+013F4:  MOVLW  00
+013F6:  ADDWFC 03,W
+013F8:  MOVWF  FEA
+013FA:  CLRF   FEF
 ....................                         blue_array[i] = 255;
-013CC:  CLRF   03
-013CE:  MOVF   xD5,W
-013D0:  ADDLW  8F
-013D2:  MOVWF  FE9
-013D4:  MOVLW  00
-013D6:  ADDWFC 03,W
-013D8:  MOVWF  FEA
-013DA:  SETF   FEF
-013DC:  INCF   xD5,F
-013DE:  BRA    13A6
+013FC:  CLRF   03
+013FE:  MOVF   xD6,W
+01400:  ADDLW  8F
+01402:  MOVWF  FE9
+01404:  MOVLW  00
+01406:  ADDWFC 03,W
+01408:  MOVWF  FEA
+0140A:  SETF   FEF
+0140C:  INCF   xD6,F
+0140E:  BRA    13D6
 ....................                     }
 ....................                     ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
-013E0:  CLRF   xD8
-013E2:  MOVLW  5F
-013E4:  MOVWF  xD7
-013E6:  CLRF   xDA
-013E8:  MOVLW  77
-013EA:  MOVWF  xD9
-013EC:  CLRF   xDC
-013EE:  MOVLW  8F
-013F0:  MOVWF  xDB
-013F2:  MOVLW  18
-013F4:  MOVWF  xDD
-013F6:  CALL   0568
+01410:  CLRF   xD9
+01412:  MOVLW  5F
+01414:  MOVWF  xD8
+01416:  CLRF   xDB
+01418:  MOVLW  77
+0141A:  MOVWF  xDA
+0141C:  CLRF   xDD
+0141E:  MOVLW  8F
+01420:  MOVWF  xDC
+01422:  MOVLW  18
+01424:  MOVWF  xDE
+01426:  CALL   0568
 ....................             
 ....................                     delay_ms(5);                    
-013FA:  MOVLW  05
-013FC:  MOVWF  xD8
-013FE:  CALL   0214
-....................                     select_multiplexer_channel(3);
-01402:  MOVLW  03
-01404:  MOVWF  xD7
-01406:  CALL   023C
-....................                     startXLR8(bonusXLR8);
-0140A:  MOVFF  C3,D7
-0140E:  CALL   0B0A
-....................                     delay_ms(5);
-01412:  MOVLW  05
-01414:  MOVWF  xD8
-01416:  CALL   0214
-....................                     
-....................                     reactionTime = counter;                                     // Enregistre temps de réaction //               
-0141A:  MOVFF  5E,AC
-0141E:  MOVFF  5D,AB
-....................                     
-....................                     ComINF_MessageInfo(carNumber,2,reactionTime);               // Envoie temps de réaction //
-01422:  MOVFF  BD,D8
-01426:  MOVFF  BC,D7
-0142A:  MOVLW  02
+0142A:  MOVLW  05
 0142C:  MOVWF  xD9
-0142E:  MOVFF  AC,DB
-01432:  MOVFF  AB,DA
-01436:  CALL   09AA
+0142E:  CALL   0214
+....................                     select_multiplexer_channel(3);
+01432:  MOVLW  03
+01434:  MOVWF  xD8
+01436:  CALL   023C
+....................                     startXLR8(1);
+0143A:  MOVLW  01
+0143C:  MOVWF  xD8
+0143E:  CALL   0B0A
 ....................                     
-....................                     setup_mcp23017();
-0143A:  CALL   04B2
-....................                     set_gpb7_high();
-0143E:  CALL   0B3C
-....................                     
-....................                     bonus_activator();
-01442:  CALL   0672
-....................                     
-....................                     if(bonusBlower == 1)
-01446:  DECFSZ xC4,W
-01448:  BRA    1452
+....................                     if(backup == 1)
+01442:  DECFSZ xAF,W
+01444:  BRA    144E
 ....................                     {
 ....................                         bonus_activator();
-0144A:  CALL   0672
+01446:  CALL   0672
+.................... 
+....................                         activate_XLR8_backup();
+0144A:  CALL   0B2C
+....................                     }
+....................                     
+....................                     delay_ms(5);
+0144E:  MOVLW  05
+01450:  MOVWF  xD9
+01452:  CALL   0214
+....................                     
+....................                     reactionTime = counter;                                     // Enregistre temps de réaction //               
+01456:  MOVFF  5E,AC
+0145A:  MOVFF  5D,AB
+....................                     
+....................                     ComINF_MessageInfo(carNumber,2,reactionTime);               // Envoie temps de réaction //
+0145E:  MOVFF  BE,D9
+01462:  MOVFF  BD,D8
+01466:  MOVLW  02
+01468:  MOVWF  xDA
+0146A:  MOVFF  AC,DC
+0146E:  MOVFF  AB,DB
+01472:  CALL   09AA
+....................                     
+....................                     setup_mcp23017();
+01476:  CALL   04B2
+....................                     set_gpb7_high();
+0147A:  CALL   0B4C
+....................                     
+....................                     bonus_activator();
+0147E:  CALL   0672
+....................                     
+....................                     if(bonusBlower == 1)
+01482:  DECFSZ xC5,W
+01484:  BRA    148E
+....................                     {
+....................                         bonus_activator();
+01486:  CALL   0672
 ....................                         activate_bonus_8_startBlower();
-0144E:  CALL   0B2C
+0148A:  CALL   0B3C
 ....................                     }
 ....................                     
 ....................                     state = RACE;
-01452:  MOVLW  06
-01454:  MOVWF  xAD
+0148E:  MOVLW  06
+01490:  MOVWF  xAD
 ....................                 }
 ....................                 
 ....................                 //== MISE À JOUR CHRONOMÈTRE ==//
 ....................                 if(toDisplay == 1)                                              // Démarre chronomètre en rouge //
-01456:  DECFSZ 58,W
-01458:  BRA    14C8
+01492:  DECFSZ 58,W
+01494:  BRA    1504
 ....................                 {
 ....................                     select_multiplexer_channel(0);
-0145A:  CLRF   xD7
-0145C:  CALL   023C
+01496:  CLRF   xD8
+01498:  CALL   023C
 ....................                     toDisplay = 0;  
-01460:  CLRF   58
+0149C:  CLRF   58
 ....................                     ComDisplay_Color(COLOR_RED);
-01462:  CLRF   xD7
-01464:  CALL   02C6
+0149E:  CLRF   xD8
+014A0:  CALL   02C6
 ....................                     ComDisplay_Mode(MODE_RUNNING_TIME);
-01468:  MOVLW  01
-0146A:  MOVWF  xD7
-0146C:  CALL   032A
-01470:  CLRF   1B
-01472:  BTFSC  FF2.7
-01474:  BSF    1B.7
-01476:  BCF    FF2.7
+014A4:  MOVLW  01
+014A6:  MOVWF  xD8
+014A8:  CALL   032A
+014AC:  CLRF   1B
+014AE:  BTFSC  FF2.7
+014B0:  BSF    1B.7
+014B2:  BCF    FF2.7
 ....................                     ComDisplay_Time(counter/100,counter%100);
-01478:  MOVFF  5E,EA
-0147C:  MOVFF  5D,E9
-01480:  CLRF   xEC
-01482:  MOVLW  64
-01484:  MOVWF  xEB
-01486:  CALL   016E
-0148A:  BTFSC  1B.7
-0148C:  BSF    FF2.7
-0148E:  MOVFF  02,D8
-01492:  MOVFF  01,D7
-01496:  CLRF   1B
-01498:  BTFSC  FF2.7
-0149A:  BSF    1B.7
-0149C:  BCF    FF2.7
-0149E:  MOVFF  5E,EA
-014A2:  MOVFF  5D,E9
-014A6:  CLRF   xEC
-014A8:  MOVLW  64
-014AA:  MOVWF  xEB
-014AC:  CALL   016E
-014B0:  BTFSC  1B.7
-014B2:  BSF    FF2.7
-014B4:  MOVFF  00,D9
-014B8:  MOVFF  03,DA
-014BC:  MOVFF  D7,DB
-014C0:  MOVFF  00,DC
-014C4:  CALL   07EE
+014B4:  MOVFF  5E,EB
+014B8:  MOVFF  5D,EA
+014BC:  CLRF   xED
+014BE:  MOVLW  64
+014C0:  MOVWF  xEC
+014C2:  CALL   016E
+014C6:  BTFSC  1B.7
+014C8:  BSF    FF2.7
+014CA:  MOVFF  02,D9
+014CE:  MOVFF  01,D8
+014D2:  CLRF   1B
+014D4:  BTFSC  FF2.7
+014D6:  BSF    1B.7
+014D8:  BCF    FF2.7
+014DA:  MOVFF  5E,EB
+014DE:  MOVFF  5D,EA
+014E2:  CLRF   xED
+014E4:  MOVLW  64
+014E6:  MOVWF  xEC
+014E8:  CALL   016E
+014EC:  BTFSC  1B.7
+014EE:  BSF    FF2.7
+014F0:  MOVFF  00,DA
+014F4:  MOVFF  03,DB
+014F8:  MOVFF  D8,DC
+014FC:  MOVFF  00,DD
+01500:  CALL   07EE
 ....................                 }
 ....................                 
 ....................             break;
-014C8:  BRA    1BBC
+01504:  BRA    1C04
 ....................             
 .................... //============================================================================//    
 ....................          
 ....................             case RACE:                                                          // Course //
 ....................                 
 ....................                 for (int i = 0; i < WS2812_LED_COUNT; i++)                      // Extinction du buzzer //
-014CA:  CLRF   xD6
-014CC:  MOVF   xD6,W
-014CE:  SUBLW  17
-014D0:  BNC   1506
+01506:  CLRF   xD7
+01508:  MOVF   xD7,W
+0150A:  SUBLW  17
+0150C:  BNC   1542
 ....................                 {
 ....................                     red_array[i] = 0;
-014D2:  CLRF   03
-014D4:  MOVF   xD6,W
-014D6:  ADDLW  5F
-014D8:  MOVWF  FE9
-014DA:  MOVLW  00
-014DC:  ADDWFC 03,W
-014DE:  MOVWF  FEA
-014E0:  CLRF   FEF
+0150E:  CLRF   03
+01510:  MOVF   xD7,W
+01512:  ADDLW  5F
+01514:  MOVWF  FE9
+01516:  MOVLW  00
+01518:  ADDWFC 03,W
+0151A:  MOVWF  FEA
+0151C:  CLRF   FEF
 ....................                     green_array[i] = 0;
-014E2:  CLRF   03
-014E4:  MOVF   xD6,W
-014E6:  ADDLW  77
-014E8:  MOVWF  FE9
-014EA:  MOVLW  00
-014EC:  ADDWFC 03,W
-014EE:  MOVWF  FEA
-014F0:  CLRF   FEF
+0151E:  CLRF   03
+01520:  MOVF   xD7,W
+01522:  ADDLW  77
+01524:  MOVWF  FE9
+01526:  MOVLW  00
+01528:  ADDWFC 03,W
+0152A:  MOVWF  FEA
+0152C:  CLRF   FEF
 ....................                     blue_array[i] = 0;
-014F2:  CLRF   03
-014F4:  MOVF   xD6,W
-014F6:  ADDLW  8F
-014F8:  MOVWF  FE9
-014FA:  MOVLW  00
-014FC:  ADDWFC 03,W
-014FE:  MOVWF  FEA
-01500:  CLRF   FEF
-01502:  INCF   xD6,F
-01504:  BRA    14CC
+0152E:  CLRF   03
+01530:  MOVF   xD7,W
+01532:  ADDLW  8F
+01534:  MOVWF  FE9
+01536:  MOVLW  00
+01538:  ADDWFC 03,W
+0153A:  MOVWF  FEA
+0153C:  CLRF   FEF
+0153E:  INCF   xD7,F
+01540:  BRA    1508
 ....................                 }
 ....................                 ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
-01506:  CLRF   xD8
-01508:  MOVLW  5F
-0150A:  MOVWF  xD7
-0150C:  CLRF   xDA
-0150E:  MOVLW  77
-01510:  MOVWF  xD9
-01512:  CLRF   xDC
-01514:  MOVLW  8F
-01516:  MOVWF  xDB
-01518:  MOVLW  18
-0151A:  MOVWF  xDD
-0151C:  CALL   0568
+01542:  CLRF   xD9
+01544:  MOVLW  5F
+01546:  MOVWF  xD8
+01548:  CLRF   xDB
+0154A:  MOVLW  77
+0154C:  MOVWF  xDA
+0154E:  CLRF   xDD
+01550:  MOVLW  8F
+01552:  MOVWF  xDC
+01554:  MOVLW  18
+01556:  MOVWF  xDE
+01558:  CALL   0568
 ....................                 
 ....................                 bonus_activator();
-01520:  CALL   0672
+0155C:  CALL   0672
 ....................                 
 ....................                 //== TEMPS INTERMÉDIAIRE 1 ==//
 ....................                 if(inter1Q == 1 && inter1QI == 0)
-01524:  DECFSZ xB4,W
-01526:  BRA    1628
-01528:  MOVF   xB5,F
-0152A:  BTFSS  FD8.2
-0152C:  BRA    1628
+01560:  DECFSZ xB5,W
+01562:  BRA    1670
+01564:  MOVF   xB6,F
+01566:  BTFSS  FD8.2
+01568:  BRA    1670
 ....................                 {        
 ....................                     temps_inter_1 = 1;
-0152E:  MOVLW  01
-01530:  MOVWF  xB6
+0156A:  MOVLW  01
+0156C:  MOVWF  xB7
 ....................                     bonus_activator();
-01532:  CALL   0672
+0156E:  CALL   0672
 ....................                     deactivate_bonus_8_startBlower();
-01536:  CALL   06F4
+01572:  CALL   06F4
+....................                     
+....................                     if(backup == 1)
+01576:  DECFSZ xAF,W
+01578:  BRA    1582
+....................                     {
+....................                         bonus_activator();
+0157A:  CALL   0672
+....................                         deactivate_XLR8_backup();
+0157E:  GOTO   0B5A
+....................                     }
 ....................                     
 ....................                     if(bonusElevator1 == 1)
-0153A:  DECFSZ xC1,W
-0153C:  BRA    1542
+01582:  DECFSZ xC2,W
+01584:  BRA    158A
 ....................                     {
 ....................                         activate_bonus_4_elevator();
-0153E:  GOTO   0B4A
+01586:  GOTO   0B6C
 ....................                     }
 ....................                     
 ....................                     if(bonusLever1 == 1 && bonusLever2 == 1)
-01542:  DECFSZ xBF,W
-01544:  BRA    1556
-01546:  DECFSZ xC0,W
-01548:  BRA    1556
+0158A:  DECFSZ xC0,W
+0158C:  BRA    159E
+0158E:  DECFSZ xC1,W
+01590:  BRA    159E
 ....................                     {
 ....................                         activate_bonus_1_lever();
-0154A:  CALL   0B5C
+01592:  CALL   0B7E
 ....................                         deactivate_bonus_2_lever();
-0154E:  CALL   0694
+01596:  CALL   0694
 ....................                         deactivate_bonus_3_lever();
-01552:  CALL   06A4
+0159A:  CALL   06A4
 ....................                     }
 ....................                     
 ....................                     if(bonusLever1 == 0 && bonusLever2 == 0)
-01556:  MOVF   xBF,F
-01558:  BNZ   156A
-0155A:  MOVF   xC0,F
-0155C:  BNZ   156A
+0159E:  MOVF   xC0,F
+015A0:  BNZ   15B2
+015A2:  MOVF   xC1,F
+015A4:  BNZ   15B2
 ....................                     {
 ....................                         activate_bonus_1_lever();
-0155E:  CALL   0B5C
+015A6:  CALL   0B7E
 ....................                         activate_bonus_2_lever();
-01562:  GOTO   0B6C
+015AA:  GOTO   0B8E
 ....................                         activate_bonus_3_lever();
-01566:  GOTO   0B7E
+015AE:  GOTO   0BA0
 ....................                     }
 ....................                     
 ....................                     if((bonusLever1 == 0 && bonusLever2 == 1)||(bonusLever1 == 1 && bonusLever2 == 0))
-0156A:  MOVF   xBF,F
-0156C:  BNZ   1574
-0156E:  DECFSZ xC0,W
-01570:  BRA    1574
-01572:  BRA    157C
-01574:  DECFSZ xBF,W
-01576:  BRA    1588
-01578:  MOVF   xC0,F
-0157A:  BNZ   1588
+015B2:  MOVF   xC0,F
+015B4:  BNZ   15BC
+015B6:  DECFSZ xC1,W
+015B8:  BRA    15BC
+015BA:  BRA    15C4
+015BC:  DECFSZ xC0,W
+015BE:  BRA    15D0
+015C0:  MOVF   xC1,F
+015C2:  BNZ   15D0
 ....................                     {
 ....................                         deactivate_bonus_1_lever();
-0157C:  CALL   0684
+015C4:  CALL   0684
 ....................                         deactivate_bonus_2_lever();
-01580:  CALL   0694
+015C8:  CALL   0694
 ....................                         deactivate_bonus_3_lever();
-01584:  CALL   06A4
+015CC:  CALL   06A4
 ....................                     }    
 ....................                     activate_bonus_6_blower();
-01588:  GOTO   0B90
+015D0:  GOTO   0BB2
 ....................                     
 ....................                     stopTime = counter;                                         // Enregistre temps intermédiaire //
-0158C:  MOVFF  5E,A8
-01590:  MOVFF  5D,A7
+015D4:  MOVFF  5E,A8
+015D8:  MOVFF  5D,A7
 ....................                     
 ....................                     select_multiplexer_channel(0);
-01594:  CLRF   xD7
-01596:  CALL   023C
+015DC:  CLRF   xD8
+015DE:  CALL   023C
 ....................                     ComDisplay_Color(COLOR_GREEN);
-0159A:  MOVLW  02
-0159C:  MOVWF  xD7
-0159E:  CALL   02C6
+015E2:  MOVLW  02
+015E4:  MOVWF  xD8
+015E6:  CALL   02C6
 ....................                     ComDisplay_Mode(MODE_NET_TIME);                             
-015A2:  CLRF   xD7
-015A4:  CALL   032A
-015A8:  CLRF   1B
-015AA:  BTFSC  FF2.7
-015AC:  BSF    1B.7
-015AE:  BCF    FF2.7
+015EA:  CLRF   xD8
+015EC:  CALL   032A
+015F0:  CLRF   1B
+015F2:  BTFSC  FF2.7
+015F4:  BSF    1B.7
+015F6:  BCF    FF2.7
 ....................                     ComDisplay_Time(stopTime/100,stopTime%100);                 // Montre temps intermédiaire au centième de seconde //
-015B0:  MOVFF  A8,EA
-015B4:  MOVFF  A7,E9
-015B8:  CLRF   xEC
-015BA:  MOVLW  64
-015BC:  MOVWF  xEB
-015BE:  CALL   016E
-015C2:  BTFSC  1B.7
-015C4:  BSF    FF2.7
-015C6:  MOVFF  02,D8
-015CA:  MOVFF  01,D7
-015CE:  CLRF   1B
-015D0:  BTFSC  FF2.7
-015D2:  BSF    1B.7
-015D4:  BCF    FF2.7
-015D6:  MOVFF  A8,EA
-015DA:  MOVFF  A7,E9
-015DE:  CLRF   xEC
-015E0:  MOVLW  64
-015E2:  MOVWF  xEB
-015E4:  CALL   016E
-015E8:  BTFSC  1B.7
-015EA:  BSF    FF2.7
-015EC:  MOVFF  00,D9
-015F0:  MOVFF  03,DA
-015F4:  MOVFF  D7,DB
-015F8:  MOVFF  00,DC
-015FC:  CALL   07EE
+015F8:  MOVFF  A8,EB
+015FC:  MOVFF  A7,EA
+01600:  CLRF   xED
+01602:  MOVLW  64
+01604:  MOVWF  xEC
+01606:  CALL   016E
+0160A:  BTFSC  1B.7
+0160C:  BSF    FF2.7
+0160E:  MOVFF  02,D9
+01612:  MOVFF  01,D8
+01616:  CLRF   1B
+01618:  BTFSC  FF2.7
+0161A:  BSF    1B.7
+0161C:  BCF    FF2.7
+0161E:  MOVFF  A8,EB
+01622:  MOVFF  A7,EA
+01626:  CLRF   xED
+01628:  MOVLW  64
+0162A:  MOVWF  xEC
+0162C:  CALL   016E
+01630:  BTFSC  1B.7
+01632:  BSF    FF2.7
+01634:  MOVFF  00,DA
+01638:  MOVFF  03,DB
+0163C:  MOVFF  D8,DC
+01640:  MOVFF  00,DD
+01644:  CALL   07EE
 ....................                     delay_ms(5);                    
-01600:  MOVLW  05
-01602:  MOVWF  xD8
-01604:  CALL   0214
+01648:  MOVLW  05
+0164A:  MOVWF  xD9
+0164C:  CALL   0214
 ....................                     
 ....................                     ComINF_MessageInfo(carNumber, 4, stopTime);                 // Envoi temps intermédiaire //
-01608:  MOVFF  BD,D8
-0160C:  MOVFF  BC,D7
-01610:  MOVLW  04
-01612:  MOVWF  xD9
-01614:  MOVFF  A8,DB
-01618:  MOVFF  A7,DA
-0161C:  CALL   09AA
+01650:  MOVFF  BE,D9
+01654:  MOVFF  BD,D8
+01658:  MOVLW  04
+0165A:  MOVWF  xDA
+0165C:  MOVFF  A8,DC
+01660:  MOVFF  A7,DB
+01664:  CALL   09AA
 ....................                     
 ....................                     secondaryCounter = 0;
-01620:  CLRF   5C
-01622:  CLRF   5B
+01668:  CLRF   5C
+0166A:  CLRF   5B
 ....................                     
 ....................                     state = TIME;
-01624:  MOVLW  07
-01626:  MOVWF  xAD
+0166C:  MOVLW  07
+0166E:  MOVWF  xAD
 ....................                 }
 ....................                 
 ....................                 //== TEMPS INTERMÉDIAIRE 2 ==//
 ....................                   if(inter2Q == 1 && inter2QI == 0 && temps_inter_1 == 1)       // --> doit activer tout les check-points //
-01628:  DECFSZ xB7,W
-0162A:  BRA    16FA
-0162C:  MOVF   xB8,F
-0162E:  BNZ   16FA
-01630:  DECFSZ xB6,W
-01632:  BRA    16FA
+01670:  DECFSZ xB8,W
+01672:  BRA    1742
+01674:  MOVF   xB9,F
+01676:  BNZ   1742
+01678:  DECFSZ xB7,W
+0167A:  BRA    1742
 .................... //                if(inter2Q == 1 && inter2QI == 0)                             // --> doit activer seulement le finish //
 ....................                 {      
 ....................                     temps_inter_2 = 1;
-01634:  MOVLW  01
-01636:  MOVWF  xB9
+0167C:  MOVLW  01
+0167E:  MOVWF  xBA
 ....................                     deactivate_bonus_4_elevator();
-01638:  CALL   06B4
+01680:  CALL   06B4
 ....................                     
 ....................                     if(bonusElevator2 == 1)
-0163C:  DECFSZ xC2,W
-0163E:  BRA    1644
+01684:  DECFSZ xC3,W
+01686:  BRA    168C
 ....................                     {
 ....................                         activate_bonus_5_elevator();
-01640:  GOTO   0BA2
+01688:  GOTO   0BC4
 ....................                     }
 ....................                     
 ....................                     bonus_activator();
-01644:  CALL   0672
+0168C:  CALL   0672
 ....................                     deactivate_bonus_1_lever();
-01648:  CALL   0684
+01690:  CALL   0684
 ....................                     deactivate_bonus_2_lever();
-0164C:  CALL   0694
+01694:  CALL   0694
 ....................                     deactivate_bonus_3_lever();  
-01650:  CALL   06A4
+01698:  CALL   06A4
 ....................                     
 ....................                     deactivate_bonus_6_blower();
-01654:  CALL   06D4
+0169C:  CALL   06D4
 ....................                     
 ....................                     activate_bonus_7_blower();
-01658:  GOTO   0BB4
+016A0:  GOTO   0BD6
 ....................                     
 ....................                     stopTime = counter;                                         // Enregistre temps de réaction //
-0165C:  MOVFF  5E,A8
-01660:  MOVFF  5D,A7
+016A4:  MOVFF  5E,A8
+016A8:  MOVFF  5D,A7
 ....................                     
 ....................                     select_multiplexer_channel(0);
-01664:  CLRF   xD7
-01666:  CALL   023C
+016AC:  CLRF   xD8
+016AE:  CALL   023C
 ....................                     ComDisplay_Color(COLOR_GREEN);
-0166A:  MOVLW  02
-0166C:  MOVWF  xD7
-0166E:  CALL   02C6
+016B2:  MOVLW  02
+016B4:  MOVWF  xD8
+016B6:  CALL   02C6
 ....................                     ComDisplay_Mode(MODE_NET_TIME);                             
-01672:  CLRF   xD7
-01674:  CALL   032A
-01678:  CLRF   1B
-0167A:  BTFSC  FF2.7
-0167C:  BSF    1B.7
-0167E:  BCF    FF2.7
+016BA:  CLRF   xD8
+016BC:  CALL   032A
+016C0:  CLRF   1B
+016C2:  BTFSC  FF2.7
+016C4:  BSF    1B.7
+016C6:  BCF    FF2.7
 ....................                     ComDisplay_Time(stopTime/100,stopTime%100);                 // Montre temps intermédiaire au centième de seconde //
-01680:  MOVFF  A8,EA
-01684:  MOVFF  A7,E9
-01688:  CLRF   xEC
-0168A:  MOVLW  64
-0168C:  MOVWF  xEB
-0168E:  CALL   016E
-01692:  BTFSC  1B.7
-01694:  BSF    FF2.7
-01696:  MOVFF  02,D8
-0169A:  MOVFF  01,D7
-0169E:  CLRF   1B
-016A0:  BTFSC  FF2.7
-016A2:  BSF    1B.7
-016A4:  BCF    FF2.7
-016A6:  MOVFF  A8,EA
-016AA:  MOVFF  A7,E9
-016AE:  CLRF   xEC
-016B0:  MOVLW  64
-016B2:  MOVWF  xEB
-016B4:  CALL   016E
-016B8:  BTFSC  1B.7
-016BA:  BSF    FF2.7
-016BC:  MOVFF  00,D9
-016C0:  MOVFF  03,DA
-016C4:  MOVFF  D7,DB
-016C8:  MOVFF  00,DC
-016CC:  CALL   07EE
+016C8:  MOVFF  A8,EB
+016CC:  MOVFF  A7,EA
+016D0:  CLRF   xED
+016D2:  MOVLW  64
+016D4:  MOVWF  xEC
+016D6:  CALL   016E
+016DA:  BTFSC  1B.7
+016DC:  BSF    FF2.7
+016DE:  MOVFF  02,D9
+016E2:  MOVFF  01,D8
+016E6:  CLRF   1B
+016E8:  BTFSC  FF2.7
+016EA:  BSF    1B.7
+016EC:  BCF    FF2.7
+016EE:  MOVFF  A8,EB
+016F2:  MOVFF  A7,EA
+016F6:  CLRF   xED
+016F8:  MOVLW  64
+016FA:  MOVWF  xEC
+016FC:  CALL   016E
+01700:  BTFSC  1B.7
+01702:  BSF    FF2.7
+01704:  MOVFF  00,DA
+01708:  MOVFF  03,DB
+0170C:  MOVFF  D8,DC
+01710:  MOVFF  00,DD
+01714:  CALL   07EE
 ....................                     delay_ms(5);                    
-016D0:  MOVLW  05
-016D2:  MOVWF  xD8
-016D4:  CALL   0214
+01718:  MOVLW  05
+0171A:  MOVWF  xD9
+0171C:  CALL   0214
 ....................                     
 ....................                     ComINF_MessageInfo(carNumber,5,stopTime);                   // Envoi temps intermédiaire //
-016D8:  MOVFF  BD,D8
-016DC:  MOVFF  BC,D7
-016E0:  MOVLW  05
-016E2:  MOVWF  xD9
-016E4:  MOVFF  A8,DB
-016E8:  MOVFF  A7,DA
-016EC:  CALL   09AA
+01720:  MOVFF  BE,D9
+01724:  MOVFF  BD,D8
+01728:  MOVLW  05
+0172A:  MOVWF  xDA
+0172C:  MOVFF  A8,DC
+01730:  MOVFF  A7,DB
+01734:  CALL   09AA
 ....................                     
 ....................                     secondaryCounter = 0;
-016F0:  CLRF   5C
-016F2:  CLRF   5B
+01738:  CLRF   5C
+0173A:  CLRF   5B
 ....................                     
 ....................                     state = TIME;
-016F4:  MOVLW  07
-016F6:  MOVWF  xAD
+0173C:  MOVLW  07
+0173E:  MOVWF  xAD
 ....................                 } 
-016F8:  BRA    18BC
+01740:  BRA    1904
 ....................                
 ....................                 //== FIN COURSE ==//
 .................... //              else if(finalSignalQ == 1  && finalSignalQI == 0)               // --> doit activer que le finish //
 ....................                 else if(finalSignalQ == 1  && finalSignalQI == 0 && temps_inter_1 == 1 && temps_inter_2 == 1) // --> doit activer tout les check-points //
-016FA:  DECFSZ xBA,W
-016FC:  BRA    17C4
-016FE:  MOVF   xBB,F
-01700:  BNZ   17C4
-01702:  DECFSZ xB6,W
-01704:  BRA    17C4
-01706:  DECFSZ xB9,W
-01708:  BRA    17C4
+01742:  DECFSZ xBB,W
+01744:  BRA    180C
+01746:  MOVF   xBC,F
+01748:  BNZ   180C
+0174A:  DECFSZ xB7,W
+0174C:  BRA    180C
+0174E:  DECFSZ xBA,W
+01750:  BRA    180C
 ....................                 {
 ....................                     deactivate_bonus_5_elevator();
-0170A:  CALL   06C4
+01752:  CALL   06C4
 ....................                     
 ....................                     finalTime = counter;                                        // Enregistre temps final //
-0170E:  MOVFF  5E,AA
-01712:  MOVFF  5D,A9
+01756:  MOVFF  5E,AA
+0175A:  MOVFF  5D,A9
 ....................                    
 ....................                     bonus_activator();
-01716:  CALL   0672
+0175E:  CALL   0672
 ....................                     
 ....................                     deactivate_bonus_7_blower();
-0171A:  CALL   06E4
+01762:  CALL   06E4
 ....................                     
 ....................                     
 ....................                     select_multiplexer_channel(2);
-0171E:  MOVLW  02
-01720:  MOVWF  xD7
-01722:  CALL   023C
+01766:  MOVLW  02
+01768:  MOVWF  xD8
+0176A:  CALL   023C
 ....................                     DFPlayer_PlaySongNb(4);
-01726:  MOVLW  04
-01728:  MOVWF  xD7
-0172A:  CALL   03C0
+0176E:  MOVLW  04
+01770:  MOVWF  xD8
+01772:  CALL   03C0
 ....................                     delay_ms(5);
-0172E:  MOVLW  05
-01730:  MOVWF  xD8
-01732:  CALL   0214
+01776:  MOVLW  05
+01778:  MOVWF  xD9
+0177A:  CALL   0214
 ....................                     
 ....................                     select_multiplexer_channel(0);
-01736:  CLRF   xD7
-01738:  CALL   023C
+0177E:  CLRF   xD8
+01780:  CALL   023C
 ....................                     ComDisplay_Mode(MODE_NET_TIME);                             // Montre temps final avec centièmes //
-0173C:  CLRF   xD7
-0173E:  CALL   032A
-01742:  CLRF   1B
-01744:  BTFSC  FF2.7
-01746:  BSF    1B.7
-01748:  BCF    FF2.7
+01784:  CLRF   xD8
+01786:  CALL   032A
+0178A:  CLRF   1B
+0178C:  BTFSC  FF2.7
+0178E:  BSF    1B.7
+01790:  BCF    FF2.7
 ....................                     ComDisplay_Time(finalTime/100,finalTime%100);  
-0174A:  MOVFF  AA,EA
-0174E:  MOVFF  A9,E9
-01752:  CLRF   xEC
-01754:  MOVLW  64
-01756:  MOVWF  xEB
-01758:  CALL   016E
-0175C:  BTFSC  1B.7
-0175E:  BSF    FF2.7
-01760:  MOVFF  02,D8
-01764:  MOVFF  01,D7
-01768:  CLRF   1B
-0176A:  BTFSC  FF2.7
-0176C:  BSF    1B.7
-0176E:  BCF    FF2.7
-01770:  MOVFF  AA,EA
-01774:  MOVFF  A9,E9
-01778:  CLRF   xEC
-0177A:  MOVLW  64
-0177C:  MOVWF  xEB
-0177E:  CALL   016E
-01782:  BTFSC  1B.7
-01784:  BSF    FF2.7
-01786:  MOVFF  00,D9
-0178A:  MOVFF  03,DA
-0178E:  MOVFF  D7,DB
-01792:  MOVFF  00,DC
-01796:  CALL   07EE
+01792:  MOVFF  AA,EB
+01796:  MOVFF  A9,EA
+0179A:  CLRF   xED
+0179C:  MOVLW  64
+0179E:  MOVWF  xEC
+017A0:  CALL   016E
+017A4:  BTFSC  1B.7
+017A6:  BSF    FF2.7
+017A8:  MOVFF  02,D9
+017AC:  MOVFF  01,D8
+017B0:  CLRF   1B
+017B2:  BTFSC  FF2.7
+017B4:  BSF    1B.7
+017B6:  BCF    FF2.7
+017B8:  MOVFF  AA,EB
+017BC:  MOVFF  A9,EA
+017C0:  CLRF   xED
+017C2:  MOVLW  64
+017C4:  MOVWF  xEC
+017C6:  CALL   016E
+017CA:  BTFSC  1B.7
+017CC:  BSF    FF2.7
+017CE:  MOVFF  00,DA
+017D2:  MOVFF  03,DB
+017D6:  MOVFF  D8,DC
+017DA:  MOVFF  00,DD
+017DE:  CALL   07EE
 ....................                     delay_ms(5);
-0179A:  MOVLW  05
-0179C:  MOVWF  xD8
-0179E:  CALL   0214
+017E2:  MOVLW  05
+017E4:  MOVWF  xD9
+017E6:  CALL   0214
 ....................                     
 ....................                     secondaryCounter = 0;
-017A2:  CLRF   5C
-017A4:  CLRF   5B
+017EA:  CLRF   5C
+017EC:  CLRF   5B
 ....................                     
 ....................                     ComINF_MessageInfo(carNumber,6,finalTime);                  // Envoie message temps final //
-017A6:  MOVFF  BD,D8
-017AA:  MOVFF  BC,D7
-017AE:  MOVLW  06
-017B0:  MOVWF  xD9
-017B2:  MOVFF  AA,DB
-017B6:  MOVFF  A9,DA
-017BA:  CALL   09AA
+017EE:  MOVFF  BE,D9
+017F2:  MOVFF  BD,D8
+017F6:  MOVLW  06
+017F8:  MOVWF  xDA
+017FA:  MOVFF  AA,DC
+017FE:  MOVFF  A9,DB
+01802:  CALL   09AA
 .................... 
 ....................                     state = ENDING;
-017BE:  MOVLW  08
-017C0:  MOVWF  xAD
+01806:  MOVLW  08
+01808:  MOVWF  xAD
 ....................                 }                    
-017C2:  BRA    18BC
+0180A:  BRA    1904
 ....................                 
 ....................                 //== MISE À JOUR CHRONOMÈTRE ==//
 ....................                 else if(toDisplay == 1)
-017C4:  DECFSZ 58,W
-017C6:  BRA    183A
+0180C:  DECFSZ 58,W
+0180E:  BRA    1882
 ....................                 {
 ....................                     select_multiplexer_channel(0);
-017C8:  CLRF   xD7
-017CA:  CALL   023C
+01810:  CLRF   xD8
+01812:  CALL   023C
 ....................                     toDisplay = 0;
-017CE:  CLRF   58
+01816:  CLRF   58
 ....................                     ComDisplay_Color(COLOR_BLUE);                               // Montre chronomètre en bleu dès qu'on lance la voiture //
-017D0:  MOVLW  03
-017D2:  MOVWF  xD7
-017D4:  CALL   02C6
+01818:  MOVLW  03
+0181A:  MOVWF  xD8
+0181C:  CALL   02C6
 ....................                     ComDisplay_Mode(MODE_RUNNING_TIME);
-017D8:  MOVLW  01
-017DA:  MOVWF  xD7
-017DC:  CALL   032A
-017E0:  CLRF   1B
-017E2:  BTFSC  FF2.7
-017E4:  BSF    1B.7
-017E6:  BCF    FF2.7
+01820:  MOVLW  01
+01822:  MOVWF  xD8
+01824:  CALL   032A
+01828:  CLRF   1B
+0182A:  BTFSC  FF2.7
+0182C:  BSF    1B.7
+0182E:  BCF    FF2.7
 ....................                     ComDisplay_Time(counter/100,counter%100);  
-017E8:  MOVFF  5E,EA
-017EC:  MOVFF  5D,E9
-017F0:  CLRF   xEC
-017F2:  MOVLW  64
-017F4:  MOVWF  xEB
-017F6:  CALL   016E
-017FA:  BTFSC  1B.7
-017FC:  BSF    FF2.7
-017FE:  MOVFF  02,D8
-01802:  MOVFF  01,D7
-01806:  CLRF   1B
-01808:  BTFSC  FF2.7
-0180A:  BSF    1B.7
-0180C:  BCF    FF2.7
-0180E:  MOVFF  5E,EA
-01812:  MOVFF  5D,E9
-01816:  CLRF   xEC
-01818:  MOVLW  64
-0181A:  MOVWF  xEB
-0181C:  CALL   016E
-01820:  BTFSC  1B.7
-01822:  BSF    FF2.7
-01824:  MOVFF  00,D9
-01828:  MOVFF  03,DA
-0182C:  MOVFF  D7,DB
-01830:  MOVFF  00,DC
-01834:  CALL   07EE
+01830:  MOVFF  5E,EB
+01834:  MOVFF  5D,EA
+01838:  CLRF   xED
+0183A:  MOVLW  64
+0183C:  MOVWF  xEC
+0183E:  CALL   016E
+01842:  BTFSC  1B.7
+01844:  BSF    FF2.7
+01846:  MOVFF  02,D9
+0184A:  MOVFF  01,D8
+0184E:  CLRF   1B
+01850:  BTFSC  FF2.7
+01852:  BSF    1B.7
+01854:  BCF    FF2.7
+01856:  MOVFF  5E,EB
+0185A:  MOVFF  5D,EA
+0185E:  CLRF   xED
+01860:  MOVLW  64
+01862:  MOVWF  xEC
+01864:  CALL   016E
+01868:  BTFSC  1B.7
+0186A:  BSF    FF2.7
+0186C:  MOVFF  00,DA
+01870:  MOVFF  03,DB
+01874:  MOVFF  D8,DC
+01878:  MOVFF  00,DD
+0187C:  CALL   07EE
 ....................                 }
-01838:  BRA    18BC
+01880:  BRA    1904
 ....................                 
 ....................                 //== COURSE TROP LONGUE ==//
 ....................                 else if(counter >= 9998)
-0183A:  MOVF   5E,W
-0183C:  SUBLW  26
-0183E:  BC    18BC
-01840:  XORLW  FF
-01842:  BNZ   184A
-01844:  MOVF   5D,W
-01846:  SUBLW  0D
-01848:  BC    18BC
+01882:  MOVF   5E,W
+01884:  SUBLW  26
+01886:  BC    1904
+01888:  XORLW  FF
+0188A:  BNZ   1892
+0188C:  MOVF   5D,W
+0188E:  SUBLW  0D
+01890:  BC    1904
 ....................                 {
 ....................                     deactivate_bonus_7_blower();
-0184A:  CALL   06E4
+01892:  CALL   06E4
 ....................                     
 ....................                     select_multiplexer_channel(1);
-0184E:  MOVLW  01
-01850:  MOVWF  xD7
-01852:  CALL   023C
+01896:  MOVLW  01
+01898:  MOVWF  xD8
+0189A:  CALL   023C
 ....................                     ComFeuAllume(1,1,1,1,r,3);
-01856:  MOVLW  01
-01858:  MOVWF  xD7
-0185A:  MOVWF  xD8
-0185C:  MOVWF  xD9
-0185E:  MOVWF  xDA
-01860:  MOVFF  AF,DB
-01864:  MOVLW  03
-01866:  MOVWF  xDC
-01868:  CALL   0ACA
+0189E:  MOVLW  01
+018A0:  MOVWF  xD8
+018A2:  MOVWF  xD9
+018A4:  MOVWF  xDA
+018A6:  MOVWF  xDB
+018A8:  MOVFF  B0,DC
+018AC:  MOVLW  03
+018AE:  MOVWF  xDD
+018B0:  CALL   0ACA
 ....................                     delay_ms(5);
-0186C:  MOVLW  05
-0186E:  MOVWF  xD8
-01870:  CALL   0214
+018B4:  MOVLW  05
+018B6:  MOVWF  xD9
+018B8:  CALL   0214
 ....................                     
 ....................                     select_multiplexer_channel(2);
-01874:  MOVLW  02
-01876:  MOVWF  xD7
-01878:  CALL   023C
+018BC:  MOVLW  02
+018BE:  MOVWF  xD8
+018C0:  CALL   023C
 ....................                     DFPlayer_PlaySongNb(4);
-0187C:  MOVLW  04
-0187E:  MOVWF  xD7
-01880:  CALL   03C0
+018C4:  MOVLW  04
+018C6:  MOVWF  xD8
+018C8:  CALL   03C0
 ....................                     delay_ms(5);
-01884:  MOVLW  05
-01886:  MOVWF  xD8
-01888:  CALL   0214
+018CC:  MOVLW  05
+018CE:  MOVWF  xD9
+018D0:  CALL   0214
 ....................                     
 ....................                     finalTime = 9999;                                             // Affiche 9999 //
-0188C:  MOVLW  27
-0188E:  MOVWF  xAA
-01890:  MOVLW  0F
-01892:  MOVWF  xA9
+018D4:  MOVLW  27
+018D6:  MOVWF  xAA
+018D8:  MOVLW  0F
+018DA:  MOVWF  xA9
 ....................                     
 ....................                     select_multiplexer_channel(0);
-01894:  CLRF   xD7
-01896:  CALL   023C
+018DC:  CLRF   xD8
+018DE:  CALL   023C
 ....................                     ComDisplay_Color(COLOR_RED);
-0189A:  CLRF   xD7
-0189C:  CALL   02C6
+018E2:  CLRF   xD8
+018E4:  CALL   02C6
 ....................                     ComDisplay_Mode(MODE_NET_TIME);
-018A0:  CLRF   xD7
-018A2:  CALL   032A
+018E8:  CLRF   xD8
+018EA:  CALL   032A
 ....................                     ComDisplay_Time(99,99); 
-018A6:  MOVLW  63
-018A8:  MOVWF  xDB
-018AA:  MOVWF  xDC
-018AC:  CALL   07EE
+018EE:  MOVLW  63
+018F0:  MOVWF  xDC
+018F2:  MOVWF  xDD
+018F4:  CALL   07EE
 ....................                     delay_ms(5);
-018B0:  MOVLW  05
-018B2:  MOVWF  xD8
-018B4:  CALL   0214
+018F8:  MOVLW  05
+018FA:  MOVWF  xD9
+018FC:  CALL   0214
 ....................                     
 ....................                     state = ENDING;
-018B8:  MOVLW  08
-018BA:  MOVWF  xAD
+01900:  MOVLW  08
+01902:  MOVWF  xAD
 ....................                 }
 ....................                                 
 ....................             break;
-018BC:  BRA    1BBC
+01904:  BRA    1C04
 ....................             
 .................... //============================================================================//                
 ....................             
 ....................             case TIME:                                                          // Montre temps intermédiaire pendant 2s // 
 ....................                 
 ....................                 secondaryCounterActivator = 1;
-018BE:  MOVLW  01
-018C0:  MOVWF  56
+01906:  MOVLW  01
+01908:  MOVWF  56
 ....................                 
 ....................                 if(secondaryCounter == 200)
-018C2:  MOVF   5B,W
-018C4:  SUBLW  C8
-018C6:  BNZ   18D2
-018C8:  MOVF   5C,F
-018CA:  BNZ   18D2
+0190A:  MOVF   5B,W
+0190C:  SUBLW  C8
+0190E:  BNZ   191A
+01910:  MOVF   5C,F
+01912:  BNZ   191A
 ....................                 {
 ....................                     secondaryCounterActivator = 0;                              
-018CC:  CLRF   56
+01914:  CLRF   56
 ....................                                                                                                  
 ....................                     state = RACE;
-018CE:  MOVLW  06
-018D0:  MOVWF  xAD
+01916:  MOVLW  06
+01918:  MOVWF  xAD
 ....................                 }
 ....................                 
 ....................                 //== COURSE TROP LONGUE ==//
 ....................                 if(counter >= 9999)
-018D2:  MOVF   5E,W
-018D4:  SUBLW  26
-018D6:  BC    19A2
-018D8:  XORLW  FF
-018DA:  BNZ   18E2
-018DC:  MOVF   5D,W
-018DE:  SUBLW  0E
-018E0:  BC    19A2
+0191A:  MOVF   5E,W
+0191C:  SUBLW  26
+0191E:  BC    19EA
+01920:  XORLW  FF
+01922:  BNZ   192A
+01924:  MOVF   5D,W
+01926:  SUBLW  0E
+01928:  BC    19EA
 ....................                 {
 ....................                     deactivate_bonus_7_blower();
-018E2:  CALL   06E4
+0192A:  CALL   06E4
 ....................                     
 ....................                     select_multiplexer_channel(1);
-018E6:  MOVLW  01
-018E8:  MOVWF  xD7
-018EA:  CALL   023C
+0192E:  MOVLW  01
+01930:  MOVWF  xD8
+01932:  CALL   023C
 ....................                     ComFeuAllume(1,1,1,1,r,3);
-018EE:  MOVLW  01
-018F0:  MOVWF  xD7
-018F2:  MOVWF  xD8
-018F4:  MOVWF  xD9
-018F6:  MOVWF  xDA
-018F8:  MOVFF  AF,DB
-018FC:  MOVLW  03
-018FE:  MOVWF  xDC
-01900:  CALL   0ACA
+01936:  MOVLW  01
+01938:  MOVWF  xD8
+0193A:  MOVWF  xD9
+0193C:  MOVWF  xDA
+0193E:  MOVWF  xDB
+01940:  MOVFF  B0,DC
+01944:  MOVLW  03
+01946:  MOVWF  xDD
+01948:  CALL   0ACA
 ....................                     delay_ms(5);
-01904:  MOVLW  05
-01906:  MOVWF  xD8
-01908:  CALL   0214
+0194C:  MOVLW  05
+0194E:  MOVWF  xD9
+01950:  CALL   0214
 ....................                     
 ....................                     select_multiplexer_channel(2);
-0190C:  MOVLW  02
-0190E:  MOVWF  xD7
-01910:  CALL   023C
+01954:  MOVLW  02
+01956:  MOVWF  xD8
+01958:  CALL   023C
 ....................                     DFPlayer_PlaySongNb(3);
-01914:  MOVLW  03
-01916:  MOVWF  xD7
-01918:  CALL   03C0
+0195C:  MOVLW  03
+0195E:  MOVWF  xD8
+01960:  CALL   03C0
 ....................                     delay_ms(5);
-0191C:  MOVLW  05
-0191E:  MOVWF  xD8
-01920:  CALL   0214
+01964:  MOVLW  05
+01966:  MOVWF  xD9
+01968:  CALL   0214
 ....................                     
 ....................                     finalTime = counter;                                        // Affiche 9999 //
-01924:  MOVFF  5E,AA
-01928:  MOVFF  5D,A9
+0196C:  MOVFF  5E,AA
+01970:  MOVFF  5D,A9
 ....................                     
 ....................                     select_multiplexer_channel(0);
-0192C:  CLRF   xD7
-0192E:  CALL   023C
+01974:  CLRF   xD8
+01976:  CALL   023C
 ....................                     ComDisplay_Color(COLOR_RED);
-01932:  CLRF   xD7
-01934:  CALL   02C6
+0197A:  CLRF   xD8
+0197C:  CALL   02C6
 ....................                     ComDisplay_Mode(MODE_NET_TIME);
-01938:  CLRF   xD7
-0193A:  CALL   032A
-0193E:  CLRF   1B
-01940:  BTFSC  FF2.7
-01942:  BSF    1B.7
-01944:  BCF    FF2.7
+01980:  CLRF   xD8
+01982:  CALL   032A
+01986:  CLRF   1B
+01988:  BTFSC  FF2.7
+0198A:  BSF    1B.7
+0198C:  BCF    FF2.7
 ....................                     ComDisplay_Time(finalTime/100,finalTime%100); 
-01946:  MOVFF  AA,EA
-0194A:  MOVFF  A9,E9
-0194E:  CLRF   xEC
-01950:  MOVLW  64
-01952:  MOVWF  xEB
-01954:  CALL   016E
-01958:  BTFSC  1B.7
-0195A:  BSF    FF2.7
-0195C:  MOVFF  02,D8
-01960:  MOVFF  01,D7
-01964:  CLRF   1B
-01966:  BTFSC  FF2.7
-01968:  BSF    1B.7
-0196A:  BCF    FF2.7
-0196C:  MOVFF  AA,EA
-01970:  MOVFF  A9,E9
-01974:  CLRF   xEC
-01976:  MOVLW  64
-01978:  MOVWF  xEB
-0197A:  CALL   016E
-0197E:  BTFSC  1B.7
-01980:  BSF    FF2.7
-01982:  MOVFF  00,D9
-01986:  MOVFF  03,DA
-0198A:  MOVFF  D7,DB
-0198E:  MOVFF  00,DC
-01992:  CALL   07EE
+0198E:  MOVFF  AA,EB
+01992:  MOVFF  A9,EA
+01996:  CLRF   xED
+01998:  MOVLW  64
+0199A:  MOVWF  xEC
+0199C:  CALL   016E
+019A0:  BTFSC  1B.7
+019A2:  BSF    FF2.7
+019A4:  MOVFF  02,D9
+019A8:  MOVFF  01,D8
+019AC:  CLRF   1B
+019AE:  BTFSC  FF2.7
+019B0:  BSF    1B.7
+019B2:  BCF    FF2.7
+019B4:  MOVFF  AA,EB
+019B8:  MOVFF  A9,EA
+019BC:  CLRF   xED
+019BE:  MOVLW  64
+019C0:  MOVWF  xEC
+019C2:  CALL   016E
+019C6:  BTFSC  1B.7
+019C8:  BSF    FF2.7
+019CA:  MOVFF  00,DA
+019CE:  MOVFF  03,DB
+019D2:  MOVFF  D8,DC
+019D6:  MOVFF  00,DD
+019DA:  CALL   07EE
 ....................                     delay_ms(5);
-01996:  MOVLW  05
-01998:  MOVWF  xD8
-0199A:  CALL   0214
+019DE:  MOVLW  05
+019E0:  MOVWF  xD9
+019E2:  CALL   0214
 ....................                     
 ....................                     state = ENDING;
-0199E:  MOVLW  08
-019A0:  MOVWF  xAD
+019E6:  MOVLW  08
+019E8:  MOVWF  xAD
 ....................                 }
 ....................                 
 ....................             break;
-019A2:  BRA    1BBC
+019EA:  BRA    1C04
 ....................             
 .................... //============================================================================//                
 ....................             
 ....................             case ENDING:                                                        // État final pour afficher le score //
 ....................                 
 ....................                 secondaryCounterActivator = 1;
-019A4:  MOVLW  01
-019A6:  MOVWF  56
+019EC:  MOVLW  01
+019EE:  MOVWF  56
 ....................                 
 ....................                 delay_ms(5);
-019A8:  MOVLW  05
-019AA:  MOVWF  xD8
-019AC:  CALL   0214
+019F0:  MOVLW  05
+019F2:  MOVWF  xD9
+019F4:  CALL   0214
 ....................                 select_multiplexer_channel(0);
-019B0:  CLRF   xD7
-019B2:  CALL   023C
+019F8:  CLRF   xD8
+019FA:  CALL   023C
 .................... 
 ....................                 if(secondaryCounter == 50)                                      // Animation couleurs chronomètre //
-019B6:  MOVF   5B,W
-019B8:  SUBLW  32
-019BA:  BNZ   1A1E
-019BC:  MOVF   5C,F
-019BE:  BNZ   1A1E
-019C0:  CLRF   1B
-019C2:  BTFSC  FF2.7
-019C4:  BSF    1B.7
-019C6:  BCF    FF2.7
+019FE:  MOVF   5B,W
+01A00:  SUBLW  32
+01A02:  BNZ   1A66
+01A04:  MOVF   5C,F
+01A06:  BNZ   1A66
+01A08:  CLRF   1B
+01A0A:  BTFSC  FF2.7
+01A0C:  BSF    1B.7
+01A0E:  BCF    FF2.7
 ....................                 {
 ....................                     ComDisplay_Time(finalTime/100,finalTime%100);
-019C8:  MOVFF  AA,EA
-019CC:  MOVFF  A9,E9
-019D0:  CLRF   xEC
-019D2:  MOVLW  64
-019D4:  MOVWF  xEB
-019D6:  CALL   016E
-019DA:  BTFSC  1B.7
-019DC:  BSF    FF2.7
-019DE:  MOVFF  02,D8
-019E2:  MOVFF  01,D7
-019E6:  CLRF   1B
-019E8:  BTFSC  FF2.7
-019EA:  BSF    1B.7
-019EC:  BCF    FF2.7
-019EE:  MOVFF  AA,EA
-019F2:  MOVFF  A9,E9
-019F6:  CLRF   xEC
-019F8:  MOVLW  64
-019FA:  MOVWF  xEB
-019FC:  CALL   016E
-01A00:  BTFSC  1B.7
-01A02:  BSF    FF2.7
-01A04:  MOVFF  00,D9
-01A08:  MOVFF  03,DA
-01A0C:  MOVFF  D7,DB
-01A10:  MOVFF  00,DC
-01A14:  CALL   07EE
+01A10:  MOVFF  AA,EB
+01A14:  MOVFF  A9,EA
+01A18:  CLRF   xED
+01A1A:  MOVLW  64
+01A1C:  MOVWF  xEC
+01A1E:  CALL   016E
+01A22:  BTFSC  1B.7
+01A24:  BSF    FF2.7
+01A26:  MOVFF  02,D9
+01A2A:  MOVFF  01,D8
+01A2E:  CLRF   1B
+01A30:  BTFSC  FF2.7
+01A32:  BSF    1B.7
+01A34:  BCF    FF2.7
+01A36:  MOVFF  AA,EB
+01A3A:  MOVFF  A9,EA
+01A3E:  CLRF   xED
+01A40:  MOVLW  64
+01A42:  MOVWF  xEC
+01A44:  CALL   016E
+01A48:  BTFSC  1B.7
+01A4A:  BSF    FF2.7
+01A4C:  MOVFF  00,DA
+01A50:  MOVFF  03,DB
+01A54:  MOVFF  D8,DC
+01A58:  MOVFF  00,DD
+01A5C:  CALL   07EE
 ....................                     ComDisplay_Color(COLOR_RED);
-01A18:  CLRF   xD7
-01A1A:  CALL   02C6
+01A60:  CLRF   xD8
+01A62:  CALL   02C6
 ....................                 }
 ....................                 
 ....................                 if(secondaryCounter == 100)
-01A1E:  MOVF   5B,W
-01A20:  SUBLW  64
-01A22:  BNZ   1A88
-01A24:  MOVF   5C,F
-01A26:  BNZ   1A88
-01A28:  CLRF   1B
-01A2A:  BTFSC  FF2.7
-01A2C:  BSF    1B.7
-01A2E:  BCF    FF2.7
+01A66:  MOVF   5B,W
+01A68:  SUBLW  64
+01A6A:  BNZ   1AD0
+01A6C:  MOVF   5C,F
+01A6E:  BNZ   1AD0
+01A70:  CLRF   1B
+01A72:  BTFSC  FF2.7
+01A74:  BSF    1B.7
+01A76:  BCF    FF2.7
 ....................                 {
 ....................                     ComDisplay_Time(finalTime/100,finalTime%100);
-01A30:  MOVFF  AA,EA
-01A34:  MOVFF  A9,E9
-01A38:  CLRF   xEC
-01A3A:  MOVLW  64
-01A3C:  MOVWF  xEB
-01A3E:  CALL   016E
-01A42:  BTFSC  1B.7
-01A44:  BSF    FF2.7
-01A46:  MOVFF  02,D8
-01A4A:  MOVFF  01,D7
-01A4E:  CLRF   1B
-01A50:  BTFSC  FF2.7
-01A52:  BSF    1B.7
-01A54:  BCF    FF2.7
-01A56:  MOVFF  AA,EA
-01A5A:  MOVFF  A9,E9
-01A5E:  CLRF   xEC
-01A60:  MOVLW  64
-01A62:  MOVWF  xEB
-01A64:  CALL   016E
-01A68:  BTFSC  1B.7
-01A6A:  BSF    FF2.7
-01A6C:  MOVFF  00,D9
-01A70:  MOVFF  03,DA
-01A74:  MOVFF  D7,DB
-01A78:  MOVFF  00,DC
-01A7C:  CALL   07EE
+01A78:  MOVFF  AA,EB
+01A7C:  MOVFF  A9,EA
+01A80:  CLRF   xED
+01A82:  MOVLW  64
+01A84:  MOVWF  xEC
+01A86:  CALL   016E
+01A8A:  BTFSC  1B.7
+01A8C:  BSF    FF2.7
+01A8E:  MOVFF  02,D9
+01A92:  MOVFF  01,D8
+01A96:  CLRF   1B
+01A98:  BTFSC  FF2.7
+01A9A:  BSF    1B.7
+01A9C:  BCF    FF2.7
+01A9E:  MOVFF  AA,EB
+01AA2:  MOVFF  A9,EA
+01AA6:  CLRF   xED
+01AA8:  MOVLW  64
+01AAA:  MOVWF  xEC
+01AAC:  CALL   016E
+01AB0:  BTFSC  1B.7
+01AB2:  BSF    FF2.7
+01AB4:  MOVFF  00,DA
+01AB8:  MOVFF  03,DB
+01ABC:  MOVFF  D8,DC
+01AC0:  MOVFF  00,DD
+01AC4:  CALL   07EE
 ....................                     ComDisplay_Color(COLOR_GREEN);
-01A80:  MOVLW  02
-01A82:  MOVWF  xD7
-01A84:  CALL   02C6
+01AC8:  MOVLW  02
+01ACA:  MOVWF  xD8
+01ACC:  CALL   02C6
 ....................                 }
 ....................                 
 ....................                 if(secondaryCounter == 150)
-01A88:  MOVF   5B,W
-01A8A:  SUBLW  96
-01A8C:  BNZ   1AF2
-01A8E:  MOVF   5C,F
-01A90:  BNZ   1AF2
-01A92:  CLRF   1B
-01A94:  BTFSC  FF2.7
-01A96:  BSF    1B.7
-01A98:  BCF    FF2.7
+01AD0:  MOVF   5B,W
+01AD2:  SUBLW  96
+01AD4:  BNZ   1B3A
+01AD6:  MOVF   5C,F
+01AD8:  BNZ   1B3A
+01ADA:  CLRF   1B
+01ADC:  BTFSC  FF2.7
+01ADE:  BSF    1B.7
+01AE0:  BCF    FF2.7
 ....................                 {
 ....................                     ComDisplay_Time(finalTime/100,finalTime%100);
-01A9A:  MOVFF  AA,EA
-01A9E:  MOVFF  A9,E9
-01AA2:  CLRF   xEC
-01AA4:  MOVLW  64
-01AA6:  MOVWF  xEB
-01AA8:  CALL   016E
-01AAC:  BTFSC  1B.7
-01AAE:  BSF    FF2.7
-01AB0:  MOVFF  02,D8
-01AB4:  MOVFF  01,D7
-01AB8:  CLRF   1B
-01ABA:  BTFSC  FF2.7
-01ABC:  BSF    1B.7
-01ABE:  BCF    FF2.7
-01AC0:  MOVFF  AA,EA
-01AC4:  MOVFF  A9,E9
-01AC8:  CLRF   xEC
-01ACA:  MOVLW  64
-01ACC:  MOVWF  xEB
-01ACE:  CALL   016E
-01AD2:  BTFSC  1B.7
-01AD4:  BSF    FF2.7
-01AD6:  MOVFF  00,D9
-01ADA:  MOVFF  03,DA
-01ADE:  MOVFF  D7,DB
-01AE2:  MOVFF  00,DC
-01AE6:  CALL   07EE
+01AE2:  MOVFF  AA,EB
+01AE6:  MOVFF  A9,EA
+01AEA:  CLRF   xED
+01AEC:  MOVLW  64
+01AEE:  MOVWF  xEC
+01AF0:  CALL   016E
+01AF4:  BTFSC  1B.7
+01AF6:  BSF    FF2.7
+01AF8:  MOVFF  02,D9
+01AFC:  MOVFF  01,D8
+01B00:  CLRF   1B
+01B02:  BTFSC  FF2.7
+01B04:  BSF    1B.7
+01B06:  BCF    FF2.7
+01B08:  MOVFF  AA,EB
+01B0C:  MOVFF  A9,EA
+01B10:  CLRF   xED
+01B12:  MOVLW  64
+01B14:  MOVWF  xEC
+01B16:  CALL   016E
+01B1A:  BTFSC  1B.7
+01B1C:  BSF    FF2.7
+01B1E:  MOVFF  00,DA
+01B22:  MOVFF  03,DB
+01B26:  MOVFF  D8,DC
+01B2A:  MOVFF  00,DD
+01B2E:  CALL   07EE
 ....................                     ComDisplay_Color(COLOR_BLUE);
-01AEA:  MOVLW  03
-01AEC:  MOVWF  xD7
-01AEE:  CALL   02C6
+01B32:  MOVLW  03
+01B34:  MOVWF  xD8
+01B36:  CALL   02C6
 ....................                 }
 ....................                 
 ....................                 if(secondaryCounter == 200)
-01AF2:  MOVF   5B,W
-01AF4:  SUBLW  C8
-01AF6:  BNZ   1B5C
-01AF8:  MOVF   5C,F
-01AFA:  BNZ   1B5C
-01AFC:  CLRF   1B
-01AFE:  BTFSC  FF2.7
-01B00:  BSF    1B.7
-01B02:  BCF    FF2.7
+01B3A:  MOVF   5B,W
+01B3C:  SUBLW  C8
+01B3E:  BNZ   1BA4
+01B40:  MOVF   5C,F
+01B42:  BNZ   1BA4
+01B44:  CLRF   1B
+01B46:  BTFSC  FF2.7
+01B48:  BSF    1B.7
+01B4A:  BCF    FF2.7
 ....................                 {
 ....................                     ComDisplay_Time(finalTime/100,finalTime%100);
-01B04:  MOVFF  AA,EA
-01B08:  MOVFF  A9,E9
-01B0C:  CLRF   xEC
-01B0E:  MOVLW  64
-01B10:  MOVWF  xEB
-01B12:  CALL   016E
-01B16:  BTFSC  1B.7
-01B18:  BSF    FF2.7
-01B1A:  MOVFF  02,D8
-01B1E:  MOVFF  01,D7
-01B22:  CLRF   1B
-01B24:  BTFSC  FF2.7
-01B26:  BSF    1B.7
-01B28:  BCF    FF2.7
-01B2A:  MOVFF  AA,EA
-01B2E:  MOVFF  A9,E9
-01B32:  CLRF   xEC
-01B34:  MOVLW  64
-01B36:  MOVWF  xEB
-01B38:  CALL   016E
-01B3C:  BTFSC  1B.7
-01B3E:  BSF    FF2.7
-01B40:  MOVFF  00,D9
-01B44:  MOVFF  03,DA
-01B48:  MOVFF  D7,DB
-01B4C:  MOVFF  00,DC
-01B50:  CALL   07EE
+01B4C:  MOVFF  AA,EB
+01B50:  MOVFF  A9,EA
+01B54:  CLRF   xED
+01B56:  MOVLW  64
+01B58:  MOVWF  xEC
+01B5A:  CALL   016E
+01B5E:  BTFSC  1B.7
+01B60:  BSF    FF2.7
+01B62:  MOVFF  02,D9
+01B66:  MOVFF  01,D8
+01B6A:  CLRF   1B
+01B6C:  BTFSC  FF2.7
+01B6E:  BSF    1B.7
+01B70:  BCF    FF2.7
+01B72:  MOVFF  AA,EB
+01B76:  MOVFF  A9,EA
+01B7A:  CLRF   xED
+01B7C:  MOVLW  64
+01B7E:  MOVWF  xEC
+01B80:  CALL   016E
+01B84:  BTFSC  1B.7
+01B86:  BSF    FF2.7
+01B88:  MOVFF  00,DA
+01B8C:  MOVFF  03,DB
+01B90:  MOVFF  D8,DC
+01B94:  MOVFF  00,DD
+01B98:  CALL   07EE
 ....................                     ComDisplay_Color(COLOR_ORANGE);
-01B54:  MOVLW  01
-01B56:  MOVWF  xD7
-01B58:  CALL   02C6
+01B9C:  MOVLW  01
+01B9E:  MOVWF  xD8
+01BA0:  CALL   02C6
 ....................                 }
 ....................                 
 ....................                 if(secondaryCounter == 210)
-01B5C:  MOVF   5B,W
-01B5E:  SUBLW  D2
-01B60:  BNZ   1B6A
-01B62:  MOVF   5C,F
-01B64:  BNZ   1B6A
+01BA4:  MOVF   5B,W
+01BA6:  SUBLW  D2
+01BA8:  BNZ   1BB2
+01BAA:  MOVF   5C,F
+01BAC:  BNZ   1BB2
 ....................                 {
 ....................                     secondaryCounter = 0;
-01B66:  CLRF   5C
-01B68:  CLRF   5B
+01BAE:  CLRF   5C
+01BB0:  CLRF   5B
 ....................                 }
 ....................                     
 ....................                 if(buzzer == 0 && prevBuzzer == 1)                              // Envoie à l'état initial //
-01B6A:  MOVF   xB1,F
-01B6C:  BNZ   1BB6
-01B6E:  DECFSZ xCF,W
-01B70:  BRA    1BB6
+01BB2:  MOVF   xB2,F
+01BB4:  BNZ   1BFE
+01BB6:  DECFSZ xD0,W
+01BB8:  BRA    1BFE
 ....................                 {    
 ....................                     select_multiplexer_channel(0);
-01B72:  CLRF   xD7
-01B74:  CALL   023C
+01BBA:  CLRF   xD8
+01BBC:  CALL   023C
 ....................                     ComDisplay_Color(COLOR_RED);
-01B78:  CLRF   xD7
-01B7A:  CALL   02C6
+01BC0:  CLRF   xD8
+01BC2:  CALL   02C6
 ....................                     ComDisplay_Mode(MODE_RUNNING_TIME);
-01B7E:  MOVLW  01
-01B80:  MOVWF  xD7
-01B82:  CALL   032A
+01BC6:  MOVLW  01
+01BC8:  MOVWF  xD8
+01BCA:  CALL   032A
 ....................                     ComDisplay_Time(zero/100,zero%100);
-01B86:  MOVFF  AE,E3
-01B8A:  MOVLW  64
-01B8C:  MOVWF  xE4
-01B8E:  CALL   0704
-01B92:  MOVFF  01,D7
-01B96:  MOVFF  AE,E3
-01B9A:  MOVLW  64
-01B9C:  MOVWF  xE4
-01B9E:  CALL   0704
-01BA2:  MOVFF  00,D8
-01BA6:  MOVFF  D7,DB
-01BAA:  MOVFF  00,DC
-01BAE:  CALL   07EE
+01BCE:  MOVFF  AE,E4
+01BD2:  MOVLW  64
+01BD4:  MOVWF  xE5
+01BD6:  CALL   0704
+01BDA:  MOVFF  01,D8
+01BDE:  MOVFF  AE,E4
+01BE2:  MOVLW  64
+01BE4:  MOVWF  xE5
+01BE6:  CALL   0704
+01BEA:  MOVFF  00,D9
+01BEE:  MOVFF  D8,DC
+01BF2:  MOVFF  00,DD
+01BF6:  CALL   07EE
 ....................                     state = STARTING;
-01BB2:  MOVLW  01
-01BB4:  MOVWF  xAD
+01BFA:  MOVLW  01
+01BFC:  MOVWF  xAD
 ....................                 }
 ....................                 temps_inter_1 = 0;
-01BB6:  CLRF   xB6
+01BFE:  CLRF   xB7
 ....................                 temps_inter_2 = 0;
-01BB8:  CLRF   xB9
+01C00:  CLRF   xBA
 ....................                 
 ....................                 nbrBonus = 0;
-01BBA:  CLRF   xBE
+01C02:  CLRF   xBF
 ....................                 
 ....................             break;
 ....................             
@@ -5150,25 +5220,25 @@ CCS PCH C Compiler, Version 5.118, 1073               02-déc.-25 09:13
 ....................         }
 ....................     
 ....................         delay_us(10);
-01BBC:  MOVLW  35
-01BBE:  MOVWF  00
-01BC0:  DECFSZ 00,F
-01BC2:  BRA    1BC0
+01C04:  MOVLW  35
+01C06:  MOVWF  00
+01C08:  DECFSZ 00,F
+01C0A:  BRA    1C08
 ....................         
 ....................     //== FLANCS DESCENDANTS ==//           
 ....................     prevBuzzer = buzzer;
-01BC4:  MOVFF  B1,CF
+01C0C:  MOVFF  B2,D0
 ....................   
 ....................     delay_ms(2);
-01BC8:  MOVLW  02
-01BCA:  MOVWF  xD8
-01BCC:  CALL   0214
-01BD0:  GOTO   0D5E
+01C10:  MOVLW  02
+01C12:  MOVWF  xD9
+01C14:  CALL   0214
+01C18:  GOTO   0D84
 ....................     
 ....................     }   //== FIN BOUCLE INFINIE ==//      
 ....................    
 .................... }
-01BD4:  SLEEP 
+01C1C:  SLEEP 
 
 Configuration Fuses:
    Word  1: FF8C   NOEXTOSC RSTOSC_HFINTRC_64MHZ NOCLKOUT CKS FCMEN

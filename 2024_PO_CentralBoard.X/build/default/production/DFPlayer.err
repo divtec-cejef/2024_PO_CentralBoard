@@ -1,5 +1,0 @@
-Compiling C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\DFPlayer on 30-oct.-25 at 10:22
-C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\DFPlayer.h:4:5:  Error#100  USE parameter value is out of range   No Second UART
-C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\DFPlayer.h:4:5:  Error#128  A #DEVICE required before this line
-C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\DFPlayer.o ===>  2 Errors,  0 Warnings.
-Build Failed.

@@ -16,20 +16,22 @@ void bonus_activator()
     mcp23017_write_2(IODIRB_2, 0x01);                                           // Configurer toutes les broches du port B (GPB0 à GPB7) comme sorties 
 }
 
+// TOUS LES PORTS SONT A LA SUITE, MANQUE UNIQUEMENT AU 8eme PORT ET APRES LE 10e (en commençant a compter depuis les entrées des capteurs)
+
 //== ACTIVER BONUS ASCENSEUR 1 ==//
 void activate_bonus_1_lever() 
 {     
     bonus_activator();
     stateGpiob_2 |= 0x80; 
-    mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB7 à HIGH (bit 7 à 1)
+    mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB9 à HIGH (bit 9 à 1)
 }
 
-//== DÉSACTIVER BONUS ASCENSEUR 1 ==//
+//== DÉSACTIVER BONUS ASCENSEUR 1 ==// 
 void deactivate_bonus_1_lever()
 {
     bonus_activator();
     stateGpiob_2 &= 0x7F;
-    mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB7 à LOW (bit 7 à 0) 
+    mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB9 à LOW (bit 9 à 0) 
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -39,7 +41,7 @@ void activate_bonus_2_lever()
 {     
     bonus_activator();
     stateGpiob_2 |= 0x40; 
-    mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB6 à HIGH (bit 6 à 1)
+    mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB8 à HIGH (bit 8 à 1)
 }
 
 //== DÉSACTIVER BONUS ASCENSEUR 2 ==//
@@ -47,7 +49,25 @@ void deactivate_bonus_2_lever()
 {
     bonus_activator();
     stateGpiob_2 &= 0xBF;
-    mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB6 à LOW (bit 6 à 0) 
+    mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB8 à LOW (bit 8 à 0) 
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+//== ACTIVER ACCELERATION BACKUP (soufflette) ==//                              
+void activate_XLR8_backup()
+{
+    bonus_activator();                                                          // Mettre GPB1 à HIGH (PIN 2, J20, port num.7)
+    stateGpiob_2 |= 0x02; //--> 0b00000010
+    mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    
+}
+
+//== DESACTIVER ACCELERATION BACKUP (soufflette) ==//                           
+void deactivate_XLR8_backup()
+{
+    bonus_activator();                                                      // Mettre GPB1 à LOW (PIN 2, J20, port num.7)
+    stateGpiob_2 &= 0xFD;
+    mcp23017_write_2(GPIOB_2, stateGpiob_2); 
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -111,7 +131,7 @@ void deactivate_bonus_5_elevator()
 void activate_bonus_6_blower()
 {     
     bonus_activator();
-    stateGpiob_2 |= 0x04; 
+    stateGpiob_2 |= 0x04; //--> 0b00000100
     mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB2 à HIGH (bit 2 à 1)
 }
 
@@ -129,20 +149,16 @@ void deactivate_bonus_6_blower()
 void activate_bonus_7_blower() 
 {     
     bonus_activator();
-    //stateGpiob_2 |= 0x02; 
-    stateGpiob_2 |= 0x40; 
-    //mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB1 à HIGH (bit 1 à 1)
-    mcp23017_write_2(GPIOA_2, stateGpiob_2);            
+    stateGpioa_2 |= 0x40;   //0x40 -> 0b01000000
+    mcp23017_write_2(GPIOA_2, stateGpioa_2);                                    // Mettre GPA6 à HIGH (PIN 27, J23, port num.10)
 }
 
 //== DÉSACTIVER BONUS 7 ==//
 void deactivate_bonus_7_blower()
 {
-    bonus_activator();
-    //stateGpiob_2 &= 0xFD;
-    //mcp23017_write_2(GPIOB_2, stateGpiob_2);                                    // Mettre GPB1 à LOW (bit 1 à 0) 
-    stateGpiob_2 &= 0xBF;
-    mcp23017_write_2(GPIOA_2, stateGpiob_2);       
+    bonus_activator();                                                          // Mettre GPA6 à LOW (PIN 27, J23, port num.10) 
+    stateGpioa_2 &= 0xBF;  //0b10111111
+    mcp23017_write_2(GPIOA_2, stateGpioa_2);       
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -152,7 +168,7 @@ void activate_bonus_8_startBlower()
 {     
     bonus_activator();
     stateGpioa_2 |= 0x80; 
-    mcp23017_write_2(GPIOA_2, stateGpioa_2);                                    // Mettre GPB0 à HIGH (bit 0 à 1)
+    mcp23017_write_2(GPIOA_2, stateGpioa_2);                                    // Mettre GPA7 à HIGH (PIN 28, J22, port num.9)
 }
 
 //== DÉSACTIVER BONUS 8 ==//
@@ -160,5 +176,5 @@ void deactivate_bonus_8_startBlower()
 {
     bonus_activator();
     stateGpioa_2 &= 0x7F;
-    mcp23017_write_2(GPIOA_2, stateGpioa_2);                                    // Mettre GPB0 à LOW (bit 0 à 0) 
+    mcp23017_write_2(GPIOA_2, stateGpioa_2);                                    // Mettre GPA7 à LOW (PIN 28, J22, port num.9)
 }

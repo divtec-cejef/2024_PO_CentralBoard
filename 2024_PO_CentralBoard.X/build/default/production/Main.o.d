@@ -1,1 +1,0 @@
-C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\build\default\production\Main.o: Main.c 18F47Q10.h ComINF.c ComINF.h DFPlayer.c DFPlayer.h ComXLR8.c ComXLR8.h ComDisplay.c ComDisplay.h ComFeux.c ComFeux.h I2C.c I2C.h I2C2.c I2C2.h ws2812.c ws2812.h stdint.h 
