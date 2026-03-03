@@ -343,6 +343,7 @@ void main()
                 ComFeuAnim(1);                                                  // Active animation Feux //
                 
                 delay_ms(1000);                                                 // Délai pour éviter perturbations //
+                
                  
                 state = WAIT;
  
@@ -384,7 +385,7 @@ void main()
                         select_multiplexer_channel(1);
                         ComFeuAnim(0);                                              // Arrête l'animation des feux //
                         delay_ms(5);
-
+                        ComFeuAnim(0);
                         ComINF_MessageInfo(1111,1,0000);                            // Envoi message prêt //
 
                         secondaryCounter = 0;                                       
@@ -395,8 +396,16 @@ void main()
                         select_multiplexer_channel(2);
                         //DFPlayer_NextSong(); //2                                    // Change la musique //
 
+                        
                         delay_ms(1000);                                             // Délai pour éviter perturbations //
-
+                        
+                        ComFeuAllume(0,0,0,0,r,3);
+                        delay_ms(10);                                             // Délai pour éviter perturbations //
+                        
+                        ComFeuAllume(0,0,0,0,r,3);
+                        delay_ms(10);                                             // Délai pour éviter perturbations //
+                        
+                        ComFeuAllume(0,0,0,0,g,0);
 
                         state = READY;
                     }
@@ -461,8 +470,15 @@ void main()
 
                         select_multiplexer_channel(2);
                         //DFPlayer_NextSong(); //2                                    // Change la musique //
-
+                        
+                        
                         delay_ms(1000);                                             // Délai pour éviter perturbations //
+                        
+                        ComFeuAllume(0,0,0,0,r,3);
+                        delay_ms(1000);                                             // Délai pour éviter perturbations //
+                        
+                        ComFeuAllume(0,0,0,0,r,3);
+                        
 
                         state = READY;
                     }
@@ -582,7 +598,7 @@ void main()
                     for (int i = 0; i < WS2812_LED_COUNT; i++)                  // Éclairage en vert du buzzer //
                     {
                         red_array[i] = 0;
-                        green_array[i] = 255;
+                        green_array[i] = 0;
                         blue_array[i] = 0;
                     }
                     ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
@@ -637,6 +653,13 @@ void main()
                         bonus_activator();
                         activate_bonus_8_startBlower();
                     }
+                    for (int i = 0; i < WS2812_LED_COUNT; i++)                      // Extinction du buzzer //
+                    {
+                        red_array[i] = 0;
+                        green_array[i] = 0;
+                        blue_array[i] = 0;
+                    }
+                ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
                     
                     state = RACE;
                 }
@@ -657,13 +680,7 @@ void main()
          
             case RACE:                                                          // Course //
                 
-                for (int i = 0; i < WS2812_LED_COUNT; i++)                      // Extinction du buzzer //
-                {
-                    red_array[i] = 0;
-                    green_array[i] = 0;
-                    blue_array[i] = 0;
-                }
-                ws2812_showAll(red_array, green_array, blue_array, WS2812_LED_COUNT);
+                
                 
                 bonus_activator();
                 

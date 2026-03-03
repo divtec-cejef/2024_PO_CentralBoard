@@ -1,10 +1,10 @@
 ÀÄ2024_PO_CentralBoard
-   ÃÄMAIN  0/4150  Ram=53
+   ÃÄMAIN  0/4290  Ram=53
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄ@cinit2  (Inline)  Ram=0
    ³  ÃÄ@delay_ms1  0/40  Ram=1
    ³  ÃÄselect_multiplexer_channel  0/52  Ram=1
-   ³  ³  ÀÄ@goto8038  0/40  Ram=0
+   ³  ³  ÀÄ@goto41767  0/40  Ram=0
    ³  ÃÄComDisplay_Color  0/100  Ram=1
    ³  ³  ÃÄ@PSTRINGC_9600_31852_31850  0/46  Ram=3
    ³  ³  ÃÄ@PSTRINGC_9600_31852_31850  0/46  Ram=3
@@ -46,7 +46,7 @@
    ³  ³  ÀÄmcp23017_write  0/88  Ram=2
    ³  ³     ÀÄ*
    ³  ÃÄ@delay_ms1  0/40  Ram=1
-   ³  ÃÄ@goto8432  0/48  Ram=0
+   ³  ÃÄ@goto42235  0/48  Ram=0
    ³  ÃÄws2812_showAll  0/70  Ram=11
    ³  ³  ÃÄws2812_sendColor  0/22  Ram=3
    ³  ³  ³  ÃÄws2812_sendByte  0/42  Ram=3
@@ -140,6 +140,8 @@
    ³  ÃÄComFeuAnim  0/36  Ram=1
    ³  ³  ÀÄ*
    ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ÃÄComFeuAnim  0/36  Ram=1
+   ³  ³  ÀÄ*
    ³  ÃÄComINF_MessageInfo  0/64  Ram=5
    ³  ³  ÃÄ@PRINTF_LU_9600_31856_31857  0/176  Ram=9
    ³  ³  ÃÄ@PRINTF_D0_9600_31856_31857  0/196  Ram=6
@@ -150,6 +152,24 @@
    ³  ÃÄselect_multiplexer_channel  0/52  Ram=1
    ³  ³  ÀÄ*
    ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ÃÄComFeuAllume  0/64  Ram=6
+   ³  ³  ÃÄ@PRINTF_D_9600_31852_31850  0/194  Ram=6
+   ³  ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ³  ÀÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄ@PRINTF_D_9600_31852_31850  0/194  Ram=6
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@PRINTF_D_9600_31852_31850  0/194  Ram=6
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@PRINTF_D_9600_31852_31850  0/194  Ram=6
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄ@PRINTF_D_9600_31852_31850  0/194  Ram=6
+   ³  ³     ÀÄ*
+   ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ÃÄComFeuAllume  0/64  Ram=6
+   ³  ³  ÀÄ*
+   ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ÃÄComFeuAllume  0/64  Ram=6
+   ³  ³  ÀÄ*
    ³  ÃÄws2812_showAll  0/70  Ram=11
    ³  ³  ÀÄ*
    ³  ÃÄ@MUL1616  0/30  Ram=5
@@ -163,6 +183,11 @@
    ³  ÃÄselect_multiplexer_channel  0/52  Ram=1
    ³  ³  ÀÄ*
    ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ÃÄComFeuAllume  0/64  Ram=6
+   ³  ³  ÀÄ*
+   ³  ÃÄ@delay_ms1  0/40  Ram=1
+   ³  ÃÄComFeuAllume  0/64  Ram=6
+   ³  ³  ÀÄ*
    ³  ÃÄselect_multiplexer_channel  0/52  Ram=1
    ³  ³  ÀÄ*
    ³  ÃÄDFPlayer_NextSong  0/30  Ram=0
@@ -171,17 +196,7 @@
    ³  ÃÄselect_multiplexer_channel  0/52  Ram=1
    ³  ³  ÀÄ*
    ³  ÃÄComFeuAllume  0/64  Ram=6
-   ³  ³  ÃÄ@PRINTF_D_9600_31852_31850  0/194  Ram=6
-   ³  ³  ³  ÃÄ@DIV88  0/40  Ram=3
-   ³  ³  ³  ÀÄ@DIV88  0/40  Ram=3
-   ³  ³  ÃÄ@PRINTF_D_9600_31852_31850  0/194  Ram=6
-   ³  ³  ³  ÀÄ*
-   ³  ³  ÃÄ@PRINTF_D_9600_31852_31850  0/194  Ram=6
-   ³  ³  ³  ÀÄ*
-   ³  ³  ÃÄ@PRINTF_D_9600_31852_31850  0/194  Ram=6
-   ³  ³  ³  ÀÄ*
-   ³  ³  ÀÄ@PRINTF_D_9600_31852_31850  0/194  Ram=6
-   ³  ³     ÀÄ*
+   ³  ³  ÀÄ*
    ³  ÃÄComFeuAllume  0/64  Ram=6
    ³  ³  ÀÄ*
    ³  ÃÄComFeuAllume  0/64  Ram=6
@@ -259,6 +274,8 @@
    ³  ³  ÀÄ*
    ³  ÃÄactivate_bonus_8_startBlower  0/16  Ram=0
    ³  ³  ÀÄ*
+   ³  ÃÄws2812_showAll  0/70  Ram=11
+   ³  ³  ÀÄ*
    ³  ÃÄselect_multiplexer_channel  0/52  Ram=1
    ³  ³  ÀÄ*
    ³  ÃÄComDisplay_Color  0/100  Ram=1
@@ -268,8 +285,6 @@
    ³  ÃÄ@DIV1616  0/66  Ram=5
    ³  ÃÄ@DIV1616  0/66  Ram=5
    ³  ÃÄComDisplay_Time  0/42  Ram=2
-   ³  ³  ÀÄ*
-   ³  ÃÄws2812_showAll  0/70  Ram=11
    ³  ³  ÀÄ*
    ³  ÃÄbonus_activator  0/18  Ram=0
    ³  ³  ÀÄ*

@@ -233,7 +233,7 @@ ROM Allocation:
 0001B0  Timer0_ISR
 000214  @delay_ms1
 00023C  select_multiplexer_channel
-000270  @goto8038
+000270  @goto41767
 000298  @PSTRINGC_9600_31852_31850
 0002C6  ComDisplay_Color
 00032A  ComDisplay_Mode
@@ -269,9 +269,9 @@ ROM Allocation:
 000836  @PRINTF_LU_9600_31856_31857
 0008E6  @PRINTF_D0_9600_31856_31857
 0009AA  ComINF_MessageInfo
-0009EA  DFPlayer_NextSong
-000A08  @PRINTF_D_9600_31852_31850
-000ACA  ComFeuAllume
+0009EA  @PRINTF_D_9600_31852_31850
+000AAC  ComFeuAllume
+000AEC  DFPlayer_NextSong
 000B0A  startXLR8
 000B2C  activate_XLR8_backup
 000B3C  activate_bonus_8_startBlower
@@ -287,13 +287,13 @@ ROM Allocation:
 000BE8  MAIN
 000BE8  @cinit1
 000C78  @cinit2
-001C1E  @goto8432
+001CAA  @goto42235
 
 Project Directory:
     C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\
 
 Project Files:
-    Main.c                                                  [13-févr.-26 15:20  CRC=A033DB5D]
+    Main.c                                                  [02-mars-26 16:43  CRC=211DF0B8]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\devices\18F47Q10.h [20-nov.-25 22:30  CRC=BFAFE12E]
     ComINF.c                                                [09-mai-25 13:22  CRC=32C27D48]
     ComINF.h                                                [09-mai-25 13:22  CRC=41DF7DD9]
@@ -313,9 +313,9 @@ Project Files:
     ws2812.h                                                [16-mai-25 09:38  CRC=9B1E5A8E]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\drivers\stdint.h [13-mai-20 08:33  CRC=4FD89CC0]
 
-Source signature=52C1E705
+Source signature=D3ABFC60
 Program memory checksum=0000
-Hex file CRC=0443
+Hex file CRC=FA48
 
 Units:
     C:\Users\Kylian Dos Santos\MPLABXProjects\Github\2024_PO_CentralBoard-Master\2024_PO_CentralBoard\2024_PO_CentralBoard.X\Main (main)

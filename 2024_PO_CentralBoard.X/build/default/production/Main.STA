@@ -1,9 +1,9 @@
 
-ROM used:   7244/131072 (6%)
-            7244/131072 (6%) including unused fragments
+ROM used:   7384/131072 (6%)
+            7384/131072 (6%) including unused fragments
 
             1.8 Average locations per line
-            10.7 Average locations per statement
+            10.8 Average locations per statement
 
 RAM used:   220/3615 (6%) at main() level
             239/3615 (7%) worst case
@@ -13,7 +13,7 @@ Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  933   463  69  Main.c
+  950   472  69  Main.c
  2187     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\devices\18F47Q10.h
    57    15   2  ComINF.c
    23     0   0  ComINF.h
@@ -33,7 +33,7 @@ Lines Stmts  %   Files
    21     0   0  ws2812.h
   195     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\drivers\stdint.h
 ----- -----
- 4038   674 Total
+ 4055   683 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
@@ -101,20 +101,20 @@ Page ROM  %  RAM    Vol Diff  Functions:
 0    100   1    2    236  3.6  Timer0_ISR
 0     66   0    5             @DIV1616
 0     52   0    1    300  3.2  select_multiplexer_channel
-0     40   0    0             @goto8038
-0   4150  29   53  23338 14.0  MAIN
+0     40   0    0             @goto41767
+0   4290  29   53  24340 14.0  MAIN
 0     30   0    5             @MUL1616
-0     48   0    0             @goto8432
+0     48   0    0             @goto42235
  Inline         0             @cinit1
 
 Program metrics:
     Functions               44
-    Statements              674
-    Comments                768
-    Volume (V)              37232
-    Difficulty (D)          123.7
-    Effort to implement (E) 4605722
-    Time to implement (T)   71 hours, 5 minutes
+    Statements              683
+    Comments                771
+    Volume (V)              38281
+    Difficulty (D)          123.9
+    Effort to implement (E) 4742674
+    Time to implement (T)   73 hours, 11 minutes
     Est Delivered Bugs (B)  9
     Cyclomatic Complexity   79
     Maintainability (MI)    101
@@ -124,7 +124,7 @@ Program metrics:
 00000-00004     6  0  
 00006-00006     0  2  
 00008-000CA   196  0  
-000CC-0FFFE  7042  58290  
+000CC-0FFFE  7182  58150  
 10000-1FFFE     0  65536  
 
 
